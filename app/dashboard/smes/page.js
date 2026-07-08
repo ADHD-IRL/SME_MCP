@@ -40,8 +40,11 @@ export default async function MySmes() {
         <h1 style={{ marginBottom: 0 }}>My SMEs</h1>
         <a href="/dashboard">← Dashboard</a>
       </div>
-      <p style={{ color: '#555', marginTop: 4 }}>
-        {smes.length} SME{smes.length === 1 ? '' : 's'} in your workspace.
+      <p style={{ color: '#555', marginTop: 4, display: 'flex', gap: '1rem', alignItems: 'baseline' }}>
+        <span>{smes.length} SME{smes.length === 1 ? '' : 's'} in your workspace.</span>
+        {smes.length > 0 && (
+          <a href="/dashboard/smes/export" download style={{ fontSize: '0.9rem' }}>Export JSON ↓</a>
+        )}
       </p>
 
       {flash && (

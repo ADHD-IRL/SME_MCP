@@ -83,6 +83,17 @@ export async function importSmes({
   return { imported: created.length, failed: errors.length, created, errors };
 }
 
+// Export SMEs as import-ready profiles. Strips workspace/status/quality
+// metadata so the output round-trips cleanly back through importSmes.
+export async function exportSmes(workspaceId, { includeArchived = false } = {}) {
+  const rows = await listWorkspaceSmes(workspaceId, { includeArchived });
+  return {
+    exported_at: new Date().toISOString(),
+    count: rows.length,
+    smes: rows.map((r) => pickProfile(r)),
+  };
+}
+
 // Parse an import payload (a JSON string) into an array of profiles.
 // Accepts a bare array, a single object, or { smes: [...] }.
 export function parseImportPayload(text) {

@@ -7,6 +7,7 @@ import searchSmes from './search_smes.js';
 import getSme from './get_sme.js';
 import createSme from './create_sme.js';
 import importSmes from './import_smes.js';
+import exportSmes from './export_smes.js';
 import updateSme from './update_sme.js';
 import archiveSme from './archive_sme.js';
 import cloneSme from './clone_sme.js';
@@ -21,6 +22,7 @@ export const TOOLS = [
   getSme,
   createSme,
   importSmes,
+  exportSmes,
   updateSme,
   archiveSme,
   cloneSme,
