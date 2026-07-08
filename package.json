@@ -1,17 +1,24 @@
 {
-  "name": "agentdebate-sme-mcp",
-  "version": "1.0.0",
-  "description": "MCP server for managing AgentDebate Subject Matter Experts",
+  "name": "sme-library-mcp",
+  "version": "0.1.0",
+  "description": "SME Library — a hosted MCP server for creating, searching, and sharing Subject Matter Expert profiles",
+  "private": true,
   "type": "module",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "stdio": "node bin/stdio.js"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.32.0",
-    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@anthropic-ai/sdk": "^0.110.0",
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.45.0",
-    "dotenv": "^16.4.0",
-    "zod": "^3.23.0"
+    "mcp-handler": "^1.0.0",
+    "next": "^15.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.0"
   }
 }
