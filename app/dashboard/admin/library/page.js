@@ -22,7 +22,14 @@ export default async function LibraryAdmin({ searchParams }) {
   const params = await searchParams;
   const status = params?.status || 'all';
   const query = params?.q || '';
-  const smes = await listLibrarySmes({ status, query });
+
+  let smes = [];
+  let loadError = null;
+  try {
+    smes = await listLibrarySmes({ status, query });
+  } catch (err) {
+    loadError = err.message;
+  }
 
   const tabs = ['all', 'active', 'deprecated', 'archived'];
 
@@ -53,7 +60,13 @@ export default async function LibraryAdmin({ searchParams }) {
         ))}
       </div>
 
-      {smes.length === 0 && <p style={{ color: '#888' }}>No matching library SMEs.</p>}
+      {loadError && (
+        <div style={{ background: '#fdecea', border: '1px solid #f5c6cb', borderRadius: 8, padding: '0.8rem 1rem', margin: '1rem 0', fontSize: '0.9rem' }}>
+          <strong>Couldn't load the library.</strong> Apply the pending database migration
+          (<code>supabase db push</code>) — the schema is missing new columns. Details: <code>{loadError}</code>
+        </div>
+      )}
+      {!loadError && smes.length === 0 && <p style={{ color: '#888' }}>No matching library SMEs.</p>}
 
       {smes.map((s) => (
         <section key={s.id} style={{ border: '1px solid #e5e5e5', borderRadius: 10, padding: '1rem 1.15rem', margin: '0.8rem 0' }}>
