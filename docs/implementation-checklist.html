@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1a1a1a; font-size: 10.5pt; line-height: 1.5; margin: 0;
+  }
+  header { border-bottom: 3px solid #111; padding-bottom: 10px; margin-bottom: 18px; }
+  h1 { font-size: 22pt; margin: 0 0 2px; letter-spacing: -0.02em; }
+  .sub { color: #666; font-size: 10pt; }
+  h2 {
+    font-size: 13pt; margin: 22px 0 8px; padding: 5px 10px;
+    background: #111; color: #fff; border-radius: 4px;
+    break-after: avoid;
+  }
+  h3 { font-size: 11pt; margin: 14px 0 4px; color: #111; break-after: avoid; }
+  p { margin: 6px 0; }
+  ul { margin: 4px 0 10px; padding-left: 0; list-style: none; }
+  li { margin: 3px 0; padding-left: 22px; text-indent: -22px; break-inside: avoid; }
+  li::before { content: "☐"; color: #888; margin-right: 8px; font-size: 11pt; }
+  li.done::before { content: "☑"; color: #1a7f37; }
+  code {
+    background: #f0f0f0; padding: 1px 5px; border-radius: 3px;
+    font-family: "SF Mono", Consolas, monospace; font-size: 9pt;
+  }
+  .meta { color: #666; font-size: 9pt; }
+  .pill {
+    display: inline-block; font-size: 8pt; font-weight: 600; padding: 1px 7px;
+    border-radius: 10px; vertical-align: middle; margin-left: 6px;
+  }
+  .built { background: #e6f4ea; color: #1a7f37; }
+  .todo { background: #fdeaea; color: #c0392b; }
+  .note { background: #f7f7f7; border-left: 3px solid #bbb; padding: 8px 12px; margin: 8px 0; font-size: 9.5pt; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 9.5pt; }
+  th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid #e5e5e5; }
+  th { background: #f4f4f4; }
+  .foot { margin-top: 24px; padding-top: 8px; border-top: 1px solid #ddd; color: #999; font-size: 8.5pt; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SME Library MCP — Implementation Checklist</h1>
+  <div class="sub">What it takes to stand up and run the Subject Matter Expert MCP service &middot; Vercel + Supabase</div>
+</header>
+
+<p>This is the deployment and operations runbook for the SME Library MCP server. Items marked
+<span class="pill built">code done</span> are implemented in the repository; items marked
+<span class="pill todo">action</span> are steps <em>you</em> perform to get a live service. Work top to bottom.</p>
+
+<div class="note"><strong>Architecture in one line:</strong> a Next.js app on Vercel serves MCP over
+Streamable HTTP at <code>/api/mcp</code>, backed by a standalone Supabase project (Postgres +
+Auth + pgvector + Edge Functions). Agents authenticate with hashed bearer API keys; humans use a
+Supabase-Auth dashboard to mint keys.</p>
+
+<h2>1 &middot; Prerequisites</h2>
+<ul>
+  <li>A <strong>Supabase</strong> account and a new, dedicated project (standalone — not shared with other apps)</li>
+  <li>A <strong>Vercel</strong> account connected to the GitHub repo</li>
+  <li>An <strong>Anthropic API key</strong> (used by the <code>generate_sme</code> tool)</li>
+  <li>The <strong>Supabase CLI</strong> installed locally (<code>npm i -g supabase</code>) and <code>supabase login</code> done</li>
+  <li>Node.js 18+ locally for the bootstrap script and optional local runs</li>
+</ul>
+
+<h2>2 &middot; Supabase — database</h2>
+<ul>
+  <li>Create the project; note the project ref, URL, <code>anon</code> key, and <code>service_role</code> key</li>
+  <li><code>supabase link --project-ref &lt;ref&gt;</code></li>
+  <li>Apply all migrations: <code>supabase db push</code> <span class="pill built">code done</span> (migrations 001–003 in repo)</li>
+  <li>Confirm the <code>vector</code> and <code>pgcrypto</code> extensions enabled (migration 001 does this)</li>
+  <li>Confirm the seeded library workspace row exists (id <code>0000…0001</code>)</li>
+  <li>Verify RLS is enabled deny-all on every table (migration 001) and the authenticated read policies exist (migration 003)</li>
+</ul>
+
+<h3>Schema shipped in the repo <span class="pill built">code done</span></h3>
+<table>
+  <tr><th>Table</th><th>Purpose</th></tr>
+  <tr><td><code>workspaces</code></td><td>Tenants; one seeded library workspace</td></tr>
+  <tr><td><code>api_keys</code></td><td>SHA-256-hashed keys, scopes, tier, expiry, revocation</td></tr>
+  <tr><td><code>smes</code></td><td>Domain-agnostic profiles + <code>extensions</code> jsonb, FTS vector, embedding</td></tr>
+  <tr><td><code>sme_versions</code></td><td>Full snapshot per edit (rollback/diff)</td></tr>
+  <tr><td><code>sme_feedback</code></td><td>Raw per-session scores → Bayesian quality</td></tr>
+  <tr><td><code>library_promotions</code></td><td>Moderated promotion queue</td></tr>
+  <tr><td><code>workspace_members</code></td><td>Auth users → workspaces</td></tr>
+  <tr><td><code>audit_log</code>, <code>rate_limits</code></td><td>Audit trail; fixed-window rate limiting</td></tr>
+</table>
+
+<h2>3 &middot; Supabase — Auth &amp; Edge Functions</h2>
+<ul>
+  <li>Enable <strong>Email</strong> auth provider (Authentication → Providers). Decide whether to require email confirmation</li>
+  <li>Add your Vercel domain to Auth → URL Configuration → Redirect URLs (<code>https://&lt;domain&gt;/auth/callback</code>)</li>
+  <li>Deploy the embedding function: <code>supabase functions deploy embed</code> <span class="pill built">code done</span> (gte-small, 384-dim)
+    <span class="meta">— optional; search falls back to keyword FTS if absent</span></li>
+</ul>
+
+<h2>4 &middot; Vercel — environment variables</h2>
+<table>
+  <tr><th>Variable</th><th>Required</th><th>Purpose</th></tr>
+  <tr><td><code>SUPABASE_URL</code></td><td>yes</td><td>Project URL</td></tr>
+  <tr><td><code>SUPABASE_SERVICE_ROLE_KEY</code></td><td>yes</td><td>Server-side DB access (never exposed to client)</td></tr>
+  <tr><td><code>SUPABASE_ANON_KEY</code></td><td>yes</td><td>Powers the signed-in dashboard (RLS applies)</td></tr>
+  <tr><td><code>ANTHROPIC_API_KEY</code></td><td>yes</td><td><code>generate_sme</code> tool</td></tr>
+  <tr><td><code>CRON_SECRET</code></td><td>yes</td><td>Protects <code>/api/cron/maintenance</code></td></tr>
+  <tr><td><code>ADMIN_EMAILS</code></td><td>rec.</td><td>Comma-separated admins for the promotion queue</td></tr>
+  <tr><td><code>ANTHROPIC_MODEL</code></td><td>no</td><td>Override; defaults to <code>claude-opus-4-8</code></td></tr>
+  <tr><td><code>NEXT_PUBLIC_BASE_URL</code></td><td>no</td><td>Shown in connect snippets</td></tr>
+</table>
+<ul>
+  <li>Set the above in the Vercel project (Settings → Environment Variables)</li>
+  <li>Generate a long random <code>CRON_SECRET</code> (e.g. <code>openssl rand -hex 32</code>)</li>
+</ul>
+
+<h2>5 &middot; Deploy</h2>
+<ul>
+  <li>Import the repo into Vercel (framework auto-detected as Next.js)</li>
+  <li><code>vercel deploy --prod</code> (or push to the production branch)</li>
+  <li>Confirm the daily cron is registered from <code>vercel.json</code> <span class="pill built">code done</span> (Settings → Cron Jobs)</li>
+  <li>Hit <code>GET /api/health</code> — expect <code>configured.supabase</code> and <code>configured.anthropic</code> both <code>true</code></li>
+</ul>
+
+<h2>6 &middot; First keys &amp; smoke test</h2>
+<ul>
+  <li>Mint an operator/admin key: <code>node scripts/create-key.mjs --workspace "Ops" --admin</code> <span class="pill built">code done</span></li>
+  <li>Or self-serve: visit <code>/dashboard</code>, sign up, create a read/write key</li>
+  <li>Connect a client:<br>
+    <code>claude mcp add --transport http sme-library https://&lt;domain&gt;/api/mcp --header "Authorization: Bearer sme_live_…"</code></li>
+  <li>Exercise each tool: <code>create_sme</code> → <code>search_smes</code> → <code>get_sme</code> → <code>update_sme</code> →
+    <code>generate_sme</code> → <code>record_feedback</code> → <code>propose_promotion</code> → <code>clone_sme</code> → <code>archive_sme</code></li>
+  <li>As an admin, approve a proposal at <code>/dashboard/admin</code>; confirm it appears in <code>GET /api/library</code></li>
+  <li>Confirm auth is enforced: unauthenticated <code>/api/mcp</code> and <code>/api/cron/maintenance</code> return 401</li>
+</ul>
+
+<h2>7 &middot; What's already built <span class="pill built">code done</span></h2>
+<table>
+  <tr><th>Phase</th><th>Capability</th></tr>
+  <tr><td>1</td><td>HTTP transport (mcp-handler), hashed-key auth, rate limits, 11 tools, stdio for local dev</td></tr>
+  <tr><td>2</td><td>Supabase Auth dashboard: signup, auto-workspace, key mint/revoke</td></tr>
+  <tr><td>3</td><td>Hybrid search: keyword FTS + pgvector semantic + reciprocal rank fusion</td></tr>
+  <tr><td>4</td><td>Daily cron: quality recompute, rate-limit cleanup, embedding backfill</td></tr>
+  <tr><td>5</td><td>Admin promotion-review UI; cached public <code>/api/library</code> endpoint</td></tr>
+</table>
+
+<h3>The 11 MCP tools <span class="pill built">code done</span></h3>
+<p class="meta"><code>search_smes</code> &middot; <code>list_smes</code> &middot; <code>get_sme</code> &middot;
+<code>create_sme</code> &middot; <code>update_sme</code> &middot; <code>archive_sme</code> &middot;
+<code>clone_sme</code> &middot; <code>generate_sme</code> &middot; <code>record_feedback</code> &middot;
+<code>propose_promotion</code> &middot; <code>review_promotion</code> (admin)</p>
+
+<h2>8 &middot; Remaining engineering work <span class="pill todo">action</span></h2>
+<ul>
+  <li><strong>OAuth 2.1</strong> (dynamic client registration + PKCE) so claude.ai custom connectors authorize interactively instead of pasting a key — <code>mcp-handler</code> supports it via <code>withMcpAuth</code>; needs Supabase configured as an OAuth authorization server</li>
+  <li><strong>Stale-SME decay</strong>: flag SMEs unused for N months / declining scores for deprecation review (extend the cron)</li>
+  <li><strong>LLM content screen on promotion</strong>: auto-reject personas designed for harm before they enter the library</li>
+  <li><strong>Usage dashboards</strong>: per-workspace metering views over <code>audit_log</code></li>
+  <li><strong><code>report_sme</code> path</strong> for community moderation of library entries</li>
+  <li><strong>Paid tiers</strong>: wire <code>rate_limit_tier</code> to billing; higher quotas, private-workspace limits</li>
+  <li><strong>Automated tests + CI</strong>: unit tests for auth/search/promotions; GitHub Actions on PR</li>
+</ul>
+
+<h2>9 &middot; Operations</h2>
+<ul>
+  <li>Verify the maintenance cron runs (Vercel → Cron logs); it recomputes quality, prunes rate-limit windows, backfills embeddings</li>
+  <li>Rotate leaked keys via the dashboard (revoke) or DB; keys are hashed so plaintext can't be recovered</li>
+  <li>Monitor <code>audit_log</code> for anomalous write volume per key</li>
+  <li>Back up the Supabase database (point-in-time recovery on paid plans)</li>
+  <li>Watch Anthropic spend — <code>generate_sme</code> is quota-limited per key but bills to your account</li>
+</ul>
+
+<div class="foot">SME Library MCP &middot; generated from the repository architecture &middot; ADHD-IRL/SME_MCP</div>
+</body>
+</html>

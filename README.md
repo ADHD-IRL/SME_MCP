@@ -6,7 +6,9 @@ pull vetted experts from the shared library, maintain private experts in their o
 and contribute good ones back through a moderated promotion pipeline.
 
 Runs on **Vercel** (Next.js + Streamable HTTP transport) with a **Supabase** backend.
-See [ARCHITECTURE.md](./ARCHITECTURE.md) for the full design and roadmap.
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for the full design and roadmap, and
+[docs/SME_MCP_Implementation_Checklist.pdf](./docs/SME_MCP_Implementation_Checklist.pdf) for the
+step-by-step deployment runbook (regenerable from `docs/implementation-checklist.html`).
 
 ## Tools
 
