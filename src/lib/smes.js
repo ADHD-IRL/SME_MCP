@@ -69,7 +69,7 @@ export async function importSmes({
 }) {
   const list = Array.isArray(items) ? items : [items];
   if (list.length === 0) throw new Error('No SMEs to import');
-  if (list.length > 200) throw new Error('Import is capped at 200 SMEs per call');
+  if (list.length > 500) throw new Error('Import is capped at 500 SMEs per call');
 
   const created = [];
   const errors = [];

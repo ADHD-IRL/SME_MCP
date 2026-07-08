@@ -97,6 +97,10 @@ const CORE_LABELS = {
   discipline: 'discipline',
   seniority: 'expertise_level',
   persona: 'persona_description',
+  'synthetic profile / bio': 'persona_description',
+  'synthetic profile/bio': 'persona_description',
+  bio: 'persona_description',
+  'professional background': 'professional_background',
   tags: 'tags',
 };
 
@@ -119,69 +123,104 @@ export function normalizeSeniority(v) {
 }
 
 function splitList(v) {
-  return String(v).split(',').map((s) => s.trim()).filter(Boolean);
+  return String(v).split(/[,;]|\n/).map((s) => s.trim()).filter(Boolean);
 }
 
-// Parse one Markdown SME block into { profile, attributes }.
+const isBullet = (s) => /^[-*]\s+/.test(s);
+const stripBullet = (s) => s.replace(/^[-*]\s+/, '').trim();
+
+// Clean a heading into a name: drop backslash-escapes and a leading "12." /
+// "12)" numbering (e.g. "1\. Domestic Violent Extremism Analyst").
+function cleanName(raw) {
+  return raw.replace(/\\/g, '').replace(/^\s*\d+[.)]\s*/, '').trim();
+}
+
+function slug(label) {
+  return label.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+}
+
+// Parse one Markdown SME block into an import-ready profile.
+// Handles: `## N. Name` (numbered), `### Section` sub-headings (ignored as
+// grouping), `**Label:** value`, `**Label:**` followed by `-`/`*` bullets or
+// a paragraph, and inline `* **key:** value` rating bullets.
 function parseBlock(lines) {
   const attributes = {};
   const core = {};
   let name;
-  let i = 0;
 
-  for (; i < lines.length; i += 1) {
-    const line = lines[i].trim();
-    if (!line) continue;
-
-    // Heading → name
-    const h = line.match(/^#{1,6}\s+(.*)$/);
-    if (h && !name) { name = h[1].trim(); continue; }
-
-    // **Label:** value   (value may be empty → look for following bullets)
-    const m = line.match(/^\*\*(.+?):\*\*\s*(.*)$/);
-    if (!m) continue;
-    const label = m[1].trim().toLowerCase();
-    let value = m[2].trim();
-
-    // Gather following "- ..." bullet lines as this field's list.
-    const bullets = [];
-    let j = i + 1;
-    while (j < lines.length && lines[j].trim().startsWith('- ')) {
-      bullets.push(lines[j].trim().slice(2).trim());
-      j += 1;
-    }
-    if (bullets.length) { i = j - 1; }
-
-    // Vectors → structured object {human, technical, physical, futures}
+  const setCore = (col, value) => {
+    if (col === 'tags') core.tags = splitList(value);
+    else if (col === 'expertise_level') core.expertise_level = normalizeSeniority(value);
+    else if (!core[col]) core[col] = value; // first wins (persona vs bio)
+  };
+  const setAttr = (label, payload) => {
     if (label === 'vectors') {
       const vectors = {};
-      for (const b of bullets) {
-        const vm = b.match(/^(\w+)\s*:\s*(\d+)/);
+      for (const b of Array.isArray(payload) ? payload : [payload]) {
+        const vm = String(b).match(/(\w+)\s*:\s*(\d+)/);
         if (vm) vectors[vm[1].toLowerCase()] = Number(vm[2]);
       }
       attributes.vectors = vectors;
-      continue;
+      return;
+    }
+    const key = LABEL_TO_KEY.get(label) || slug(label);
+    if (Array.isArray(payload)) attributes[key] = payload;
+    else attributes[key] = ARRAY_ATTRS.has(key) ? splitList(payload) : payload;
+  };
+
+  for (let i = 0; i < lines.length; i += 1) {
+    const t = lines[i].trim();
+    if (!t) continue;
+
+    // Any heading: first one names the SME; the rest (### sections) are ignored.
+    const h = t.match(/^#{1,6}\s+(.*)$/);
+    if (h) { if (!name) name = cleanName(h[1]); continue; }
+
+    // Column-level field: **Label:** [value]
+    let m = t.match(/^\*\*(.+?):\*\*\s*(.*)$/);
+    // Inline rating bullet: * **key:** value  (e.g. Domain Fluency)
+    let fromBullet = false;
+    if (!m) {
+      const b = t.match(/^[-*]\s+\*\*(.+?):\*\*\s*(.*)$/);
+      if (b) { m = b; fromBullet = true; }
+    }
+    if (!m) continue; // plain bullet / paragraph handled by look-ahead below
+
+    const label = m[1].trim().toLowerCase();
+    let value = m[2].trim();
+    let list = null;
+
+    // Empty inline value → the value is the following bullet list or paragraph.
+    if (!fromBullet && !value) {
+      let j = i + 1;
+      while (j < lines.length && !lines[j].trim()) j += 1; // skip blank lines
+      if (j < lines.length && isBullet(lines[j].trim()) && !/^[-*]\s+\*\*/.test(lines[j].trim())) {
+        const items = [];
+        while (j < lines.length && isBullet(lines[j].trim()) && !/^[-*]\s+\*\*/.test(lines[j].trim())) {
+          items.push(stripBullet(lines[j].trim()));
+          j += 1;
+        }
+        list = items;
+        i = j - 1;
+      } else if (j < lines.length) {
+        const para = [];
+        while (j < lines.length) {
+          const s = lines[j].trim();
+          if (!s || /^#{1,6}\s+/.test(s) || /^\*\*/.test(s) || isBullet(s)) break;
+          para.push(s);
+          j += 1;
+        }
+        if (para.length) { value = para.join(' '); i = j - 1; }
+      }
     }
 
-    // Core column?
-    if (CORE_LABELS[label]) {
-      const col = CORE_LABELS[label];
-      if (col === 'tags') core.tags = splitList(value);
-      else if (col === 'expertise_level') core.expertise_level = normalizeSeniority(value);
-      else core[col] = value;
-      continue;
-    }
-
-    // Rich attribute?
-    const key = LABEL_TO_KEY.get(label);
-    if (!key) continue;
-    const payload = bullets.length ? bullets.join(', ') : value;
-    attributes[key] = ARRAY_ATTRS.has(key) ? splitList(payload) : payload;
+    if (CORE_LABELS[label]) setCore(CORE_LABELS[label], list ? list.join(', ') : value);
+    else setAttr(label, list || value);
   }
 
   if (!name) return null;
 
-  // Derive core searchable fields from the rich attributes when not set.
+  const asText = (v) => (Array.isArray(v) ? v.join(', ') : v);
   const strong = attributes.strong_domains;
   const weak = attributes.weak_domains;
   const blind = attributes.blind_spots;
@@ -191,35 +230,31 @@ function parseBlock(lines) {
     expertise_level: core.expertise_level,
     persona_description: core.persona_description,
     cognitive_biases: attributes.known_bias || attributes.dominant_bias,
-    strengths: Array.isArray(strong) ? strong.join(', ') : strong,
-    limitations: [Array.isArray(weak) ? weak.join(', ') : weak,
-                  Array.isArray(blind) ? blind.join(', ') : blind].filter(Boolean).join('; ') || undefined,
+    strengths: asText(strong),
+    limitations: [asText(weak), asText(blind)].filter(Boolean).join('; ') || undefined,
     reasoning_style: attributes.cognitive_pattern,
     role_type: attributes.role_type,
     tags: core.tags || [],
     attributes,
   };
-  // Drop undefined keys so validation/insert stay clean.
   Object.keys(profile).forEach((k) => profile[k] === undefined && delete profile[k]);
   return profile;
 }
 
-// Parse a full Markdown document of one or more SME profiles (separated by
-// `---` and/or `##` headings) into an array of import-ready profiles.
+// Parse a full Markdown document of one or more SME profiles into import-ready
+// profiles. Each SME begins at an h1/h2 heading (`#`/`##`); `###`+ headings are
+// treated as in-profile sections, and a bare `---` also ends a profile.
 export function parseSmeMarkdown(text) {
   const clean = String(text).replace(/\r\n/g, '\n');
   const lines = clean.split('\n');
 
-  // Segment on lines that are a bare `---` OR a new `##`-level heading.
   const blocks = [];
   let current = [];
   const flush = () => { if (current.some((l) => l.trim())) blocks.push(current); current = []; };
 
   for (const line of lines) {
-    const isRule = /^\s*---\s*$/.test(line);
-    const isHeading = /^#{1,3}\s+/.test(line);
-    if (isRule) { flush(); continue; }
-    if (isHeading && current.some((l) => /^\*\*/.test(l.trim()))) { flush(); }
+    if (/^\s*---\s*$/.test(line)) { flush(); continue; }
+    if (/^#{1,2}\s+/.test(line)) { flush(); current.push(line); continue; }
     current.push(line);
   }
   flush();
