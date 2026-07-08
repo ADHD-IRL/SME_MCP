@@ -45,6 +45,7 @@ const PLANS = [
     tag: null,
     feature: false,
     cta: 'Contact sales',
+    href: '/contact',
     features: [
       'Unlimited requests & generations',
       'Private / self-hosted library options',
@@ -80,13 +81,13 @@ export default function Pricing() {
                 <div className="amt">{p.price}</div>
                 <div className="per">{p.per}</div>
                 <ul>{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
-                <Link href="/dashboard" className={`mk-btn ${p.feature ? 'mk-btn-primary' : 'mk-btn-ghost'}`}>{p.cta}</Link>
+                <Link href={p.href || '/dashboard'} className={`mk-btn ${p.feature ? 'mk-btn-primary' : 'mk-btn-ghost'}`}>{p.cta}</Link>
               </div>
             ))}
           </div>
           <p className="sub mk-center" style={{ margin: '30px auto 0' }}>
             Limits are enforced per API key. Need something in between, or usage-based billing?{' '}
-            <Link href="/dashboard" style={{ color: 'var(--accent-ink)' }}>Get in touch</Link>.
+            <Link href="/contact" style={{ color: 'var(--accent-ink)' }}>Get in touch</Link>.
           </p>
         </div>
       </section>

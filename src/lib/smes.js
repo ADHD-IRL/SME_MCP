@@ -83,6 +83,36 @@ export async function importSmes({
   return { imported: created.length, failed: errors.length, created, errors };
 }
 
+// Public read of the shared library — powers the marketing /browse page.
+// No auth; only active library entries are visible.
+export async function listPublicLibrary({ query, limit = 60 } = {}) {
+  let q = getSupabase()
+    .from('smes')
+    .select(SME_SELECT)
+    .eq('visibility', 'library')
+    .eq('status', 'active');
+  if (query) q = q.textSearch('search_vector', query, { type: 'websearch', config: 'english' });
+  q = q
+    .order('quality_score', { ascending: false, nullsFirst: false })
+    .order('usage_count', { ascending: false })
+    .limit(Math.min(limit, 100));
+  const { data, error } = await q;
+  if (error) throw new Error(error.message);
+  return data;
+}
+
+export async function getPublicSme(id) {
+  const { data, error } = await getSupabase()
+    .from('smes')
+    .select(SME_SELECT)
+    .eq('id', id)
+    .eq('visibility', 'library')
+    .eq('status', 'active')
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  return data;
+}
+
 // Export SMEs as import-ready profiles. Strips workspace/status/quality
 // metadata so the output round-trips cleanly back through importSmes.
 export async function exportSmes(workspaceId, { includeArchived = false } = {}) {
