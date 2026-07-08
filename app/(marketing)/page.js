@@ -20,7 +20,7 @@ export default function Home() {
           </p>
           <div className="row">
             <Link href="/dashboard" className="mk-btn mk-btn-primary">Get an API key</Link>
-            <Link href="/product" className="mk-btn mk-btn-ghost">See what's inside</Link>
+            <Link href="/browse" className="mk-btn mk-btn-ghost">Browse the library</Link>
           </div>
         </div>
       </section>

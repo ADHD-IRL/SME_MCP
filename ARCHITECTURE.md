@@ -53,9 +53,17 @@ feeds straight back into import — so profiles round-trip for backup or seeding
 
 **Data model.** A domain-agnostic core profile (name, discipline, expertise level, persona,
 background, reasoning style, cognitive biases, strengths, limitations, communication style,
-domain knowledge, tags) plus a namespaced `extensions` jsonb for domain packs (red-teaming,
-legal, medical, …). This is the hardest thing to change after third parties depend on it, so it
-ships generalized from day one.
+domain knowledge, tags) plus an `attributes` jsonb holding the full structured SME profile —
+~45 fields spanning cognition, domains, evidence/source trust, adversary model, belief-updating,
+risk posture, debate role, and threat vectors (see `src/lib/sme-schema.js` for the canonical
+set and `examples/sme-profiles.md` for the format). Core columns stay authoritative for search
+and ranking; `attributes` (folded into the FTS vector) carries everything else, so no field is
+lost. A namespaced `extensions` jsonb remains for anything beyond the standard set.
+
+**Import format.** SMEs import from the human-authored Markdown profile format (`## Name`
+headings, `**Field:** value` lines, `---` separators, a `Vectors:` bullet list) — auto-detected
+and parsed by `src/lib/sme-schema.js` into core + attributes — or from JSON. One parser feeds the
+dashboard, file upload, and the `import_smes` MCP tool.
 
 - `sme_versions` — full jsonb snapshot per edit; enables rollback, diffing, and library re-sync.
 - `sme_feedback` — raw per-session events. The cached `quality_score` is recomputed with

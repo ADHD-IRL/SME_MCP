@@ -18,15 +18,18 @@ export const profileShape = {
   communication_style: z.string().optional().describe('Tone, directness, and how they present conclusions'),
   domain_knowledge: z.array(z.string()).optional().describe('Specific domains, technologies, or bodies of knowledge'),
   tags: z.array(z.string()).optional().describe('3-8 lowercase tags for discovery'),
+  role_type: z.string().optional().describe('e.g. "sme", "challenger", "moderator"'),
   extensions: z.record(z.string(), z.any()).optional()
     .describe('Optional namespaced domain packs, e.g. { "red_team": { "adversary_model": "..." } }'),
+  attributes: z.record(z.string(), z.any()).optional()
+    .describe('Full structured SME attribute set (cognitive pattern, sources, adversary model, vectors, etc.)'),
 };
 
 export const PROFILE_COLUMNS = [
   'name', 'discipline', 'expertise_level', 'persona_description',
   'professional_background', 'reasoning_style', 'cognitive_biases',
   'strengths', 'limitations', 'communication_style',
-  'domain_knowledge', 'tags', 'extensions',
+  'domain_knowledge', 'tags', 'role_type', 'extensions', 'attributes',
 ];
 
 export const SME_SELECT = `id, workspace_id, ${PROFILE_COLUMNS.join(', ')}, status, visibility, current_version, source, cloned_from_id, usage_count, quality_score, created_at, updated_at`;

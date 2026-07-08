@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { getSupabase, LIBRARY_WORKSPACE_ID } from './supabase.js';
 import { profileShape, pickProfile, SME_SELECT } from './profile.js';
 import { embedSme } from './embeddings.js';
+import { looksLikeMarkdown, parseSmeMarkdown } from './sme-schema.js';
 
 // Single source of truth for creating and importing SMEs, reused by the
 // create_sme / import_smes MCP tools and the dashboard UI.
@@ -83,6 +84,36 @@ export async function importSmes({
   return { imported: created.length, failed: errors.length, created, errors };
 }
 
+// Public read of the shared library — powers the marketing /browse page.
+// No auth; only active library entries are visible.
+export async function listPublicLibrary({ query, limit = 60 } = {}) {
+  let q = getSupabase()
+    .from('smes')
+    .select(SME_SELECT)
+    .eq('visibility', 'library')
+    .eq('status', 'active');
+  if (query) q = q.textSearch('search_vector', query, { type: 'websearch', config: 'english' });
+  q = q
+    .order('quality_score', { ascending: false, nullsFirst: false })
+    .order('usage_count', { ascending: false })
+    .limit(Math.min(limit, 100));
+  const { data, error } = await q;
+  if (error) throw new Error(error.message);
+  return data;
+}
+
+export async function getPublicSme(id) {
+  const { data, error } = await getSupabase()
+    .from('smes')
+    .select(SME_SELECT)
+    .eq('id', id)
+    .eq('visibility', 'library')
+    .eq('status', 'active')
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  return data;
+}
+
 // Export SMEs as import-ready profiles. Strips workspace/status/quality
 // metadata so the output round-trips cleanly back through importSmes.
 export async function exportSmes(workspaceId, { includeArchived = false } = {}) {
@@ -94,14 +125,16 @@ export async function exportSmes(workspaceId, { includeArchived = false } = {}) 
   };
 }
 
-// Parse an import payload (a JSON string) into an array of profiles.
-// Accepts a bare array, a single object, or { smes: [...] }.
+// Parse an import payload into an array of profiles. Auto-detects the
+// Markdown profile format, otherwise treats it as JSON (bare array, a single
+// object, or { smes: [...] }).
 export function parseImportPayload(text) {
+  if (looksLikeMarkdown(text)) return parseSmeMarkdown(text);
   let json;
   try {
     json = JSON.parse(text);
   } catch {
-    throw new Error('Import payload is not valid JSON');
+    throw new Error('Import payload is neither the Markdown profile format nor valid JSON');
   }
   const items = Array.isArray(json) ? json : Array.isArray(json?.smes) ? json.smes : [json];
   if (!items.length) throw new Error('No SME objects found in the payload');
