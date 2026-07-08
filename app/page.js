@@ -6,6 +6,9 @@ export default function Home() {
         A hosted <a href="https://modelcontextprotocol.io">MCP</a> server for creating, searching,
         and sharing Subject Matter Expert profiles that AI agents can consult.
       </p>
+      <p>
+        <a href="/dashboard" style={{ fontWeight: 600 }}>Sign in to get an API key →</a>
+      </p>
       <h2>Connect</h2>
       <pre
         style={{ background: '#f4f4f4', padding: '1rem', borderRadius: 8, overflowX: 'auto' }}

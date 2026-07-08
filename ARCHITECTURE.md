@@ -32,12 +32,16 @@ profiles for their projects. Hosted on Vercel with a Supabase backend.
 require Redis for resumability). The tool registry (`src/tools/`) is transport-agnostic —
 `bin/stdio.js` reuses it for local development.
 
-**Auth.** Bearer API keys (`sme_live_...`) in the HTTP header, resolved once per request into
-`{ workspaceId, scopes, tier }` and injected into tool handlers. The credential never appears
-in tool schemas, so the LLM never sees or handles it. Keys are SHA-256-hashed at rest with
-scopes (`read` / `write` / `promote` / `admin`), expiry, and revocation. Phase 2 adds OAuth 2.1
-(dynamic client registration + PKCE) for claude.ai custom connectors, with Supabase Auth as the
-identity provider, plus a self-service signup page that issues keys.
+**Auth — two tracks.** Agents authenticate with bearer API keys (`sme_live_...`) in the HTTP
+header, resolved once per request into `{ workspaceId, scopes, tier }` and injected into tool
+handlers. The credential never appears in tool schemas, so the LLM never sees or handles it.
+Keys are SHA-256-hashed at rest with scopes (`read` / `write` / `promote` / `admin`), expiry,
+and revocation. Humans authenticate with **Supabase Auth** (email/password) on a self-service
+dashboard: first login auto-creates a workspace (`workspace_members` maps users → workspaces),
+and users mint/revoke their own keys. The dashboard uses anon-key SSR clients (RLS applies);
+privileged key operations run through the service-role client behind a membership check.
+Still planned: OAuth 2.1 (dynamic client registration + PKCE) so claude.ai custom connectors
+can authorize interactively instead of pasting a key.
 
 **Data model.** A domain-agnostic core profile (name, discipline, expertise level, persona,
 background, reasoning style, cognitive biases, strengths, limitations, communication style,
@@ -76,8 +80,8 @@ Library SMEs are immutable — customization happens by cloning into a workspace
 | 1 | Standalone schema, HTTP transport, hashed-key auth, rate limits, 11 tools | ✅ |
 | 3 | Semantic search: gte-small edge function, write-time embeds + backfill, hybrid RRF ranking | ✅ |
 | 4 | Daily cron: quality recompute, rate-limit cleanup, embedding backfill | ✅ (decay + LLM content screen on promotion still planned) |
-| 2 | OAuth 2.1 + self-service signup/dashboard (key issuance, usage view) | planned — blocked on identity-provider choice |
-| 5 | Admin UI (promotion queue, key management, dashboards), edge caching for library reads | planned |
+| 2 | Supabase Auth: self-service signup, auto workspace, dashboard key issuance/revocation | ✅ (OAuth 2.1 for claude.ai connectors still planned) |
+| 5 | Admin UI (promotion queue, dashboards), edge caching for library reads | planned |
 
 ## Scaling notes
 

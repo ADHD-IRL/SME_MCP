@@ -39,7 +39,13 @@ supabase functions deploy embed     # optional: enables semantic/hybrid search
 The `embed` edge function runs the built-in gte-small model. It's optional — without it,
 search falls back to keyword FTS automatically.
 
-### 2. Create a workspace + API key
+### 2. Get an API key
+
+**Self-service (recommended):** visit `/dashboard`, create an account (Supabase Auth), and
+mint a key. First login auto-creates your workspace. Requires `SUPABASE_ANON_KEY` to be set and
+email auth enabled in the Supabase project.
+
+**Operator / CLI:** for admin keys or scripted provisioning:
 
 ```bash
 SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... \
@@ -47,7 +53,7 @@ SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... \
   node scripts/create-key.mjs --workspace "Ops" --admin        # admin key
 ```
 
-The plaintext key (`sme_live_...`) is printed once; only its SHA-256 hash is stored.
+Either way the plaintext key (`sme_live_...`) is shown once; only its SHA-256 hash is stored.
 
 ### 3. Deploy to Vercel
 
@@ -56,8 +62,9 @@ vercel deploy
 ```
 
 Set env vars in the Vercel project: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`,
-`ANTHROPIC_API_KEY`, and `CRON_SECRET` (protects the daily `/api/cron/maintenance` job that
-recomputes quality scores, prunes rate-limit windows, and backfills embeddings).
+`SUPABASE_ANON_KEY` (powers the dashboard), `ANTHROPIC_API_KEY`, and `CRON_SECRET` (protects
+the daily `/api/cron/maintenance` job that recomputes quality scores, prunes rate-limit
+windows, and backfills embeddings).
 
 ### 4. Connect a client
 
