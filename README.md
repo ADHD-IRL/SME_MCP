@@ -18,6 +18,7 @@ step-by-step deployment runbook (regenerable from `docs/implementation-checklist
 | `list_smes` | read | Browse library / workspace SMEs, ranked by quality |
 | `get_sme` | read | Fetch one full profile |
 | `create_sme` | write | Author a new workspace SME (versioned from v1) |
+| `import_smes` | write | Bulk-import up to 200 SME profiles; invalid rows reported and skipped |
 | `update_sme` | write | Edit a workspace SME; every edit snapshots version history |
 | `archive_sme` | write | Soft-delete (reversible) |
 | `clone_sme` | write | Copy a library SME into your workspace as an editable private copy |

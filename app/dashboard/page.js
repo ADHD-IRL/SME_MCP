@@ -28,6 +28,7 @@ export default async function Dashboard() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
         <h1 style={{ marginBottom: 0 }}>API keys</h1>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'baseline' }}>
+          <a href="/dashboard/smes">My SMEs</a>
           {isAdminEmail(user.email) && <a href="/dashboard/admin">Promotion queue</a>}
           {isAdminEmail(user.email) && <a href="/dashboard/admin/library">Library</a>}
           <form action="/auth/signout" method="post">
