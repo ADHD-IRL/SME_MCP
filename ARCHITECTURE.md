@@ -81,12 +81,21 @@ Library SMEs are immutable — customization happens by cloning into a workspace
 | 3 | Semantic search: gte-small edge function, write-time embeds + backfill, hybrid RRF ranking | ✅ |
 | 4 | Daily cron: quality recompute, rate-limit cleanup, embedding backfill | ✅ (decay + LLM content screen on promotion still planned) |
 | 2 | Supabase Auth: self-service signup, auto workspace, dashboard key issuance/revocation | ✅ (OAuth 2.1 for claude.ai connectors still planned) |
-| 5 | Admin UI (promotion queue, dashboards), edge caching for library reads | planned |
+| 5 | Admin promotion-review UI, edge-cached public library endpoint | ✅ (usage dashboards still planned) |
+
+## Admin & caching (phase 5)
+
+- **Promotion review** lives at `/dashboard/admin`, gated by the `ADMIN_EMAILS` env var
+  (deploy-config-driven; no schema change, no self-escalation). Approve/reject reuses the same
+  `src/lib/promotions.js` logic as the `review_promotion` MCP tool.
+- **Public library endpoint** `GET /api/library` is unauthenticated and CDN-cached
+  (`s-maxage=300, stale-while-revalidate=86400`) — the cheap read "front door". The library
+  only changes when a promotion is approved, so stale-while-revalidate keeps it fast and fresh.
 
 ## Scaling notes
 
-- Read path (library search/get) dominates traffic → phase 5 adds CDN caching keyed on library
-  version, since the library only changes on approved promotions.
+- Read path (library search/get) dominates traffic → the cached `/api/library` endpoint absorbs
+  anonymous browse traffic at the edge, since the library only changes on approved promotions.
 - Write path stays strictly authenticated and workspace-scoped in the DAL; RLS deny-all means a
   leaked anon key reads nothing.
 - Serverless-friendly: no in-process state, lazy singletons for Supabase/Anthropic clients,

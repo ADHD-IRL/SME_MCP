@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-import { getCurrentUser } from '../../src/lib/supabase-ssr.js';
+import { getCurrentUser, isAdminEmail } from '../../src/lib/supabase-ssr.js';
 import { ensureWorkspace, getMembership, listKeys } from '../../src/lib/workspace.js';
 import { createKeyAction, revokeKeyAction } from './actions.js';
 
@@ -25,9 +25,12 @@ export default async function Dashboard() {
     <main style={{ maxWidth: 760, margin: '3rem auto', padding: '0 1.5rem', lineHeight: 1.6 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
         <h1 style={{ marginBottom: 0 }}>API keys</h1>
-        <form action="/auth/signout" method="post">
-          <button style={linkBtn}>Sign out</button>
-        </form>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'baseline' }}>
+          {isAdminEmail(user.email) && <a href="/dashboard/admin">Promotion queue</a>}
+          <form action="/auth/signout" method="post">
+            <button style={linkBtn}>Sign out</button>
+          </form>
+        </div>
       </div>
       <p style={{ color: '#555', marginTop: 4 }}>
         {user.email} · workspace <code>{membership.workspaces?.name}</code> ({membership.workspaces?.plan})

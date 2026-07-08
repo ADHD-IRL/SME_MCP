@@ -36,3 +36,15 @@ export async function getCurrentUser() {
   const { data: { user } } = await supabase.auth.getUser();
   return user;
 }
+
+// Admins are designated by the operator via the ADMIN_EMAILS env var
+// (comma-separated). Keeps the admin surface deploy-config-driven with no
+// schema change or self-escalation path.
+export function isAdminEmail(email) {
+  if (!email) return false;
+  const admins = (process.env.ADMIN_EMAILS || '')
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+  return admins.includes(email.toLowerCase());
+}
