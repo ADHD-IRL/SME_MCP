@@ -43,6 +43,14 @@ privileged key operations run through the service-role client behind a membershi
 Still planned: OAuth 2.1 (dynamic client registration + PKCE) so claude.ai custom connectors
 can authorize interactively instead of pasting a key.
 
+**Creating & importing SMEs.** Three paths, one shared `src/lib/smes.js` (validate → insert →
+version → embed): the `create_sme` / `import_smes` MCP tools for agents, and a dashboard page
+(`/dashboard/smes`) where humans fill a form or paste/upload JSON (bare array, single object, or
+`{smes:[…]}`; capped at 200, invalid rows skipped and reported). Admins can target the shared
+library directly from the same page. Export is the inverse: the `export_smes` tool and a
+`/dashboard/smes/export` download return `{exported_at, count, smes:[...]}` whose `smes` array
+feeds straight back into import — so profiles round-trip for backup or seeding.
+
 **Data model.** A domain-agnostic core profile (name, discipline, expertise level, persona,
 background, reasoning style, cognitive biases, strengths, limitations, communication style,
 domain knowledge, tags) plus a namespaced `extensions` jsonb for domain packs (red-teaming,
