@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { getCurrentUser, isAdminEmail } from '../../src/lib/supabase-ssr.js';
 import { ensureWorkspace, getMembership, listKeys } from '../../src/lib/workspace.js';
-import { createKeyAction, revokeKeyAction } from './actions.js';
+import { createKeyAction, revokeKeyAction, dismissNewKeyAction } from './actions.js';
 
 export const metadata = { title: 'Dashboard — SME Library' };
 export const dynamic = 'force-dynamic';
@@ -15,9 +15,11 @@ export default async function Dashboard() {
   const membership = await getMembership(user);
   const keys = await listKeys(membership.workspace_id);
 
+  // Read the one-time plaintext key set by createKeyAction. Do NOT delete it
+  // here — cookie mutation is disallowed during a Server Component render.
+  // It self-expires (short maxAge) and the Dismiss button clears it.
   const cookieStore = await cookies();
   const newKey = cookieStore.get('new_key')?.value;
-  if (newKey) cookieStore.delete('new_key');
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://<this-deployment>';
 
@@ -39,7 +41,10 @@ export default async function Dashboard() {
       {newKey && (
         <div style={{ background: '#eef6ec', border: '1px solid #bcd', borderRadius: 8, padding: '1rem', margin: '1rem 0' }}>
           <strong>New key — copy it now, it won't be shown again:</strong>
-          <pre style={{ background: '#fff', padding: '0.6rem', borderRadius: 6, overflowX: 'auto', marginBottom: 0 }}>{newKey}</pre>
+          <pre style={{ background: '#fff', padding: '0.6rem', borderRadius: 6, overflowX: 'auto', margin: '0.5rem 0' }}>{newKey}</pre>
+          <form action={dismissNewKeyAction}>
+            <button style={linkBtn}>I've copied it — dismiss</button>
+          </form>
         </div>
       )}
 
