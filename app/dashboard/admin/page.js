@@ -29,7 +29,10 @@ export default async function AdminPage() {
     <main style={{ maxWidth: 820, margin: '3rem auto', padding: '0 1.5rem', lineHeight: 1.6 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
         <h1 style={{ marginBottom: 0 }}>Promotion queue</h1>
-        <a href="/dashboard">← Dashboard</a>
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <a href="/dashboard/admin/library">Library management</a>
+          <a href="/dashboard">Dashboard</a>
+        </div>
       </div>
       <p style={{ color: '#555', marginTop: 4 }}>
         {pending.length} pending {pending.length === 1 ? 'proposal' : 'proposals'} for the shared library.
