@@ -1,5 +1,6 @@
 import { getSupabase, LIBRARY_WORKSPACE_ID } from './supabase.js';
 import { EXPERTISE_LEVELS, SME_SELECT } from './profile.js';
+import { embedText } from './embeddings.js';
 
 // Scope an SME query to what the caller may see: the shared library plus
 // their own workspace ('all'), or either one alone.
@@ -40,6 +41,81 @@ export async function searchSmes({ query, tags, min_expertise, scope = 'all', li
   const { data, error } = await q;
   if (error) throw new Error(`Search failed: ${error.message}`);
   return data ?? [];
+}
+
+// Semantic search: embed the query, vector-match via RPC, hydrate rows.
+// Returns null when the embedding service is unavailable (caller falls back).
+async function semanticSearch({ query, scope = 'all', limit = 10 }, ctx) {
+  const embedding = await embedText(query);
+  if (!embedding) return null;
+
+  const supabase = getSupabase();
+  const { data: matches, error } = await supabase.rpc('match_smes', {
+    p_embedding: JSON.stringify(embedding),
+    p_workspace_id: ctx.workspaceId,
+    p_scope: scope,
+    p_limit: Math.min(limit * 2, 50),
+  });
+  if (error || !matches?.length) return error ? null : [];
+
+  const { data: rows, error: rowErr } = await supabase
+    .from('smes')
+    .select(SME_SELECT)
+    .in('id', matches.map((m) => m.id));
+  if (rowErr) return null;
+
+  const byId = new Map(rows.map((r) => [r.id, r]));
+  return matches
+    .map((m) => {
+      const row = byId.get(m.id);
+      return row ? { ...row, similarity: Math.round(m.similarity * 1000) / 1000 } : null;
+    })
+    .filter(Boolean)
+    .slice(0, limit);
+}
+
+// Hybrid: reciprocal rank fusion of keyword FTS and vector similarity,
+// with post-filters (tags/expertise) applied by the keyword leg. Degrades
+// to pure keyword when there's no query or no embedding service.
+export async function hybridSearch(args, ctx) {
+  const { query, limit = 10, mode = 'hybrid' } = args;
+
+  if (!query || mode === 'keyword') {
+    return { mode: 'keyword', results: await searchSmes(args, ctx) };
+  }
+
+  if (mode === 'semantic') {
+    const semantic = await semanticSearch(args, ctx);
+    if (semantic === null) {
+      return { mode: 'keyword', note: 'embedding service unavailable; fell back to keyword', results: await searchSmes(args, ctx) };
+    }
+    return { mode: 'semantic', results: semantic };
+  }
+
+  const [keyword, semantic] = await Promise.all([
+    searchSmes({ ...args, limit: Math.min(limit * 2, 50) }, ctx),
+    semanticSearch(args, ctx),
+  ]);
+  if (semantic === null || semantic.length === 0) {
+    return { mode: 'keyword', results: keyword.slice(0, limit) };
+  }
+
+  // RRF: score = Σ 1/(k + rank), k=60
+  const K = 60;
+  const scores = new Map();
+  const rows = new Map();
+  for (const [list, weight] of [[keyword, 1], [semantic, 1]]) {
+    list.forEach((row, i) => {
+      rows.set(row.id, { ...rows.get(row.id), ...row });
+      scores.set(row.id, (scores.get(row.id) ?? 0) + weight / (K + i + 1));
+    });
+  }
+
+  const fused = [...scores.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([id]) => rows.get(id));
+  return { mode: 'hybrid', results: fused };
 }
 
 // Fetch one SME the caller is allowed to see (own workspace or library).

@@ -32,8 +32,12 @@ Create a project, then apply the migration:
 
 ```bash
 supabase link --project-ref <ref>
-supabase db push          # applies supabase/migrations/001_initial_schema.sql
+supabase db push                    # applies supabase/migrations/*.sql
+supabase functions deploy embed     # optional: enables semantic/hybrid search
 ```
+
+The `embed` edge function runs the built-in gte-small model. It's optional — without it,
+search falls back to keyword FTS automatically.
 
 ### 2. Create a workspace + API key
 
@@ -51,7 +55,9 @@ The plaintext key (`sme_live_...`) is printed once; only its SHA-256 hash is sto
 vercel deploy
 ```
 
-Set env vars in the Vercel project: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `ANTHROPIC_API_KEY`.
+Set env vars in the Vercel project: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`,
+`ANTHROPIC_API_KEY`, and `CRON_SECRET` (protects the daily `/api/cron/maintenance` job that
+recomputes quality scores, prunes rate-limit windows, and backfills embeddings).
 
 ### 4. Connect a client
 

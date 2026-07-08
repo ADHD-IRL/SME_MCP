@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { getSupabase } from '../lib/supabase.js';
 import { getVisibleSme } from '../lib/search.js';
 import { pickProfile, SME_SELECT } from '../lib/profile.js';
+import { embedSme } from '../lib/embeddings.js';
 
 export default {
   name: 'clone_sme',
@@ -43,6 +44,7 @@ export default {
       created_by: ctx.keyId,
     });
 
+    await embedSme(data);
     return data;
   },
 };

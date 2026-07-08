@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { getSupabase } from '../lib/supabase.js';
 import { getOwnedSme } from '../lib/search.js';
 import { profileShape, pickProfile, SME_SELECT } from '../lib/profile.js';
+import { embedSme } from '../lib/embeddings.js';
 
 const updatableShape = Object.fromEntries(
   Object.entries(profileShape).map(([k, v]) => [k, v.optional()])
@@ -47,6 +48,7 @@ export default {
       created_by: ctx.keyId,
     });
 
+    await embedSme(data);
     return data;
   },
 };

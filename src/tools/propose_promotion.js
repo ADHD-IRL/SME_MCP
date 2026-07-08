@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { getSupabase } from '../lib/supabase.js';
-import { getOwnedSme, searchSmes } from '../lib/search.js';
+import { getOwnedSme, hybridSearch } from '../lib/search.js';
 
 const MIN_USAGE = 3;
 const MIN_QUALITY = 70;
@@ -36,13 +36,17 @@ export default {
       min_quality: { required: MIN_QUALITY, actual: sme.quality_score, pass: (sme.quality_score ?? 0) >= MIN_QUALITY },
     };
 
-    const similar = await searchSmes(
-      { query: `${sme.name} ${sme.discipline}`, scope: 'library', limit: 3 },
+    const { results: similar } = await hybridSearch(
+      { query: `${sme.name} ${sme.discipline} ${sme.persona_description ?? ''}`.trim(), scope: 'library', limit: 3 },
       ctx
     );
     checks.dedup = {
-      similar: similar.map((s) => ({ id: s.id, name: s.name, discipline: s.discipline })),
-      pass: !similar.some((s) => s.discipline?.toLowerCase() === sme.discipline?.toLowerCase()),
+      similar: similar.map((s) => ({ id: s.id, name: s.name, discipline: s.discipline, similarity: s.similarity })),
+      pass: !similar.some(
+        (s) =>
+          (s.similarity ?? 0) >= 0.9 ||
+          s.discipline?.toLowerCase() === sme.discipline?.toLowerCase()
+      ),
     };
 
     const failed = Object.entries(checks).filter(([, c]) => !c.pass).map(([k]) => k);

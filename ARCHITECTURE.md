@@ -55,11 +55,12 @@ ships generalized from day one.
 - `rate_limits` — fixed-window counters in Postgres (no Redis): per-key request limits plus a
   separate daily `generations` quota, since `generate_sme` spends Anthropic tokens on our bill.
 
-**Search.** Three tiers behind one `search_smes` tool: structured filters (GIN on tags),
-keyword FTS (generated weighted `search_vector` column), and — phase 3 — semantic pgvector
-(`embedding vector(384)`, gte-small via Supabase Edge Functions) with reciprocal-rank-fusion
-hybrid mode. The schema ships with the embedding column and HNSW index so phase 3 is a
-backfill, not a migration.
+**Search.** Three tiers behind one `search_smes` tool (`mode: hybrid | keyword | semantic`,
+default hybrid): structured filters (GIN on tags), keyword FTS (generated weighted
+`search_vector` column), and semantic pgvector (`embedding vector(384)`, gte-small via a
+Supabase Edge Function — `supabase/functions/embed`). Hybrid fuses both rankings with
+reciprocal rank fusion (k=60). Embeddings are computed fail-soft at write time and backfilled
+by the daily cron; if the edge function isn't deployed, everything degrades to keyword FTS.
 
 **Generation cost control.** `generate_sme` searches the library first and returns a strong
 existing match instead of generating (`skip_dedup` opts out) — library hygiene and cost control
@@ -72,10 +73,10 @@ Library SMEs are immutable — customization happens by cloning into a workspace
 
 | Phase | Deliverable | Status |
 |---|---|---|
-| 1 | Standalone schema, HTTP transport, hashed-key auth, rate limits, 11 tools | ✅ this repo |
-| 2 | OAuth 2.1 + self-service signup/dashboard (key issuance, usage view) | planned |
-| 3 | Semantic search: embedding backfill, hybrid RRF ranking | planned |
-| 4 | Cron jobs (score recompute, stale-SME decay), LLM content screen on promotion | planned |
+| 1 | Standalone schema, HTTP transport, hashed-key auth, rate limits, 11 tools | ✅ |
+| 3 | Semantic search: gte-small edge function, write-time embeds + backfill, hybrid RRF ranking | ✅ |
+| 4 | Daily cron: quality recompute, rate-limit cleanup, embedding backfill | ✅ (decay + LLM content screen on promotion still planned) |
+| 2 | OAuth 2.1 + self-service signup/dashboard (key issuance, usage view) | planned — blocked on identity-provider choice |
 | 5 | Admin UI (promotion queue, key management, dashboards), edge caching for library reads | planned |
 
 ## Scaling notes

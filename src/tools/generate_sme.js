@@ -1,8 +1,9 @@
 import { z } from 'zod';
 import { getSupabase } from '../lib/supabase.js';
-import { searchSmes } from '../lib/search.js';
+import { hybridSearch } from '../lib/search.js';
 import { generateSmeProfile } from '../lib/generate.js';
 import { pickProfile, SME_SELECT } from '../lib/profile.js';
+import { embedSme } from '../lib/embeddings.js';
 
 export default {
   name: 'generate_sme',
@@ -25,11 +26,13 @@ export default {
   async handler(args, ctx) {
     // Dedup first: an existing high-quality match beats a fresh generation.
     if (!args.skip_dedup) {
-      const matches = await searchSmes(
+      const { results: matches } = await hybridSearch(
         { query: [args.expert_type, args.focus].filter(Boolean).join(' '), scope: 'all', limit: 3 },
         ctx
       );
-      const strong = matches.find((m) => (m.quality_score ?? 0) >= 70);
+      const strong = matches.find(
+        (m) => (m.quality_score ?? 0) >= 70 || (m.similarity ?? 0) >= 0.88
+      );
       if (strong) {
         return {
           deduplicated: true,
@@ -65,6 +68,7 @@ export default {
       created_by: ctx.keyId,
     });
 
+    await embedSme(data);
     return { deduplicated: false, sme: data };
   },
 };

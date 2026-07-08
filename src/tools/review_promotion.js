@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { getSupabase, LIBRARY_WORKSPACE_ID } from '../lib/supabase.js';
 import { pickProfile, SME_SELECT } from '../lib/profile.js';
+import { embedSme } from '../lib/embeddings.js';
 
 export default {
   name: 'review_promotion',
@@ -72,6 +73,8 @@ export default {
         change_summary: `Promoted to library from ${source.id}`,
         created_by: ctx.keyId,
       });
+
+      await embedSme(librarySme);
     }
 
     const { data, error } = await supabase
