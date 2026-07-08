@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { getSupabase, LIBRARY_WORKSPACE_ID } from './supabase.js';
 import { profileShape, pickProfile, SME_SELECT } from './profile.js';
 import { embedSme } from './embeddings.js';
+import { looksLikeMarkdown, parseSmeMarkdown } from './sme-schema.js';
 
 // Single source of truth for creating and importing SMEs, reused by the
 // create_sme / import_smes MCP tools and the dashboard UI.
@@ -124,14 +125,16 @@ export async function exportSmes(workspaceId, { includeArchived = false } = {}) 
   };
 }
 
-// Parse an import payload (a JSON string) into an array of profiles.
-// Accepts a bare array, a single object, or { smes: [...] }.
+// Parse an import payload into an array of profiles. Auto-detects the
+// Markdown profile format, otherwise treats it as JSON (bare array, a single
+// object, or { smes: [...] }).
 export function parseImportPayload(text) {
+  if (looksLikeMarkdown(text)) return parseSmeMarkdown(text);
   let json;
   try {
     json = JSON.parse(text);
   } catch {
-    throw new Error('Import payload is not valid JSON');
+    throw new Error('Import payload is neither the Markdown profile format nor valid JSON');
   }
   const items = Array.isArray(json) ? json : Array.isArray(json?.smes) ? json.smes : [json];
   if (!items.length) throw new Error('No SME objects found in the payload');

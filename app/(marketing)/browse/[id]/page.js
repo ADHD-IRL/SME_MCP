@@ -1,6 +1,13 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPublicSme } from '../../../../src/lib/smes.js';
+import { ATTRIBUTE_GROUPS } from '../../../../src/lib/sme-schema.js';
+
+function fmt(v) {
+  if (Array.isArray(v)) return v.join(', ');
+  if (v && typeof v === 'object') return Object.entries(v).map(([k, n]) => `${k}: ${n}`).join(' · ');
+  return String(v);
+}
 
 export const dynamic = 'force-dynamic';
 
@@ -67,6 +74,37 @@ export default async function ExpertDetail({ params }) {
             ) : null
           )}
         </div>
+
+        {sme.attributes && Object.keys(sme.attributes).length > 0 && (
+          <div style={{ marginTop: 28 }}>
+            {ATTRIBUTE_GROUPS.map(({ group, fields }) => {
+              const present = fields.filter(([key]) => sme.attributes[key] != null && String(fmt(sme.attributes[key])).trim());
+              if (!present.length) return null;
+              return (
+                <div key={group} style={{ marginBottom: 22 }}>
+                  <h2 style={{ fontSize: '1.1rem', letterSpacing: '-0.01em', margin: '0 0 10px' }}>{group}</h2>
+                  <div style={{ display: 'grid', gap: 10 }}>
+                    {present.map(([key, label]) => (
+                      <div key={key} style={{ display: 'grid', gridTemplateColumns: '190px 1fr', gap: 12 }}>
+                        <div style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>{label}</div>
+                        <div style={{ fontSize: '0.92rem' }}>{fmt(sme.attributes[key])}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+            {sme.attributes.vectors && (
+              <div style={{ marginBottom: 22 }}>
+                <h2 style={{ fontSize: '1.1rem', margin: '0 0 10px' }}>Vectors</h2>
+                <div style={{ display: 'grid', gridTemplateColumns: '190px 1fr', gap: 12 }}>
+                  <div style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>Human / Technical / Physical / Futures</div>
+                  <div style={{ fontSize: '0.92rem' }}>{fmt(sme.attributes.vectors)}</div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="mk-card" style={{ marginTop: 26 }}>
           <h3>Use this expert</h3>
