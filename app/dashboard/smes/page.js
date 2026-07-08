@@ -28,8 +28,15 @@ export default async function MySmes() {
   if (!user) redirect('/login');
 
   const workspaceId = await ensureWorkspace(user);
-  const smes = await listWorkspaceSmes(workspaceId);
   const admin = isAdminEmail(user.email);
+
+  let smes = [];
+  let loadError = null;
+  try {
+    smes = await listWorkspaceSmes(workspaceId);
+  } catch (err) {
+    loadError = err.message;
+  }
 
   const store = await cookies();
   const flash = store.get('sme_flash')?.value;
@@ -46,6 +53,14 @@ export default async function MySmes() {
           <a href="/dashboard/smes/export" download style={{ fontSize: '0.9rem' }}>Export JSON ↓</a>
         )}
       </p>
+
+      {loadError && (
+        <div style={{ background: '#fdecea', border: '1px solid #f5c6cb', borderRadius: 8, padding: '0.8rem 1rem', margin: '1rem 0', fontSize: '0.9rem' }}>
+          <strong>Couldn't load your SMEs.</strong> If you just deployed the latest update, apply the
+          pending database migration (<code>supabase db push</code>) — the schema is missing the new
+          columns. Details: <code>{loadError}</code>
+        </div>
+      )}
 
       {flash && (
         <div style={{ background: flash.startsWith('Error') ? '#fdecea' : '#eef6ec',
