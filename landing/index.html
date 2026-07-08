@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SME Library — expert minds for your AI agents</title>
+<meta name="description" content="A curated, quality-ranked library of subject-matter expert profiles your AI agents consult over MCP. Bring proprietary expertise to any agentic workflow." />
+<meta property="og:title" content="SME Library — expert minds for your AI agents" />
+<meta property="og:description" content="A curated, quality-ranked catalog of subject-matter experts, served over MCP." />
+<meta property="og:type" content="website" />
+<style>
+  :root{
+    --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --bg:#ffffff; --soft:#f8fafc;
+    --accent:#4f46e5; --accent-ink:#4338ca; --card:#ffffff;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#e5e7eb; --muted:#94a3b8; --line:#1e293b; --bg:#0b1120; --soft:#0f172a;
+      --accent:#818cf8; --accent-ink:#a5b4fc; --card:#0f172a; }
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; color:var(--ink); background:var(--bg);
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  header.nav{ position:sticky; top:0; z-index:20; backdrop-filter:blur(8px);
+    background:color-mix(in srgb, var(--bg) 82%, transparent); border-bottom:1px solid var(--line); }
+  .nav-in{ display:flex; align-items:center; justify-content:space-between; height:62px; }
+  .brand{ font-weight:700; letter-spacing:-0.02em; font-size:1.05rem; display:flex; gap:8px; align-items:center; }
+  .brand .dot{ width:10px; height:10px; border-radius:3px; background:var(--accent); }
+  .nav-links{ display:flex; gap:22px; align-items:center; }
+  .nav-links a{ color:var(--muted); font-size:0.93rem; }
+  .nav-links a:hover{ color:var(--ink); }
+  @media (max-width:640px){ .nav-links .hide-sm{ display:none; } }
+
+  .btn{ display:inline-block; padding:11px 20px; border-radius:9px; font-weight:600; font-size:0.95rem;
+    border:1px solid transparent; cursor:pointer; transition:transform .08s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn-primary{ background:var(--accent); color:#fff; box-shadow:0 6px 20px -8px var(--accent); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+
+  .hero{ padding:88px 0 64px; text-align:center; }
+  .eyebrow{ display:inline-block; font-size:0.78rem; font-weight:600; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--accent-ink); background:color-mix(in srgb,var(--accent) 12%,transparent);
+    padding:5px 12px; border-radius:999px; margin-bottom:20px; }
+  .hero h1{ font-size:clamp(2.1rem,5.5vw,3.6rem); line-height:1.06; letter-spacing:-0.03em; margin:0 0 18px; }
+  .hero p.lead{ font-size:clamp(1.05rem,2.2vw,1.28rem); color:var(--muted); max-width:640px; margin:0 auto 30px; }
+  .row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+  section{ padding:58px 0; border-top:1px solid var(--line); }
+  h2{ font-size:clamp(1.5rem,3.2vw,2rem); letter-spacing:-0.02em; margin:0 0 10px; }
+  .sub{ color:var(--muted); max-width:620px; margin:0 auto 34px; }
+  .center{ text-align:center; }
+
+  .grid{ display:grid; gap:20px; grid-template-columns:repeat(3,1fr); }
+  @media (max-width:860px){ .grid{ grid-template-columns:1fr; } }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px; }
+  .card .ic{ font-size:1.5rem; display:block; margin-bottom:10px; }
+  .card h3{ margin:0 0 8px; font-size:1.08rem; }
+  .card p{ margin:0; color:var(--muted); font-size:0.95rem; }
+
+  .pills{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+  .pill{ border:1px solid var(--line); border-radius:999px; padding:5px 13px; font-size:0.85rem; color:var(--muted); background:var(--soft); }
+
+  .steps{ counter-reset:step; display:grid; gap:18px; grid-template-columns:repeat(3,1fr); }
+  @media (max-width:860px){ .steps{ grid-template-columns:1fr; } }
+  .step{ padding:22px; border:1px solid var(--line); border-radius:14px; background:var(--soft); }
+  .step::before{ counter-increment:step; content:counter(step); display:flex; align-items:center; justify-content:center;
+    width:30px; height:30px; border-radius:8px; background:var(--accent); color:#fff; font-weight:700; margin-bottom:12px; }
+  .step h3{ margin:0 0 6px; font-size:1.02rem; }
+  .step p{ margin:0; color:var(--muted); font-size:0.93rem; }
+
+  pre.code{ background:#0b1120; color:#e2e8f0; border:1px solid #1e293b; border-radius:12px;
+    padding:18px 20px; overflow-x:auto; font-family:"SF Mono",Consolas,monospace; font-size:0.85rem; line-height:1.7; max-width:720px; margin:0 auto; }
+  pre.code .c{ color:#64748b; } pre.code .k{ color:#a5b4fc; }
+
+  .cta{ text-align:center; padding:76px 0; }
+  .cta .box{ background:linear-gradient(135deg,var(--accent),var(--accent-ink)); border-radius:20px; padding:54px 28px; color:#fff; }
+  .cta h2{ color:#fff; margin:0 0 12px; }
+  .cta p{ color:rgba(255,255,255,0.9); max-width:520px; margin:0 auto 26px; }
+  .cta .btn-primary{ background:#fff; color:var(--accent-ink); box-shadow:none; }
+
+  footer{ border-top:1px solid var(--line); padding:34px 0; color:var(--muted); font-size:0.9rem; }
+  .fx{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+  footer a:hover{ color:var(--ink); }
+</style>
+</head>
+<body>
+<!--
+  Standalone marketing entry page for the SME Library.
+  Self-contained (no build, no external assets). Set APP_URL below to your
+  deployment, or host this file on a separate marketing domain.
+-->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand"><span class="dot"></span>SME Library</a>
+    <nav class="nav-links">
+      <a href="#what" class="hide-sm">What it is</a>
+      <a href="#library" class="hide-sm">Library</a>
+      <a href="#connect" class="hide-sm">Connect</a>
+      <a class="app-link btn btn-primary" href="/dashboard">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="border-top:none;">
+    <div class="wrap">
+      <span class="eyebrow">Model Context Protocol · Expert profiles</span>
+      <h1>Give your AI agents<br />a bench of experts.</h1>
+      <p class="lead">
+        SME Library is a curated, quality-ranked catalog of subject-matter expert profiles —
+        served over MCP so any agent can find the right expert, reason in their voice, and get
+        sharper answers. Build a private roster, or draw on the shared library.
+      </p>
+      <div class="row">
+        <a class="app-link btn btn-primary" href="/dashboard">Get an API key</a>
+        <a class="browse-link btn btn-ghost" href="/browse">Browse the library</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="what">
+    <div class="wrap center">
+      <h2>What is an SME?</h2>
+      <p class="sub">
+        A <strong>Subject Matter Expert</strong> profile is a structured persona — a discipline,
+        a seniority, a way of reasoning, known biases, trusted and distrusted sources, strengths
+        and blind spots. Agents load one to think like a seasoned specialist, and can convene
+        several to pressure-test a decision from genuinely different vantage points.
+      </p>
+      <div class="grid">
+        <div class="card"><span class="ic">🧠</span><h3>Structured expertise</h3><p>Dozens of attributes — cognitive pattern, evidence standards, adversary model, debate role — not a one-line prompt.</p></div>
+        <div class="card"><span class="ic">📚</span><h3>A living library</h3><p>Every expert is versioned and quality-scored from real session feedback, so the best rise to the top.</p></div>
+        <div class="card"><span class="ic">🔌</span><h3>Any MCP client</h3><p>Connect Claude, an IDE, or your own agent with one command. No SDK lock-in.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="library">
+    <div class="wrap center">
+      <h2>What's in the library</h2>
+      <p class="sub">Domain-agnostic at the core, extensible per field. A sample of the areas experts can cover:</p>
+      <div class="pills">
+        <span class="pill">Counterintelligence</span><span class="pill">Strategic warning</span>
+        <span class="pill">Site reliability</span><span class="pill">Security &amp; red-teaming</span>
+        <span class="pill">Distributed systems</span><span class="pill">Product strategy</span>
+        <span class="pill">Legal &amp; compliance</span><span class="pill">Data science</span>
+        <span class="pill">Clinical &amp; healthcare</span><span class="pill">Finance &amp; risk</span>
+        <span class="pill">Incident response</span><span class="pill">ML engineering</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="connect">
+    <div class="wrap center">
+      <h2>Connect in under a minute</h2>
+      <p class="sub">Point any MCP client at the server with your key.</p>
+    </div>
+    <div class="wrap">
+      <pre class="code"><span class="c"># Add the SME Library to Claude Code (or any MCP client)</span>
+<span class="k">claude</span> mcp add --transport http sme-library \
+  https://your-deployment/api/mcp \
+  --header <span class="k">"Authorization: Bearer sme_live_…"</span></pre>
+      <div class="steps" style="margin-top:26px;">
+        <div class="step"><h3>Find an expert</h3><p>Search across the library and your workspace with hybrid keyword + semantic ranking.</p></div>
+        <div class="step"><h3>Consult</h3><p>Load the profile into your agent and reason in that expert's voice.</p></div>
+        <div class="step"><h3>Improve</h3><p>Record feedback after a session; quality scores update and the best experts surface.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" style="border-top:none;">
+    <div class="wrap">
+      <div class="box">
+        <h2>Bring proprietary expertise to your agents</h2>
+        <p>Create a private roster of experts, keep it in your own workspace, and promote your best to the shared library when you're ready.</p>
+        <a class="app-link btn btn-primary" href="/dashboard">Start free</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap fx">
+    <div><strong style="color:var(--ink)">SME Library</strong> — a curated MCP of subject-matter experts.</div>
+    <div style="display:flex; gap:18px; flex-wrap:wrap;">
+      <a class="browse-link" href="/browse">Browse</a>
+      <a class="app-link" href="/product">Product</a>
+      <a class="app-link" href="/pricing">Pricing</a>
+      <a class="app-link" href="/contact">Contact</a>
+      <a class="app-link" href="/dashboard">Dashboard</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Point every app link at your deployment. If this file is hosted on the
+  // same origin as the app, the default relative links already work — set
+  // APP_URL only when hosting the landing page on a separate domain.
+  var APP_URL = ""; // e.g. "https://sme-mcp.vercel.app"
+  if (APP_URL) {
+    document.querySelectorAll(".app-link, .browse-link").forEach(function (a) {
+      var path = a.getAttribute("href");
+      if (path && path.charAt(0) === "/") a.setAttribute("href", APP_URL + path);
+    });
+  }
+</script>
+</body>
+</html>
