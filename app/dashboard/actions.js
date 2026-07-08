@@ -23,6 +23,13 @@ export async function createKeyAction(formData) {
   redirect('/dashboard');
 }
 
+export async function dismissNewKeyAction() {
+  // Cookie mutation is allowed here (Server Action), unlike in page render.
+  (await cookies()).delete('new_key');
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
+}
+
 export async function revokeKeyAction(formData) {
   const user = await getCurrentUser();
   if (!user) redirect('/login');

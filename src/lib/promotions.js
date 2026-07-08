@@ -9,7 +9,9 @@ import { embedSme } from './embeddings.js';
 export async function listPendingPromotions(limit = 50) {
   const { data, error } = await getSupabase()
     .from('library_promotions')
-    .select('id, sme_id, workspace_id, auto_checks, review_notes, created_at, smes(name, discipline, persona_description, quality_score, usage_count)')
+    // Disambiguate the embed: library_promotions has two FKs to smes
+    // (sme_id and library_sme_id), so name the relationship explicitly.
+    .select('id, sme_id, workspace_id, auto_checks, review_notes, created_at, smes!sme_id(name, discipline, persona_description, quality_score, usage_count)')
     .eq('status', 'pending')
     .order('created_at', { ascending: true })
     .limit(limit);
