@@ -22,6 +22,11 @@ alter table leads enable row level security;
 alter table smes add column if not exists attributes jsonb not null default '{}';
 alter table smes add column if not exists role_type text;
 
+-- 006: allow 'imported' as an SME source (bulk / file import)
+alter table smes drop constraint if exists smes_source_check;
+alter table smes add constraint smes_source_check
+  check (source in ('user', 'generated', 'cloned', 'promoted', 'imported'));
+
 -- Rebuild the search vector to include the attribute text.
 alter table smes drop column if exists search_vector;
 alter table smes add column search_vector tsvector generated always as (
