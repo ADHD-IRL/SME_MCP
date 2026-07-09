@@ -6,6 +6,7 @@ import { cookies } from 'next/headers';
 import { getCurrentUser, isAdminEmail } from '../../../src/lib/supabase-ssr.js';
 import { ensureWorkspace } from '../../../src/lib/workspace.js';
 import { createSme, importSmes, parseImportPayload, LIBRARY_WORKSPACE_ID } from '../../../src/lib/smes.js';
+import { promoteToLibrary } from '../../../src/lib/promotions.js';
 
 function toArray(raw) {
   return String(raw || '').split(',').map((s) => s.trim()).filter(Boolean);
@@ -94,5 +95,39 @@ export async function importSmesFormAction(formData) {
 
 export async function dismissFlashAction() {
   (await cookies()).delete('sme_flash');
+  redirect('/dashboard/smes');
+}
+
+export async function promoteSelectedAction(formData) {
+  const user = await getCurrentUser();
+  if (!user) redirect('/login');
+  if (!isAdminEmail(user.email)) throw new Error('Admin access required');
+
+  const ids = formData.getAll('sme_ids').map(String).filter(Boolean);
+  const store = await cookies();
+  if (ids.length === 0) {
+    flash(store, 'Select at least one SME to promote.');
+    redirect('/dashboard/smes');
+  }
+
+  let promoted = 0;
+  let skipped = 0;
+  const errors = [];
+  for (const id of ids) {
+    try {
+      const r = await promoteToLibrary({ smeId: id, reviewerId: null });
+      if (r.skipped) skipped += 1;
+      else promoted += 1;
+    } catch (err) {
+      errors.push(err.message);
+    }
+  }
+
+  let msg = `Promoted ${promoted} SME${promoted === 1 ? '' : 's'} to the shared library`;
+  if (skipped) msg += `, ${skipped} already present`;
+  if (errors.length) msg += `, ${errors.length} failed: ${errors.slice(0, 3).join('; ')}`;
+  flash(store, msg + '.');
+
+  revalidatePath('/dashboard/smes');
   redirect('/dashboard/smes');
 }

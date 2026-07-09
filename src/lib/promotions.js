@@ -19,6 +19,59 @@ export async function listPendingPromotions(limit = 50) {
   return data;
 }
 
+// Admin direct-promote: copy a workspace SME straight into the shared library
+// as an immutable entry, bypassing the proposal queue. Dedups by
+// (name, discipline) so repeated clicks don't create duplicates.
+export async function promoteToLibrary({ smeId, reviewerId }) {
+  const supabase = getSupabase();
+
+  const { data: source, error: srcErr } = await supabase
+    .from('smes')
+    .select('*')
+    .eq('id', smeId)
+    .maybeSingle();
+  if (srcErr) throw new Error(srcErr.message);
+  if (!source) throw new Error('SME not found');
+  if (source.visibility === 'library') throw new Error('Already a library SME');
+
+  const { data: dupe } = await supabase
+    .from('smes')
+    .select('id')
+    .eq('visibility', 'library')
+    .eq('name', source.name)
+    .eq('discipline', source.discipline)
+    .maybeSingle();
+  if (dupe) return { skipped: true, reason: 'A library SME with this name and discipline already exists' };
+
+  const { data: librarySme, error: insErr } = await supabase
+    .from('smes')
+    .insert({
+      ...pickProfile(source),
+      workspace_id: LIBRARY_WORKSPACE_ID,
+      status: 'active',
+      visibility: 'library',
+      source: 'promoted',
+      cloned_from_id: source.id,
+      quality_score: source.quality_score,
+      usage_count: source.usage_count,
+      created_by: reviewerId ?? null,
+    })
+    .select(SME_SELECT)
+    .single();
+  if (insErr) throw new Error(insErr.message);
+
+  await supabase.from('sme_versions').insert({
+    sme_id: librarySme.id,
+    version: 1,
+    profile: pickProfile(librarySme),
+    change_summary: `Promoted to library from ${source.id}`,
+    created_by: reviewerId ?? null,
+  });
+  await embedSme(librarySme);
+
+  return { skipped: false, id: librarySme.id, name: librarySme.name };
+}
+
 export async function decidePromotion({ promotionId, decision, notes, reviewerId }) {
   if (!['approved', 'rejected'].includes(decision)) {
     throw new Error("decision must be 'approved' or 'rejected'");
