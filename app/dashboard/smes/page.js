@@ -3,8 +3,9 @@ import { cookies } from 'next/headers';
 import { getCurrentUser, isAdminEmail } from '../../../src/lib/supabase-ssr.js';
 import { ensureWorkspace } from '../../../src/lib/workspace.js';
 import { listWorkspaceSmes } from '../../../src/lib/smes.js';
-import { createSmeFormAction, dismissFlashAction } from './actions.js';
+import { createSmeFormAction, dismissFlashAction, promoteSelectedAction } from './actions.js';
 import ImportPanel from './ImportPanel.jsx';
+import SmeList from './SmeList.jsx';
 
 export const metadata = { title: 'My SMEs — SME Library' };
 export const dynamic = 'force-dynamic';
@@ -104,21 +105,12 @@ export default async function MySmes() {
         <ImportPanel admin={admin} />
       </section>
 
-      {/* Existing */}
+      {/* Existing — click a row for the full detail card; admins can select & promote */}
       <h2 style={{ fontSize: '1.1rem', marginTop: '2rem' }}>Your SMEs</h2>
-      {smes.length === 0 && <p style={{ color: '#888' }}>None yet — create or import above.</p>}
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-        <tbody>
-          {smes.map((s) => (
-            <tr key={s.id} style={{ borderBottom: '1px solid #f2f2f2' }}>
-              <td style={{ padding: '0.5rem 0.4rem' }}><strong>{s.name}</strong><div style={{ color: '#777', fontSize: '0.82rem' }}>{s.discipline}</div></td>
-              <td style={{ padding: '0.5rem 0.4rem', color: '#666' }}>{s.expertise_level || '—'}</td>
-              <td style={{ padding: '0.5rem 0.4rem', color: '#666' }}>{s.status}</td>
-              <td style={{ padding: '0.5rem 0.4rem', color: '#666' }}>{s.source}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <p style={{ color: '#777', fontSize: '0.85rem', marginTop: 0 }}>
+        Click any SME to see its full profile.{admin ? ' Select one or more to promote them to the shared library.' : ''}
+      </p>
+      <SmeList smes={smes} admin={admin} promoteAction={promoteSelectedAction} />
     </main>
   );
 }
