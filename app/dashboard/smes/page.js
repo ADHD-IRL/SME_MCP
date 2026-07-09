@@ -3,25 +3,11 @@ import { cookies } from 'next/headers';
 import { getCurrentUser, isAdminEmail } from '../../../src/lib/supabase-ssr.js';
 import { ensureWorkspace } from '../../../src/lib/workspace.js';
 import { listWorkspaceSmes } from '../../../src/lib/smes.js';
-import { createSmeFormAction, importSmesFormAction, dismissFlashAction } from './actions.js';
+import { createSmeFormAction, dismissFlashAction } from './actions.js';
+import ImportPanel from './ImportPanel.jsx';
 
 export const metadata = { title: 'My SMEs — SME Library' };
 export const dynamic = 'force-dynamic';
-
-const SAMPLE = JSON.stringify(
-  [
-    {
-      name: 'Senior SRE',
-      discipline: 'Site Reliability Engineering',
-      expertise_level: 'Senior',
-      persona_description: 'Pragmatic operator focused on failure modes and blast radius.',
-      domain_knowledge: ['kubernetes', 'incident response', 'observability'],
-      tags: ['sre', 'reliability', 'ops'],
-    },
-  ],
-  null,
-  2
-);
 
 export default async function MySmes() {
   const user = await getCurrentUser();
@@ -106,27 +92,16 @@ export default async function MySmes() {
         </form>
       </section>
 
-      {/* Bulk import */}
+      {/* Bulk import (client-driven with live progress) */}
       <section style={card}>
         <h2 style={h2}>Import SMEs</h2>
         <p style={{ fontSize: '0.9rem', color: '#555', marginTop: 0 }}>
           Paste the <strong>Markdown profile format</strong> (<code>## Name</code> headings with
-          <code>**Field:**</code> lines, separated by <code>---</code>), or a JSON array/object, or
-          upload a <code>.json</code> / <code>.md</code> file. The format is auto-detected. Up to 200
-          at once; invalid rows are reported and skipped.
+          <code>**Field:**</code> lines), or a JSON array/object, or upload a <code>.json</code> /{' '}
+          <code>.md</code> file. The format is auto-detected. Up to 500 at once; a progress bar shows
+          status and estimated time, and invalid rows are reported without stopping the rest.
         </p>
-        <form action={importSmesFormAction} style={{ display: 'grid', gap: '0.7rem' }}>
-          <textarea name="json" rows={8} placeholder={SAMPLE} style={{ ...area, fontFamily: 'monospace', fontSize: '0.82rem' }} />
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <input type="file" name="file" accept="application/json,.json,.md,text/markdown" />
-            {admin && (
-              <label style={{ fontSize: '0.85rem', color: '#555' }}>
-                <input type="checkbox" name="to_library" /> Import into the shared library (admin)
-              </label>
-            )}
-          </div>
-          <div><button style={primary}>Import</button></div>
-        </form>
+        <ImportPanel admin={admin} />
       </section>
 
       {/* Existing */}
