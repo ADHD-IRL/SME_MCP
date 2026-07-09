@@ -103,6 +103,8 @@ export default function ImportPanel({ admin }) {
 
   const pct = total ? Math.round((processed / total) * 100) : 0;
   const busy = status === 'importing';
+  // Detect the "migration not applied" failure so we can guide the user.
+  const schemaError = errors.some((e) => /schema cache|does not exist|column|attributes|role_type/i.test(e.error || ''));
 
   return (
     <form onSubmit={onSubmit} style={{ display: 'grid', gap: '0.7rem' }}>
@@ -149,6 +151,14 @@ export default function ImportPanel({ admin }) {
             <span>✓ {succeeded} imported</span>
             {failed > 0 && <span style={{ color: '#a12' }}>✕ {failed} failed</span>}
           </div>
+
+          {status === 'done' && schemaError && (
+            <div style={{ marginTop: 10, background: '#fff4e5', border: '1px solid #f0c987', borderRadius: 8, padding: '0.7rem 0.9rem', fontSize: '0.85rem' }}>
+              <strong>Your database is missing columns.</strong> Apply the latest migration, then
+              re-import: run <code>supabase db push</code>, or paste{' '}
+              <code>supabase/migrations/005_sme_attributes.sql</code> into the Supabase SQL editor.
+            </div>
+          )}
 
           {status === 'done' && errors.length > 0 && (
             <details style={{ marginTop: 8, fontSize: '0.82rem' }}>
