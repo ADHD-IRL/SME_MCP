@@ -27,7 +27,7 @@ export default function Home() {
 
       <section className="mk-section">
         <div className="mk-container mk-center">
-          <h2>What is an SME?</h2>
+          <h2>What is a SME?</h2>
           <p className="sub">
             A <strong>Subject Matter Expert</strong> profile is a structured persona — a discipline,
             an expertise level, a way of reasoning, known strengths and blind spots. Agents load one

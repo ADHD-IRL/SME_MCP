@@ -5,7 +5,7 @@ import { getVisibleSme } from '../lib/search.js';
 export default {
   name: 'record_feedback',
   description:
-    'Record how well an SME performed in a session (0-100). Feedback is stored as a raw event and rolled into a smoothed quality score that drives search ranking and library-promotion eligibility.',
+    'Record how well a SME performed in a session (0-100). Feedback is stored as a raw event and rolled into a smoothed quality score that drives search ranking and library-promotion eligibility.',
   scope: 'write',
   audit: 'sme.feedback',
   schema: {

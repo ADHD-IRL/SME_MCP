@@ -2,7 +2,7 @@ import { getSupabase, LIBRARY_WORKSPACE_ID } from './supabase.js';
 import { EXPERTISE_LEVELS, SME_SELECT } from './profile.js';
 import { embedText } from './embeddings.js';
 
-// Scope an SME query to what the caller may see: the shared library plus
+// Scope a SME query to what the caller may see: the shared library plus
 // their own workspace ('all'), or either one alone.
 export function scopeQuery(query, scope, workspaceId) {
   if (scope === 'library') {

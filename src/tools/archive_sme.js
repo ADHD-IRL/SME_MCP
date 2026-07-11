@@ -5,7 +5,7 @@ import { getOwnedSme } from '../lib/search.js';
 export default {
   name: 'archive_sme',
   description:
-    'Archive an SME in your workspace. Archived SMEs disappear from listings and search but keep their history and can be restored by an update. This replaces hard deletion.',
+    'Archive a SME in your workspace. Archived SMEs disappear from listings and search but keep their history and can be restored by an update. This replaces hard deletion.',
   scope: 'write',
   audit: 'sme.archive',
   schema: {
