@@ -159,6 +159,28 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mk-section">
+        <div className="mk-container">
+          <div style={{ border: '1px solid var(--line)', borderRadius: 18, padding: '40px 32px',
+                        background: 'var(--soft)', display: 'grid', gap: 18 }}>
+            <span className="mk-eyebrow" style={{ justifySelf: 'start' }}>For risk &amp; futures teams</span>
+            <h2 style={{ margin: 0 }}>Strategic warning is a team sport.</h2>
+            <p className="sub" style={{ margin: 0, maxWidth: 720 }}>
+              Anticipating what hasn't happened yet demands warning analysts, denial-and-deception
+              specialists, regional hands, and technical experts reasoning together — each with their
+              own evidence bar and blind spots made explicit. The SME Library lets an all-source or
+              futures effort convene exactly that panel on demand, hold it in structured
+              disagreement, and re-run it as the picture changes. The judgment that used to live in a
+              few overbooked heads becomes a resource every analyst can draw on.
+            </p>
+            <div className="row" style={{ justifyContent: 'flex-start' }}>
+              <Link href="/use-cases" className="mk-btn mk-btn-primary">See risk &amp; futures use cases</Link>
+              <Link href="/browse" className="mk-btn mk-btn-ghost">Browse the analysts</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="mk-cta">
         <div className="mk-container">
           <div className="box">

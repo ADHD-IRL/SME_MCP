@@ -7,11 +7,13 @@ export const metadata = {
 };
 
 const CASES = [
-  ['⚖️', 'Multi-agent debate', 'Convene a panel of experts with genuinely different priorities and biases, let them argue a decision, and surface the disagreement a single model would smooth over.'],
+  ['🔭', 'Strategic warning & futures', 'Stand up a panel of analysts — warning, denial-and-deception, regional, technical — to stress-test what could happen next. Re-run the panel as the scenario shifts; anticipation is a portfolio of lenses, not one forecast.'],
+  ['🧩', 'All-source risk assessment', 'Multidisciplinary threats cut across intelligence, cyber, infrastructure, and human factors. Convene the matching specialists on one question so the seams between disciplines — where risk hides — get covered.'],
+  ['⚖️', 'Multi-agent debate', 'Convene experts with genuinely different priorities and biases, let them argue a decision, and surface the disagreement a single model would smooth over.'],
+  ['🛡️', 'Red-teaming & adversary analysis', 'Point an adversarial expert at a plan. Its attributes encode an adversary model, evidence standards, and severity defaults, so the critique is structured and defensible, not hand-wavy.'],
   ['🔍', 'Code & design review', 'Load a senior reviewer in the relevant discipline. Get review that reflects how a distributed-systems principal or a security lead actually thinks — not generic lint.'],
-  ['🛡️', 'Red-teaming & risk', 'Point an adversarial expert at a plan. Their extensions pack encodes an adversary model and severity defaults, so the critique is structured, not hand-wavy.'],
-  ['🧭', 'Advisory panels', 'Give a product or strategy agent a bench to consult — finance, legal, growth, ops — and weigh trade-offs from each seat before committing.'],
   ['🩺', 'Domain assistants', 'Ground a vertical assistant (clinical, legal, financial) in an expert persona with the right evidence standards and communication style for the field.'],
+  ['🧭', 'Advisory panels', 'Give a product or strategy agent a bench to consult — finance, legal, growth, ops — and weigh trade-offs from each seat before committing.'],
   ['🏢', 'Your proprietary expertise', 'Encode your firm\'s hard-won specialists as private SMEs. Reuse them across every agent and workflow, version them, and keep them in your workspace.'],
 ];
 
@@ -21,10 +23,11 @@ export default function UseCases() {
       <section className="mk-hero" style={{ paddingBottom: 36 }}>
         <div className="mk-container">
           <span className="mk-eyebrow">Use cases</span>
-          <h1>One library,<br />many sharper agents.</h1>
+          <h1>Built for multidisciplinary<br />risk &amp; futures work.</h1>
           <p className="lead">
-            Anywhere an agent would benefit from a specific expert's judgment — instead of a
-            generalist's average — the SME Library earns its place.
+            The hardest problems span disciplines and reach into the future — exactly where a single
+            model's averaged answer falls short. Anywhere an agent needs a specific expert's judgment
+            over a generalist's, the SME Library earns its place.
           </p>
         </div>
       </section>
