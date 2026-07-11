@@ -56,6 +56,73 @@ export default function Home() {
 
       <section className="mk-section">
         <div className="mk-container">
+          <h2>Why a library of experts is a game-changer</h2>
+          <p className="sub">
+            The hardest problems — strategic risk, emerging threats, long-range futures — are
+            inherently multidisciplinary. No single analyst, and no single model, holds all the
+            vantage points at once. A shared library of experts changes what's possible.
+          </p>
+          <div className="mk-grid">
+            <div className="mk-card">
+              <span className="ic">🧩</span>
+              <h3>Multidisciplinary by construction</h3>
+              <p>
+                Real risks cut across intelligence, cyber, infrastructure, legal, and human factors.
+                Convene a HUMINT officer, a cloud-security architect, and a strategic-warning analyst
+                on the same question and the seams between disciplines — where threats hide — finally
+                get covered.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">⚔️</span>
+              <h3>Structured disagreement beats consensus</h3>
+              <p>
+                Each expert carries an explicit bias model, adversary lens, and evidence standard.
+                Put them in tension and you surface the dissent a single averaged answer smooths over
+                — the analytic red-teaming that catches the miss before it becomes the headline.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">🔭</span>
+              <h3>Futures & warning need many lenses</h3>
+              <p>
+                Anticipating what hasn't happened yet is a portfolio of perspectives, not a point
+                forecast. A library lets a futures effort assemble the right mix of specialists per
+                scenario — and re-run it as the scenario shifts.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">🏛️</span>
+              <h3>Expertise that compounds</h3>
+              <p>
+                Scarce senior judgment usually lives in a few heads and leaves when they do. Encoded
+                as SMEs, it becomes durable institutional memory — versioned, quality-ranked, and
+                reusable across every team and every agent, not re-learned each time.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">⚖️</span>
+              <h3>Calibrated, not credulous</h3>
+              <p>
+                Each expert declares what it over- and under-weights, when it updates fast or slow,
+                and where it must defer. That turns "ask the AI" into a defensible analytic process
+                with known blind spots — the difference between an opinion and an assessment.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">⚡</span>
+              <h3>Scale scarce judgment on demand</h3>
+              <p>
+                A panel that once required scheduling five busy specialists now assembles in seconds,
+                for every analyst and every scenario. Depth of expertise stops being the bottleneck.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mk-section">
+        <div className="mk-container">
           <h2>What's in the library</h2>
           <p className="sub">Domain-agnostic at the core, extensible per field. A few of the areas experts can cover:</p>
           <div className="mk-pills">
