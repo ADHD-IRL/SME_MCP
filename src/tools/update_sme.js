@@ -11,7 +11,7 @@ const updatableShape = Object.fromEntries(
 export default {
   name: 'update_sme',
   description:
-    'Update an SME in your workspace. Each update snapshots the previous state into version history, so changes are reversible. Library SMEs cannot be edited directly — clone first.',
+    'Update a SME in your workspace. Each update snapshots the previous state into version history, so changes are reversible. Library SMEs cannot be edited directly — clone first.',
   scope: 'write',
   audit: 'sme.update',
   schema: {

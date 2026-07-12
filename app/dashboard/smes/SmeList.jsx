@@ -82,17 +82,38 @@ function Row({ label, value }) {
   );
 }
 
+function matches(s, q) {
+  if (!q) return true;
+  const hay = [s.name, s.discipline, s.expertise_level, s.role_type, ...(s.tags || [])]
+    .filter(Boolean).join(' ').toLowerCase();
+  return q.toLowerCase().split(/\s+/).every((term) => hay.includes(term));
+}
+
 export default function SmeList({ smes, admin, promoteAction }) {
   const [expanded, setExpanded] = useState(null);
   const [selected, setSelected] = useState(() => new Set());
+  const [q, setQ] = useState('');
+
+  const filtered = smes.filter((s) => matches(s, q));
 
   const toggleSel = (id) => setSelected((prev) => {
     const next = new Set(prev);
     next.has(id) ? next.delete(id) : next.add(id);
     return next;
   });
-  const allSelected = smes.length > 0 && selected.size === smes.length;
-  const toggleAll = () => setSelected(allSelected ? new Set() : new Set(smes.map((s) => s.id)));
+
+  // Select-all operates on the currently filtered set, and toggles based on
+  // whether every filtered row is already selected. Selection persists across
+  // filter changes, so you can build a cross-search multi-selection.
+  const filteredIds = filtered.map((s) => s.id);
+  const allFilteredSelected = filteredIds.length > 0 && filteredIds.every((id) => selected.has(id));
+  const toggleAllFiltered = () => setSelected((prev) => {
+    const next = new Set(prev);
+    if (allFilteredSelected) filteredIds.forEach((id) => next.delete(id));
+    else filteredIds.forEach((id) => next.add(id));
+    return next;
+  });
+  const clearSelection = () => setSelected(new Set());
 
   if (smes.length === 0) {
     return <p style={{ color: '#888' }}>None yet — create or import above.</p>;
@@ -101,15 +122,18 @@ export default function SmeList({ smes, admin, promoteAction }) {
   const rows = (
     <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
       <tbody>
-        {admin && (
+        {admin && filtered.length > 0 && (
           <tr style={{ borderBottom: '1px solid #eee', color: '#777', fontSize: '0.8rem' }}>
             <td style={{ padding: '0.3rem 0.4rem', width: 28 }}>
-              <input type="checkbox" checked={allSelected} onChange={toggleAll} aria-label="Select all" />
+              <input type="checkbox" checked={allFilteredSelected} onChange={toggleAllFiltered}
+                aria-label="Select all shown" />
             </td>
-            <td style={{ padding: '0.3rem 0.4rem' }} colSpan={4}>Select to promote</td>
+            <td style={{ padding: '0.3rem 0.4rem' }} colSpan={4}>
+              Select all {q ? `${filtered.length} shown` : ''} to promote
+            </td>
           </tr>
         )}
-        {smes.map((s) => (
+        {filtered.map((s) => (
           <FragmentRow
             key={s.id}
             s={s}
@@ -120,24 +144,41 @@ export default function SmeList({ smes, admin, promoteAction }) {
             onOpen={() => setExpanded(expanded === s.id ? null : s.id)}
           />
         ))}
+        {filtered.length === 0 && (
+          <tr><td colSpan={admin ? 5 : 4} style={{ padding: '0.8rem 0.4rem', color: '#888' }}>No SMEs match “{q}”.</td></tr>
+        )}
       </tbody>
     </table>
   );
 
-  if (!admin) return rows;
+  const filterBox = (
+    <input
+      value={q}
+      onChange={(e) => setQ(e.target.value)}
+      placeholder={`Filter ${smes.length} SMEs by name, discipline, or tag…`}
+      style={{ width: '100%', padding: '0.5rem 0.7rem', border: '1px solid #ccc', borderRadius: 8, marginBottom: 12, boxSizing: 'border-box' }}
+    />
+  );
+
+  if (!admin) return <>{filterBox}{rows}</>;
 
   // Admin: wrap in a form so checked rows submit as sme_ids to the server action.
   return (
     <form action={promoteAction}>
+      {filterBox}
       {selected.size > 0 && (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap',
                       background: '#eef2ff', border: '1px solid #c7d2fe', borderRadius: 10,
                       padding: '0.6rem 0.9rem', marginBottom: 10 }}>
-          <span style={{ fontSize: '0.9rem' }}>{selected.size} selected</span>
+          <span style={{ fontSize: '0.9rem' }}>
+            {selected.size} selected
+            <button type="button" onClick={clearSelection} style={clearBtn}>clear</button>
+          </span>
           <button type="submit" style={promoteBtn}>Promote {selected.size} to shared library →</button>
         </div>
       )}
-      {/* Hidden inputs carry the current selection into the form submit. */}
+      {/* Hidden inputs carry the full current selection (even rows hidden by the
+          filter) into the form submit. */}
       {[...selected].map((id) => <input key={id} type="hidden" name="sme_ids" value={id} />)}
       {rows}
     </form>
@@ -176,3 +217,4 @@ function FragmentRow({ s, admin, selected, onToggle, open, onOpen }) {
 
 const pill = { border: '1px solid #ddd', borderRadius: 999, padding: '2px 9px', fontSize: '0.75rem', color: '#555', background: '#fff', whiteSpace: 'nowrap' };
 const promoteBtn = { padding: '0.45rem 1rem', border: 'none', borderRadius: 6, background: '#4f46e5', color: '#fff', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 };
+const clearBtn = { marginLeft: 8, background: 'none', border: 'none', color: '#4f46e5', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.82rem' };

@@ -60,7 +60,7 @@ export default async function MySmes() {
 
       {/* Create one */}
       <section style={card}>
-        <h2 style={h2}>Create an SME</h2>
+        <h2 style={h2}>Create a SME</h2>
         <form action={createSmeFormAction} style={{ display: 'grid', gap: '0.7rem' }}>
           <div style={row2}>
             <Field name="name" label="Name *" required />

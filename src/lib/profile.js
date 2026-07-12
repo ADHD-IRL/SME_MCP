@@ -34,7 +34,7 @@ export const PROFILE_COLUMNS = [
 
 export const SME_SELECT = `id, workspace_id, ${PROFILE_COLUMNS.join(', ')}, status, visibility, current_version, source, cloned_from_id, usage_count, quality_score, created_at, updated_at`;
 
-// Extract only profile fields from an SME row (for versioning / cloning).
+// Extract only profile fields from a SME row (for versioning / cloning).
 export function pickProfile(row) {
   const out = {};
   for (const col of PROFILE_COLUMNS) {

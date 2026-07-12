@@ -27,7 +27,7 @@ export default function Home() {
 
       <section className="mk-section">
         <div className="mk-container mk-center">
-          <h2>What is an SME?</h2>
+          <h2>What is a SME?</h2>
           <p className="sub">
             A <strong>Subject Matter Expert</strong> profile is a structured persona — a discipline,
             an expertise level, a way of reasoning, known strengths and blind spots. Agents load one
@@ -49,6 +49,73 @@ export default function Home() {
               <span className="ic">🔌</span>
               <h3>Any MCP client</h3>
               <p>Connect Claude, an IDE, or your own agent with one command. No SDK lock-in.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mk-section">
+        <div className="mk-container">
+          <h2>Why a library of experts is a game-changer</h2>
+          <p className="sub">
+            The hardest problems — strategic risk, emerging threats, long-range futures — are
+            inherently multidisciplinary. No single analyst, and no single model, holds all the
+            vantage points at once. A shared library of experts changes what's possible.
+          </p>
+          <div className="mk-grid">
+            <div className="mk-card">
+              <span className="ic">🧩</span>
+              <h3>Multidisciplinary by construction</h3>
+              <p>
+                Real risks cut across intelligence, cyber, infrastructure, legal, and human factors.
+                Convene a HUMINT officer, a cloud-security architect, and a strategic-warning analyst
+                on the same question and the seams between disciplines — where threats hide — finally
+                get covered.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">⚔️</span>
+              <h3>Structured disagreement beats consensus</h3>
+              <p>
+                Each expert carries an explicit bias model, adversary lens, and evidence standard.
+                Put them in tension and you surface the dissent a single averaged answer smooths over
+                — the analytic red-teaming that catches the miss before it becomes the headline.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">🔭</span>
+              <h3>Futures & warning need many lenses</h3>
+              <p>
+                Anticipating what hasn't happened yet is a portfolio of perspectives, not a point
+                forecast. A library lets a futures effort assemble the right mix of specialists per
+                scenario — and re-run it as the scenario shifts.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">🏛️</span>
+              <h3>Expertise that compounds</h3>
+              <p>
+                Scarce senior judgment usually lives in a few heads and leaves when they do. Encoded
+                as SMEs, it becomes durable institutional memory — versioned, quality-ranked, and
+                reusable across every team and every agent, not re-learned each time.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">⚖️</span>
+              <h3>Calibrated, not credulous</h3>
+              <p>
+                Each expert declares what it over- and under-weights, when it updates fast or slow,
+                and where it must defer. That turns "ask the AI" into a defensible analytic process
+                with known blind spots — the difference between an opinion and an assessment.
+              </p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">⚡</span>
+              <h3>Scale scarce judgment on demand</h3>
+              <p>
+                A panel that once required scheduling five busy specialists now assembles in seconds,
+                for every analyst and every scenario. Depth of expertise stops being the bottleneck.
+              </p>
             </div>
           </div>
         </div>
@@ -88,6 +155,28 @@ export default function Home() {
             <div className="mk-step"><h3>Find an expert</h3><p><code>search_smes</code> across the library and your workspace with hybrid keyword + semantic ranking.</p></div>
             <div className="mk-step"><h3>Consult</h3><p>Load the profile into your agent's context and reason in that expert's voice.</p></div>
             <div className="mk-step"><h3>Improve</h3><p><code>record_feedback</code> after a session; quality scores update and the best experts surface.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mk-section">
+        <div className="mk-container">
+          <div style={{ border: '1px solid var(--line)', borderRadius: 18, padding: '40px 32px',
+                        background: 'var(--soft)', display: 'grid', gap: 18 }}>
+            <span className="mk-eyebrow" style={{ justifySelf: 'start' }}>For risk &amp; futures teams</span>
+            <h2 style={{ margin: 0 }}>Strategic warning is a team sport.</h2>
+            <p className="sub" style={{ margin: 0, maxWidth: 720 }}>
+              Anticipating what hasn't happened yet demands warning analysts, denial-and-deception
+              specialists, regional hands, and technical experts reasoning together — each with their
+              own evidence bar and blind spots made explicit. The SME Library lets an all-source or
+              futures effort convene exactly that panel on demand, hold it in structured
+              disagreement, and re-run it as the picture changes. The judgment that used to live in a
+              few overbooked heads becomes a resource every analyst can draw on.
+            </p>
+            <div className="row" style={{ justifyContent: 'flex-start' }}>
+              <Link href="/use-cases" className="mk-btn mk-btn-primary">See risk &amp; futures use cases</Link>
+              <Link href="/browse" className="mk-btn mk-btn-ghost">Browse the analysts</Link>
+            </div>
           </div>
         </div>
       </section>

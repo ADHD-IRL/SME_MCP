@@ -48,6 +48,34 @@ export default function Product() {
 
       <section className="mk-section">
         <div className="mk-container">
+          <h2>Built for multidisciplinary risk &amp; futures</h2>
+          <p className="sub">
+            The library isn't a prompt store — it's analytic infrastructure. Its structure exists so
+            that risk, warning, and futures efforts can assemble the right minds, hold them in
+            productive tension, and trust the result.
+          </p>
+          <div className="mk-grid">
+            <div className="mk-card">
+              <span className="ic">🧩</span>
+              <h3>Cover the seams</h3>
+              <p>Assemble specialists across intelligence, cyber, infrastructure, legal, and human factors on one question — so the cross-discipline gaps where threats hide get covered.</p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">⚔️</span>
+              <h3>Engineer disagreement</h3>
+              <p>Explicit bias models, adversary lenses, and evidence standards let you put experts in tension and surface the dissent a single answer would average away.</p>
+            </div>
+            <div className="mk-card">
+              <span className="ic">⚖️</span>
+              <h3>Assessments, not opinions</h3>
+              <p>Each expert declares what it over- and under-weights, when it updates, and where it defers — a defensible analytic process with known blind spots.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mk-section">
+        <div className="mk-container">
           <h2>Capabilities</h2>
           <p className="sub">Everything you need to build, find, and maintain a library of experts.</p>
           <div className="mk-grid">

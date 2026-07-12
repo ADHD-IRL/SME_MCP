@@ -23,7 +23,7 @@ export async function embedText(text) {
   }
 }
 
-// The text an SME is embedded on: identity + how they think + what they know.
+// The text a SME is embedded on: identity + how they think + what they know.
 export function smeEmbeddingText(row) {
   return [
     row.name,
@@ -38,7 +38,7 @@ export function smeEmbeddingText(row) {
     .join('\n');
 }
 
-// Compute and store the embedding for an SME row. Fail-soft.
+// Compute and store the embedding for a SME row. Fail-soft.
 export async function embedSme(row) {
   const embedding = await embedText(smeEmbeddingText(row));
   if (!embedding) return false;

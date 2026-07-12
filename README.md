@@ -24,7 +24,7 @@ step-by-step deployment runbook (regenerable from `docs/implementation-checklist
 | `archive_sme` | write | Soft-delete (reversible) |
 | `clone_sme` | write | Copy a library SME into your workspace as an editable private copy |
 | `generate_sme` | write | AI-generate a profile — dedups against the library first; quota-limited |
-| `record_feedback` | write | Score an SME's session performance; drives the smoothed quality score |
+| `record_feedback` | write | Score a SME's session performance; drives the smoothed quality score |
 | `propose_promotion` | write | Nominate a workspace SME for the shared library (auto-gated + moderated) |
 | `review_promotion` | admin | Approve/reject the promotion queue |
 
