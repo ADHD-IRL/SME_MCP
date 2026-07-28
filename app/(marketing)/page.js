@@ -11,16 +11,17 @@ export default function Home() {
     <>
       <section className="mk-hero">
         <div className="mk-container">
-          <span className="mk-eyebrow">Model Context Protocol · Expert profiles</span>
+          <span className="mk-eyebrow">Open source · Model Context Protocol</span>
           <h1>Give your AI agents<br />a bench of experts.</h1>
           <p className="lead">
-            SME Library is a curated, quality-ranked catalog of subject-matter expert profiles —
-            served over MCP so any agent can find the right expert, reason in their voice, and get
-            sharper answers. Build your own private roster, or draw on the shared library.
+            SME Library is a free, open-source, quality-ranked catalog of subject-matter expert
+            profiles — served over MCP so any agent can find the right expert, reason in their
+            voice, and get sharper answers. Use the shared library, run your own, or self-host the
+            whole thing.
           </p>
           <div className="row">
-            <Link href="/dashboard" className="mk-btn mk-btn-primary">Get an API key</Link>
-            <Link href="/browse" className="mk-btn mk-btn-ghost">Browse the library</Link>
+            <Link href="/dashboard" className="mk-btn mk-btn-primary">Get started</Link>
+            <a href="https://github.com/ADHD-IRL/SME_MCP" className="mk-btn mk-btn-ghost">View on GitHub</a>
           </div>
         </div>
       </section>
@@ -181,12 +182,32 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mk-section">
+        <div className="mk-container mk-center">
+          <h2>Free &amp; open source</h2>
+          <p className="sub">
+            SME Library is open source under the MIT license. Nothing is locked behind a paywall —
+            use the hosted shared library, keep a private workspace, or self-host the entire stack
+            (Next.js + Supabase) on your own infrastructure and own your data end to end.
+          </p>
+          <div className="mk-grid">
+            <div className="mk-card"><span className="ic">🆓</span><h3>No paywall</h3><p>Every capability — search, create, import/export, generate, promote — is available to everyone. No tiers, no seats.</p></div>
+            <div className="mk-card"><span className="ic">🏠</span><h3>Self-hostable</h3><p>Clone the repo, point it at your own Supabase and model keys, and run a fully private instance. Your experts, your data.</p></div>
+            <div className="mk-card"><span className="ic">🤝</span><h3>Community-driven</h3><p>Contribute experts to the shared library, or code and issues on GitHub. The library gets better as the community grows it.</p></div>
+          </div>
+          <div className="row" style={{ marginTop: 28 }}>
+            <a href="https://github.com/ADHD-IRL/SME_MCP" className="mk-btn mk-btn-primary">Star on GitHub</a>
+            <Link href="/dashboard" className="mk-btn mk-btn-ghost">Get started</Link>
+          </div>
+        </div>
+      </section>
+
       <section className="mk-cta">
         <div className="mk-container">
           <div className="box">
-            <h2>Bring proprietary expertise to your agents</h2>
-            <p>Create a private roster of experts, keep it in your own workspace, and promote your best to the shared library when you're ready.</p>
-            <Link href="/dashboard" className="mk-btn mk-btn-primary">Start free</Link>
+            <h2>Stand up your own bench of experts</h2>
+            <p>Use the shared library, keep a private workspace, or self-host the whole thing. Free and open source.</p>
+            <Link href="/dashboard" className="mk-btn mk-btn-primary">Get started</Link>
           </div>
         </div>
       </section>

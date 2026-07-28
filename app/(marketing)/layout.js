@@ -108,7 +108,7 @@ function Nav() {
           <Link href="/browse" className="hide-sm">Browse</Link>
           <Link href="/product" className="hide-sm">Product</Link>
           <Link href="/use-cases" className="hide-sm">Use cases</Link>
-          <Link href="/pricing">Pricing</Link>
+          <a href="https://github.com/ADHD-IRL/SME_MCP" className="hide-sm">GitHub</a>
           <Link href="/dashboard" className="mk-btn mk-btn-primary cta">Get started</Link>
         </div>
       </div>
@@ -120,12 +120,12 @@ function Footer() {
   return (
     <footer className="mk-footer">
       <div className="mk-container fx">
-        <div><strong style={{ color: 'var(--ink)' }}>SME Library</strong> — a curated MCP of subject-matter experts.</div>
+        <div><strong style={{ color: 'var(--ink)' }}>SME Library</strong> — a free, open-source MCP of subject-matter experts.</div>
         <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
           <Link href="/browse">Browse</Link>
           <Link href="/product">Product</Link>
           <Link href="/use-cases">Use cases</Link>
-          <Link href="/pricing">Pricing</Link>
+          <a href="https://github.com/ADHD-IRL/SME_MCP">GitHub</a>
           <Link href="/contact">Contact</Link>
           <Link href="/dashboard">Dashboard</Link>
           <a href="/api/library">Library API</a>
