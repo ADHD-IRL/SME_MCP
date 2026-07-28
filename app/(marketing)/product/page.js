@@ -36,12 +36,12 @@ export default function Product() {
     <>
       <section className="mk-hero" style={{ paddingBottom: 40 }}>
         <div className="mk-container">
-          <span className="mk-eyebrow">Product</span>
+          <span className="mk-eyebrow">How it works</span>
           <h1>A catalog of expertise,<br />built for agents.</h1>
           <p className="lead">
             The SME Library is more than a prompt store. It's a versioned, quality-ranked system of
             record for expert personas — with the search, governance, and lifecycle tooling to run
-            it as a real product.
+            it as real infrastructure. Free and open source; self-host it or use the shared library.
           </p>
         </div>
       </section>

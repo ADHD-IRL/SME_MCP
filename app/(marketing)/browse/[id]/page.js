@@ -114,7 +114,7 @@ export default async function ExpertDetail({ params }) {
             clone_sme &#123; "sme_id": "{sme.id}" &#125;
           </div>
           <div style={{ marginTop: 16 }}>
-            <Link href="/dashboard" className="mk-btn mk-btn-primary">Get an API key</Link>
+            <Link href="/dashboard" className="mk-btn mk-btn-primary">Get started</Link>
           </div>
         </div>
       </div>
