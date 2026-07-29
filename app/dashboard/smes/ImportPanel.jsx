@@ -116,7 +116,7 @@ export default function ImportPanel({ admin }) {
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <input type="file" name="file" accept="application/json,.json,.md,text/markdown" disabled={busy} />
         {admin && (
-          <label style={{ fontSize: '0.85rem', color: '#555' }}>
+          <label style={{ fontSize: '0.85rem', color: 'var(--app-muted)' }}>
             <input type="checkbox" name="to_library" disabled={busy} /> Import into the shared library (admin)
           </label>
         )}
@@ -129,31 +129,31 @@ export default function ImportPanel({ admin }) {
       </div>
 
       {status === 'error' && (
-        <p style={{ background: '#fdecea', color: '#a12', padding: '0.6rem 0.9rem', borderRadius: 8, margin: 0, fontSize: '0.9rem' }}>{message}</p>
+        <p style={{ background: 'var(--app-danger-bg)', color: 'var(--app-danger)', padding: '0.6rem 0.9rem', borderRadius: 8, margin: 0, fontSize: '0.9rem' }}>{message}</p>
       )}
 
       {(busy || status === 'done') && total > 0 && (
-        <div style={{ border: '1px solid #e5e5e5', borderRadius: 10, padding: '0.9rem 1rem' }}>
+        <div style={{ border: '1px solid var(--app-line)', borderRadius: 10, padding: '0.9rem 1rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem', marginBottom: 6 }}>
             <span>
               {busy
                 ? `Importing ${processed} of ${total}…`
                 : message}
             </span>
-            <span style={{ color: '#666' }}>
+            <span style={{ color: 'var(--app-muted)' }}>
               {busy ? `~${fmtDuration(eta)} left` : `${pct}%`}
             </span>
           </div>
-          <div style={{ height: 10, background: '#eee', borderRadius: 999, overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${pct}%`, background: status === 'done' ? '#1a7f37' : '#4f46e5', transition: 'width .3s ease' }} />
+          <div style={{ height: 10, background: 'var(--app-line)', borderRadius: 999, overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${pct}%`, background: status === 'done' ? 'var(--app-ok)' : 'var(--app-accent)', transition: 'width .3s ease' }} />
           </div>
-          <div style={{ display: 'flex', gap: '1.2rem', marginTop: 8, fontSize: '0.82rem', color: '#555' }}>
+          <div style={{ display: 'flex', gap: '1.2rem', marginTop: 8, fontSize: '0.82rem', color: 'var(--app-muted)' }}>
             <span>✓ {succeeded} imported</span>
-            {failed > 0 && <span style={{ color: '#a12' }}>✕ {failed} failed</span>}
+            {failed > 0 && <span style={{ color: 'var(--app-danger)' }}>✕ {failed} failed</span>}
           </div>
 
           {status === 'done' && schemaError && (
-            <div style={{ marginTop: 10, background: '#fff4e5', border: '1px solid #f0c987', borderRadius: 8, padding: '0.7rem 0.9rem', fontSize: '0.85rem' }}>
+            <div style={{ marginTop: 10, background: 'var(--app-warn-bg)', border: '1px solid var(--app-warn-border)', borderRadius: 8, padding: '0.7rem 0.9rem', fontSize: '0.85rem' }}>
               <strong>Your database is missing columns.</strong> Apply the latest migration, then
               re-import: run <code>supabase db push</code>, or paste{' '}
               <code>supabase/migrations/005_sme_attributes.sql</code> into the Supabase SQL editor.
@@ -162,8 +162,8 @@ export default function ImportPanel({ admin }) {
 
           {status === 'done' && errors.length > 0 && (
             <details style={{ marginTop: 8, fontSize: '0.82rem' }}>
-              <summary style={{ cursor: 'pointer', color: '#a12' }}>{errors.length} error{errors.length === 1 ? '' : 's'}</summary>
-              <ul style={{ margin: '6px 0 0', paddingLeft: 18, color: '#555' }}>
+              <summary style={{ cursor: 'pointer', color: 'var(--app-danger)' }}>{errors.length} error{errors.length === 1 ? '' : 's'}</summary>
+              <ul style={{ margin: '6px 0 0', paddingLeft: 18, color: 'var(--app-muted)' }}>
                 {errors.slice(0, 20).map((e, i) => (
                   <li key={i}>{e.name ? `${e.name}: ` : ''}{e.error}</li>
                 ))}
@@ -177,5 +177,5 @@ export default function ImportPanel({ admin }) {
   );
 }
 
-const area = { display: 'block', width: '100%', marginTop: 3, padding: '0.5rem', border: '1px solid #ccc', borderRadius: 6, boxSizing: 'border-box', resize: 'vertical' };
-const primary = { padding: '0.55rem 1.2rem', border: 'none', borderRadius: 6, background: '#111', color: '#fff', cursor: 'pointer' };
+const area = { display: 'block', width: '100%', marginTop: 3, padding: '0.5rem', border: '1px solid var(--app-line)', borderRadius: 6, boxSizing: 'border-box', resize: 'vertical' };
+const primary = { padding: '0.55rem 1.2rem', border: 'none', borderRadius: 6, background: 'var(--app-ink)', color: 'var(--app-card)', cursor: 'pointer' };

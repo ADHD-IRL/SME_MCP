@@ -10,13 +10,13 @@ export default async function LoginPage({ searchParams }) {
   return (
     <main style={{ maxWidth: 380, margin: '5rem auto', padding: '0 1.5rem', lineHeight: 1.6 }}>
       <h1>SME Library</h1>
-      <p style={{ color: '#555' }}>Sign in, or create an account to get an API key.</p>
+      <p style={{ color: 'var(--app-muted)' }}>Sign in, or create an account to get an API key.</p>
 
       {error && (
-        <p style={{ background: '#fdecea', color: '#a12', padding: '0.6rem 0.9rem', borderRadius: 6 }}>{error}</p>
+        <p style={{ background: 'var(--app-danger-bg)', color: 'var(--app-danger)', padding: '0.6rem 0.9rem', borderRadius: 6 }}>{error}</p>
       )}
       {message && (
-        <p style={{ background: '#eef6ec', color: '#276', padding: '0.6rem 0.9rem', borderRadius: 6 }}>{message}</p>
+        <p style={{ background: 'var(--app-ok-bg)', color: 'var(--app-ok)', padding: '0.6rem 0.9rem', borderRadius: 6 }}>{message}</p>
       )}
 
       <form style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
@@ -39,10 +39,10 @@ export default async function LoginPage({ searchParams }) {
 
 const inputStyle = {
   display: 'block', width: '100%', marginTop: 4, padding: '0.5rem',
-  border: '1px solid #ccc', borderRadius: 6, fontSize: '1rem', boxSizing: 'border-box',
+  border: '1px solid var(--app-line)', borderRadius: 6, fontSize: '1rem', boxSizing: 'border-box',
 };
 const primaryBtn = {
   flex: 1, padding: '0.55rem', border: 'none', borderRadius: 6,
-  background: '#111', color: '#fff', fontSize: '1rem', cursor: 'pointer',
+  background: 'var(--app-ink)', color: 'var(--app-card)', fontSize: '1rem', cursor: 'pointer',
 };
-const secondaryBtn = { ...primaryBtn, background: '#fff', color: '#111', border: '1px solid #111' };
+const secondaryBtn = { ...primaryBtn, background: 'var(--app-card)', color: 'var(--app-ink)', border: '1px solid var(--app-ink)' };

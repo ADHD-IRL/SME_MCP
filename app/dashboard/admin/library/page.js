@@ -13,7 +13,7 @@ export default async function LibraryAdmin({ searchParams }) {
     return (
       <main style={{ maxWidth: 640, margin: '4rem auto', padding: '0 1.5rem' }}>
         <h1>Library management</h1>
-        <p style={{ color: '#a12' }}>Admin access required.</p>
+        <p style={{ color: 'var(--app-danger)' }}>Admin access required.</p>
         <p><a href="/dashboard">← Back to dashboard</a></p>
       </main>
     );
@@ -42,10 +42,10 @@ export default async function LibraryAdmin({ searchParams }) {
           <a href="/dashboard">Dashboard</a>
         </div>
       </div>
-      <p style={{ color: '#555', marginTop: 4 }}>{smes.length} SME{smes.length === 1 ? '' : 's'} in the shared library.</p>
+      <p style={{ color: 'var(--app-muted)', marginTop: 4 }}>{smes.length} SME{smes.length === 1 ? '' : 's'} in the shared library.</p>
 
       <form style={{ display: 'flex', gap: '0.5rem', margin: '1rem 0' }}>
-        <input name="q" defaultValue={query} placeholder="Search the library…" style={{ flex: 1, padding: '0.45rem', border: '1px solid #ccc', borderRadius: 6 }} />
+        <input name="q" defaultValue={query} placeholder="Search the library…" style={{ flex: 1, padding: '0.45rem', border: '1px solid var(--app-line)', borderRadius: 6 }} />
         <input type="hidden" name="status" value={status} />
         <button style={btn}>Search</button>
       </form>
@@ -54,30 +54,30 @@ export default async function LibraryAdmin({ searchParams }) {
         {tabs.map((t) => (
           <a key={t} href={`/dashboard/admin/library?status=${t}${query ? `&q=${encodeURIComponent(query)}` : ''}`}
              style={{ padding: '0.25rem 0.7rem', borderRadius: 999, textDecoration: 'none',
-                      background: t === status ? '#111' : '#eee', color: t === status ? '#fff' : '#333', fontSize: '0.85rem' }}>
+                      background: t === status ? 'var(--app-ink)' : 'var(--app-line)', color: t === status ? 'var(--app-card)' : 'var(--app-ink)', fontSize: '0.85rem' }}>
             {t}
           </a>
         ))}
       </div>
 
       {loadError && (
-        <div style={{ background: '#fdecea', border: '1px solid #f5c6cb', borderRadius: 8, padding: '0.8rem 1rem', margin: '1rem 0', fontSize: '0.9rem' }}>
+        <div style={{ background: 'var(--app-danger-bg)', border: '1px solid var(--app-danger-border)', borderRadius: 8, padding: '0.8rem 1rem', margin: '1rem 0', fontSize: '0.9rem' }}>
           <strong>Couldn't load the library.</strong> Apply the pending database migration
           (<code>supabase db push</code>) — the schema is missing new columns. Details: <code>{loadError}</code>
         </div>
       )}
-      {!loadError && smes.length === 0 && <p style={{ color: '#888' }}>No matching library SMEs.</p>}
+      {!loadError && smes.length === 0 && <p style={{ color: 'var(--app-faint)' }}>No matching library SMEs.</p>}
 
       {smes.map((s) => (
-        <section key={s.id} style={{ border: '1px solid #e5e5e5', borderRadius: 10, padding: '1rem 1.15rem', margin: '0.8rem 0' }}>
+        <section key={s.id} style={{ border: '1px solid var(--app-line)', borderRadius: 10, padding: '1rem 1.15rem', margin: '0.8rem 0' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', alignItems: 'baseline' }}>
             <div>
-              <strong>{s.name}</strong> <span style={{ color: '#666' }}>· {s.discipline}</span>
+              <strong>{s.name}</strong> <span style={{ color: 'var(--app-muted)' }}>· {s.discipline}</span>
               <span style={statusPill(s.status)}>{s.status}</span>
             </div>
-            <span style={{ fontSize: '0.85rem', color: '#666' }}>quality {s.quality_score ?? '—'} · {s.usage_count ?? 0} uses</span>
+            <span style={{ fontSize: '0.85rem', color: 'var(--app-muted)' }}>quality {s.quality_score ?? '—'} · {s.usage_count ?? 0} uses</span>
           </div>
-          {s.persona_description && <p style={{ fontSize: '0.9rem', color: '#333', margin: '0.5rem 0' }}>{s.persona_description}</p>}
+          {s.persona_description && <p style={{ fontSize: '0.9rem', color: 'var(--app-ink)', margin: '0.5rem 0' }}>{s.persona_description}</p>}
 
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.6rem', alignItems: 'center' }}>
             <a href={`/dashboard/admin/library/${s.id}`} style={{ ...btn, textDecoration: 'none', display: 'inline-block' }}>Edit</a>
@@ -113,10 +113,10 @@ function StatusButton({ id, status, label }) {
   );
 }
 
-const btn = { padding: '0.4rem 0.85rem', border: '1px solid #111', borderRadius: 6, background: '#fff', color: '#111', cursor: 'pointer', fontSize: '0.85rem' };
-const dangerBtn = { ...btn, border: '1px solid #a12', color: '#a12' };
+const btn = { padding: '0.4rem 0.85rem', border: '1px solid var(--app-ink)', borderRadius: 6, background: 'var(--app-card)', color: 'var(--app-ink)', cursor: 'pointer', fontSize: '0.85rem' };
+const dangerBtn = { ...btn, border: '1px solid var(--app-danger)', color: 'var(--app-danger)' };
 function statusPill(status) {
-  const map = { active: ['#e6f4ea', '#1a7f37'], deprecated: ['#fff4e5', '#b26a00'], archived: ['#eee', '#666'] };
-  const [bg, fg] = map[status] || ['#eee', '#666'];
+  const map = { active: ['var(--app-ok-bg)', 'var(--app-ok)'], deprecated: ['var(--app-warn-bg)', 'var(--app-warn)'], archived: ['var(--app-line)', 'var(--app-muted)'] };
+  const [bg, fg] = map[status] || ['var(--app-line)', 'var(--app-muted)'];
   return { marginLeft: 8, fontSize: '0.72rem', fontWeight: 600, padding: '1px 8px', borderRadius: 10, background: bg, color: fg, verticalAlign: 'middle' };
 }

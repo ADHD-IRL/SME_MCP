@@ -22,11 +22,11 @@ const CORE_ROWS = [
 function DetailCard({ sme }) {
   const attrs = sme.attributes || {};
   return (
-    <div style={{ background: '#fafafa', border: '1px solid #eee', borderRadius: 10, padding: '1rem 1.15rem', margin: '0 0 4px' }}>
+    <div style={{ background: 'var(--app-soft)', border: '1px solid var(--app-line)', borderRadius: 10, padding: '1rem 1.15rem', margin: '0 0 4px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', alignItems: 'baseline' }}>
         <div>
           <strong style={{ fontSize: '1.05rem' }}>{sme.name}</strong>
-          <span style={{ color: '#4338ca', marginLeft: 8, fontWeight: 600 }}>
+          <span style={{ color: 'var(--app-accent-ink)', marginLeft: 8, fontWeight: 600 }}>
             {sme.discipline}{sme.expertise_level ? ` · ${sme.expertise_level}` : ''}
           </span>
         </div>
@@ -43,7 +43,7 @@ function DetailCard({ sme }) {
         </div>
       )}
       {sme.domain_knowledge?.length > 0 && (
-        <p style={{ fontSize: '0.85rem', color: '#555', marginTop: 8 }}>
+        <p style={{ fontSize: '0.85rem', color: 'var(--app-muted)', marginTop: 8 }}>
           <strong>Knows:</strong> {sme.domain_knowledge.join(' · ')}
         </p>
       )}
@@ -61,7 +61,7 @@ function DetailCard({ sme }) {
             if (!present.length) return null;
             return (
               <div key={group} style={{ marginTop: 12 }}>
-                <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#888', marginBottom: 4 }}>{group}</div>
+                <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--app-faint)', marginBottom: 4 }}>{group}</div>
                 {present.map(([key, label]) => <Row key={key} label={label} value={attrs[key]} />)}
               </div>
             );
@@ -76,7 +76,7 @@ function DetailCard({ sme }) {
 function Row({ label, value }) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 12, padding: '3px 0', fontSize: '0.88rem' }}>
-      <div style={{ color: '#777' }}>{label}</div>
+      <div style={{ color: 'var(--app-muted)' }}>{label}</div>
       <div>{fmt(value)}</div>
     </div>
   );
@@ -116,14 +116,14 @@ export default function SmeList({ smes, admin, promoteAction }) {
   const clearSelection = () => setSelected(new Set());
 
   if (smes.length === 0) {
-    return <p style={{ color: '#888' }}>None yet — create or import above.</p>;
+    return <p style={{ color: 'var(--app-faint)' }}>None yet — create or import above.</p>;
   }
 
   const rows = (
     <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
       <tbody>
         {admin && filtered.length > 0 && (
-          <tr style={{ borderBottom: '1px solid #eee', color: '#777', fontSize: '0.8rem' }}>
+          <tr style={{ borderBottom: '1px solid var(--app-line)', color: 'var(--app-muted)', fontSize: '0.8rem' }}>
             <td style={{ padding: '0.3rem 0.4rem', width: 28 }}>
               <input type="checkbox" checked={allFilteredSelected} onChange={toggleAllFiltered}
                 aria-label="Select all shown" />
@@ -145,7 +145,7 @@ export default function SmeList({ smes, admin, promoteAction }) {
           />
         ))}
         {filtered.length === 0 && (
-          <tr><td colSpan={admin ? 5 : 4} style={{ padding: '0.8rem 0.4rem', color: '#888' }}>No SMEs match “{q}”.</td></tr>
+          <tr><td colSpan={admin ? 5 : 4} style={{ padding: '0.8rem 0.4rem', color: 'var(--app-faint)' }}>No SMEs match “{q}”.</td></tr>
         )}
       </tbody>
     </table>
@@ -156,7 +156,7 @@ export default function SmeList({ smes, admin, promoteAction }) {
       value={q}
       onChange={(e) => setQ(e.target.value)}
       placeholder={`Filter ${smes.length} SMEs by name, discipline, or tag…`}
-      style={{ width: '100%', padding: '0.5rem 0.7rem', border: '1px solid #ccc', borderRadius: 8, marginBottom: 12, boxSizing: 'border-box' }}
+      style={{ width: '100%', padding: '0.5rem 0.7rem', border: '1px solid var(--app-line)', borderRadius: 8, marginBottom: 12, boxSizing: 'border-box' }}
     />
   );
 
@@ -168,7 +168,7 @@ export default function SmeList({ smes, admin, promoteAction }) {
       {filterBox}
       {selected.size > 0 && (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap',
-                      background: '#eef2ff', border: '1px solid #c7d2fe', borderRadius: 10,
+                      background: 'var(--app-sel-bg)', border: '1px solid var(--app-sel-border)', borderRadius: 10,
                       padding: '0.6rem 0.9rem', marginBottom: 10 }}>
           <span style={{ fontSize: '0.9rem' }}>
             {selected.size} selected
@@ -188,7 +188,7 @@ export default function SmeList({ smes, admin, promoteAction }) {
 function FragmentRow({ s, admin, selected, onToggle, open, onOpen }) {
   return (
     <>
-      <tr style={{ borderBottom: open ? 'none' : '1px solid #f2f2f2', cursor: 'pointer', background: selected ? '#f5f7ff' : 'transparent' }}>
+      <tr style={{ borderBottom: open ? 'none' : '1px solid var(--app-line)', cursor: 'pointer', background: selected ? 'var(--app-sel-bg)' : 'transparent' }}>
         {admin && (
           <td style={{ padding: '0.5rem 0.4rem', width: 28 }} onClick={(e) => e.stopPropagation()}>
             <input type="checkbox" checked={selected} onChange={onToggle} aria-label={`Select ${s.name}`} />
@@ -196,11 +196,11 @@ function FragmentRow({ s, admin, selected, onToggle, open, onOpen }) {
         )}
         <td style={{ padding: '0.5rem 0.4rem' }} onClick={onOpen}>
           <strong>{s.name}</strong>
-          <div style={{ color: '#777', fontSize: '0.82rem' }}>{s.discipline}</div>
+          <div style={{ color: 'var(--app-muted)', fontSize: '0.82rem' }}>{s.discipline}</div>
         </td>
-        <td style={{ padding: '0.5rem 0.4rem', color: '#666' }} onClick={onOpen}>{s.expertise_level || '—'}</td>
-        <td style={{ padding: '0.5rem 0.4rem', color: '#666' }} onClick={onOpen}>{s.status}</td>
-        <td style={{ padding: '0.5rem 0.4rem', color: '#666', textAlign: 'right' }} onClick={onOpen}>
+        <td style={{ padding: '0.5rem 0.4rem', color: 'var(--app-muted)' }} onClick={onOpen}>{s.expertise_level || '—'}</td>
+        <td style={{ padding: '0.5rem 0.4rem', color: 'var(--app-muted)' }} onClick={onOpen}>{s.status}</td>
+        <td style={{ padding: '0.5rem 0.4rem', color: 'var(--app-muted)', textAlign: 'right' }} onClick={onOpen}>
           {open ? '▲' : '▼'}
         </td>
       </tr>
@@ -215,6 +215,6 @@ function FragmentRow({ s, admin, selected, onToggle, open, onOpen }) {
   );
 }
 
-const pill = { border: '1px solid #ddd', borderRadius: 999, padding: '2px 9px', fontSize: '0.75rem', color: '#555', background: '#fff', whiteSpace: 'nowrap' };
-const promoteBtn = { padding: '0.45rem 1rem', border: 'none', borderRadius: 6, background: '#4f46e5', color: '#fff', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 };
-const clearBtn = { marginLeft: 8, background: 'none', border: 'none', color: '#4f46e5', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.82rem' };
+const pill = { border: '1px solid var(--app-line)', borderRadius: 999, padding: '2px 9px', fontSize: '0.75rem', color: 'var(--app-muted)', background: 'var(--app-card)', whiteSpace: 'nowrap' };
+const promoteBtn = { padding: '0.45rem 1rem', border: 'none', borderRadius: 6, background: 'var(--app-accent)', color: 'var(--app-card)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 };
+const clearBtn = { marginLeft: 8, background: 'none', border: 'none', color: 'var(--app-accent)', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.82rem' };
