@@ -7,7 +7,7 @@ import Link from 'next/link';
 const CSS = `
 .mk { --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --bg:#ffffff; --soft:#f8fafc;
   --accent:#4f46e5; --accent-ink:#4338ca; --card:#ffffff;
-  color:var(--ink); background:var(--bg);
+  color:var(--ink); background:var(--bg); min-height:100vh;
   font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
 @media (prefers-color-scheme: dark) {
   .mk { --ink:#e5e7eb; --muted:#94a3b8; --line:#1e293b; --bg:#0b1120; --soft:#0f172a;
