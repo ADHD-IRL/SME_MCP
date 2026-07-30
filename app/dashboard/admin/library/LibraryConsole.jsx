@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { ATTRIBUTE_GROUPS } from '../../../../src/lib/sme-schema.js';
+import { ATTRIBUTE_GROUPS, ARRAY_ATTRS } from '../../../../src/lib/sme-schema.js';
 
 function fmt(v) {
   if (Array.isArray(v)) return v.join(', ');
@@ -113,11 +113,35 @@ function EditForm({ sme, updateAction }) {
         Tags (comma-separated)
         <input name="tags" defaultValue={(sme.tags ?? []).join(', ')} style={S.input} />
       </label>
+      <details>
+        <summary style={{ cursor: 'pointer', fontSize: '0.85rem', color: 'var(--app-accent-ink)', margin: '2px 0 8px' }}>
+          Edit reasoning attributes
+        </summary>
+        {ATTRIBUTE_GROUPS.map(({ group, fields }) => (
+          <div key={group} style={{ marginBottom: 10 }}>
+            <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--app-faint)', margin: '6px 0 4px' }}>{group}</div>
+            {fields.map(([key, label]) => {
+              const cur = sme.attributes?.[key];
+              const val = Array.isArray(cur) ? cur.join(', ') : (cur ?? '');
+              const isArr = ARRAY_ATTRS.has(key);
+              return (
+                <label key={key} style={{ fontSize: '0.8rem', color: 'var(--app-muted)', display: 'grid', gap: 3, marginBottom: 6 }}>
+                  {label}{isArr ? ' (comma-separated)' : ''}
+                  <input name={`attr__${key}`} defaultValue={val} style={{ ...S.input, padding: '0.4rem 0.55rem', fontSize: '0.85rem' }} />
+                </label>
+              );
+            })}
+          </div>
+        ))}
+      </details>
       <label style={{ fontSize: '0.82rem', color: 'var(--app-muted)', display: 'grid', gap: 4 }}>
         Change summary (optional)
         <input name="change_summary" placeholder="What changed and why" style={S.input} />
       </label>
       <div><button style={S.btnPrimary}>Save new version</button></div>
+      <p style={{ fontSize: '0.75rem', color: 'var(--app-faint)', margin: 0 }}>
+        Clearing an attribute field removes it. Vectors are edited via re-import.
+      </p>
     </form>
   );
 }
@@ -132,6 +156,8 @@ export default function LibraryConsole({ smes, pending, actions }) {
   const [selected, setSelected] = useState(() => new Set());
   const [open, setOpen] = useState(null);   // expanded detail id
   const [editing, setEditing] = useState(null); // inline edit id
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(25);
 
   const disciplines = useMemo(
     () => [...new Set(smes.map((s) => s.discipline).filter(Boolean))].sort(),
@@ -156,6 +182,11 @@ export default function LibraryConsole({ smes, pending, actions }) {
     }[sort];
     return [...list].sort(cmp);
   }, [smes, status, discipline, q, sort]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const curPage = Math.min(page, totalPages);
+  const paged = filtered.slice((curPage - 1) * pageSize, curPage * pageSize);
+  const resetPage = () => setPage(1);
 
   const toggle = (id) => setSelected((p) => { const n = new Set(p); n.has(id) ? n.delete(id) : n.add(id); return n; });
   const filteredIds = filtered.map((s) => s.id);
@@ -206,12 +237,12 @@ export default function LibraryConsole({ smes, pending, actions }) {
 
       {/* Toolbar */}
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 14 }}>
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, discipline, tag…" style={{ ...S.input, flex: 1, minWidth: 200 }} />
-        <select value={discipline} onChange={(e) => setDiscipline(e.target.value)} style={S.input}>
+        <input value={q} onChange={(e) => { setQ(e.target.value); resetPage(); }} placeholder="Search name, discipline, tag…" style={{ ...S.input, flex: 1, minWidth: 200 }} />
+        <select value={discipline} onChange={(e) => { setDiscipline(e.target.value); resetPage(); }} style={S.input}>
           <option value="">All disciplines</option>
           {disciplines.map((d) => <option key={d} value={d}>{d}</option>)}
         </select>
-        <select value={sort} onChange={(e) => setSort(e.target.value)} style={S.input}>
+        <select value={sort} onChange={(e) => { setSort(e.target.value); resetPage(); }} style={S.input}>
           <option value="quality">Sort: Quality</option>
           <option value="usage">Sort: Usage</option>
           <option value="name">Sort: Name</option>
@@ -220,7 +251,7 @@ export default function LibraryConsole({ smes, pending, actions }) {
       </div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
         {['all', 'active', 'deprecated', 'archived'].map((t) => (
-          <button key={t} onClick={() => setStatus(t)} style={S.chip(t === status)}>
+          <button key={t} onClick={() => { setStatus(t); resetPage(); }} style={S.chip(t === status)}>
             {t} <span style={{ opacity: 0.6 }}>{counts[t] ?? 0}</span>
           </button>
         ))}
@@ -249,12 +280,20 @@ export default function LibraryConsole({ smes, pending, actions }) {
       {/* Header row */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '4px 4px', color: 'var(--app-faint)', fontSize: '0.8rem', borderBottom: '1px solid var(--app-line)' }}>
         <input type="checkbox" checked={allSel} onChange={toggleAll} aria-label="Select all shown" />
-        <span>{filtered.length} shown</span>
+        <span>{filtered.length} match{filtered.length === 1 ? '' : 'es'}{allSel && filtered.length ? ' (all selected)' : ''}</span>
+        <span style={{ flex: 1 }} />
+        <label style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+          Per page
+          <select value={pageSize} onChange={(e) => { setPageSize(Number(e.target.value)); resetPage(); }}
+            style={{ ...S.input, padding: '0.2rem 0.4rem', fontSize: '0.8rem' }}>
+            {[25, 50, 100].map((n) => <option key={n} value={n}>{n}</option>)}
+          </select>
+        </label>
       </div>
 
-      {/* Rows */}
+      {/* Rows (current page) */}
       {filtered.length === 0 && <p style={{ color: 'var(--app-faint)', marginTop: 16 }}>No SMEs match the current filters.</p>}
-      {filtered.map((s) => (
+      {paged.map((s) => (
         <div key={s.id} style={{ borderBottom: '1px solid var(--app-line)', padding: '0.6rem 0.4rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <input type="checkbox" checked={selected.has(s.id)} onChange={() => toggle(s.id)} aria-label={`Select ${s.name}`} />
@@ -275,6 +314,17 @@ export default function LibraryConsole({ smes, pending, actions }) {
           {editing === s.id && <div style={{ marginTop: 10 }}><EditForm sme={s} updateAction={updateLibraryAction} /></div>}
         </div>
       ))}
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 18 }}>
+          <button style={{ ...S.btn, opacity: curPage <= 1 ? 0.5 : 1 }} disabled={curPage <= 1}
+            onClick={() => setPage(curPage - 1)}>← Prev</button>
+          <span style={{ fontSize: '0.85rem', color: 'var(--app-muted)' }}>Page {curPage} of {totalPages}</span>
+          <button style={{ ...S.btn, opacity: curPage >= totalPages ? 0.5 : 1 }} disabled={curPage >= totalPages}
+            onClick={() => setPage(curPage + 1)}>Next →</button>
+        </div>
+      )}
     </div>
   );
 }

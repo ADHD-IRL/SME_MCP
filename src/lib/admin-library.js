@@ -16,7 +16,10 @@ export async function listLibrarySmes({ status, query } = {}) {
   if (status && status !== 'all') q = q.eq('status', status);
   if (query) q = q.textSearch('search_vector', query, { type: 'websearch', config: 'english' });
 
-  q = q.order('quality_score', { ascending: false, nullsFirst: false }).order('name');
+  q = q
+    .order('quality_score', { ascending: false, nullsFirst: false })
+    .order('name')
+    .limit(2000); // safety cap; console paginates client-side
   const { data, error } = await q;
   if (error) throw new Error(error.message);
   return data;
@@ -58,9 +61,22 @@ export async function updateLibrarySme(id, patch, changeSummary) {
   const current = await getLibrarySme(id);
   const nextVersion = (current.current_version ?? 1) + 1;
 
+  // Attribute edits arrive as a partial patch; merge over the existing
+  // attributes so untouched keys persist. Keys set to '' / [] are dropped.
+  const merged = { ...patch };
+  if (patch.attributes) {
+    const next = { ...(current.attributes || {}) };
+    for (const [k, v] of Object.entries(patch.attributes)) {
+      const empty = v == null || (Array.isArray(v) ? v.length === 0 : String(v).trim() === '');
+      if (empty) delete next[k];
+      else next[k] = v;
+    }
+    merged.attributes = next;
+  }
+
   const { data, error } = await supabase
     .from('smes')
-    .update({ ...patch, current_version: nextVersion, updated_at: new Date().toISOString() })
+    .update({ ...merged, current_version: nextVersion, updated_at: new Date().toISOString() })
     .eq('id', id)
     .eq('workspace_id', LIBRARY_WORKSPACE_ID)
     .select(SME_SELECT)

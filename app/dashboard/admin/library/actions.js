@@ -10,6 +10,7 @@ import {
   deleteLibrarySme,
 } from '../../../../src/lib/admin-library.js';
 import { decidePromotion } from '../../../../src/lib/promotions.js';
+import { ARRAY_ATTRS } from '../../../../src/lib/sme-schema.js';
 
 async function requireAdmin() {
   const user = await getCurrentUser();
@@ -39,6 +40,22 @@ export async function updateLibraryAction(formData) {
   await requireAdmin();
   const id = String(formData.get('id'));
   const patch = formToProfilePatch((name) => formData.get(name));
+
+  // Rich attribute edits arrive as attr__<key> fields; collect into a patch
+  // that updateLibrarySme merges over the existing attributes.
+  const attributes = {};
+  let sawAttr = false;
+  for (const [key, value] of formData.entries()) {
+    if (!key.startsWith('attr__')) continue;
+    sawAttr = true;
+    const attr = key.slice('attr__'.length);
+    const raw = String(value).trim();
+    attributes[attr] = ARRAY_ATTRS.has(attr)
+      ? raw.split(',').map((s) => s.trim()).filter(Boolean)
+      : raw;
+  }
+  if (sawAttr) patch.attributes = attributes;
+
   await updateLibrarySme(id, patch, String(formData.get('change_summary') || '') || undefined);
   back();
 }
