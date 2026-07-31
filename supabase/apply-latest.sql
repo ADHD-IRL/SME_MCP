@@ -1,8 +1,17 @@
 -- One-shot, idempotent catch-up for a database that's behind on migrations.
 -- Safe to run repeatedly. Paste into the Supabase SQL editor (Dashboard → SQL)
--- or run `supabase db push` if you use the CLI. Covers migrations 002–005.
+-- or run `supabase db push` if you use the CLI. Covers migrations 002–007.
 
 create extension if not exists vector;
+
+-- 007: in-app admin grants (supplements the ADMIN_EMAILS env bootstrap)
+create table if not exists app_admins (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  email text,
+  granted_by uuid references auth.users(id) on delete set null,
+  created_at timestamptz not null default now()
+);
+alter table app_admins enable row level security;
 
 -- 004: leads (contact capture)
 create table if not exists leads (

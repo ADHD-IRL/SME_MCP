@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-import { getCurrentUser, isAdminEmail } from '../../../src/lib/supabase-ssr.js';
+import { getCurrentUser } from '../../../src/lib/supabase-ssr.js';
+import { isAdmin } from '../../../src/lib/admins.js';
 import { ensureWorkspace } from '../../../src/lib/workspace.js';
 import { listWorkspaceSmes } from '../../../src/lib/smes.js';
 import { createSmeFormAction, dismissFlashAction, promoteSelectedAction } from './actions.js';
@@ -15,7 +16,7 @@ export default async function MySmes() {
   if (!user) redirect('/login');
 
   const workspaceId = await ensureWorkspace(user);
-  const admin = isAdminEmail(user.email);
+  const admin = await isAdmin(user);
 
   let smes = [];
   let loadError = null;

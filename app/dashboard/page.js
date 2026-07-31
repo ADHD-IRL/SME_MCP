@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-import { getCurrentUser, isAdminEmail } from '../../src/lib/supabase-ssr.js';
+import { getCurrentUser } from '../../src/lib/supabase-ssr.js';
+import { isAdmin } from '../../src/lib/admins.js';
 import { ensureWorkspace, getMembership, listKeys } from '../../src/lib/workspace.js';
 import { createKeyAction, revokeKeyAction, dismissNewKeyAction } from './actions.js';
 
@@ -14,6 +15,7 @@ export default async function Dashboard() {
   await ensureWorkspace(user);
   const membership = await getMembership(user);
   const keys = await listKeys(membership.workspace_id);
+  const admin = await isAdmin(user);
 
   // Read the one-time plaintext key set by createKeyAction. Do NOT delete it
   // here — cookie mutation is disallowed during a Server Component render.
@@ -29,8 +31,9 @@ export default async function Dashboard() {
         <h1 style={{ marginBottom: 0 }}>API keys</h1>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'baseline' }}>
           <a href="/dashboard/smes">My SMEs</a>
-          {isAdminEmail(user.email) && <a href="/dashboard/admin">Promotion queue</a>}
-          {isAdminEmail(user.email) && <a href="/dashboard/admin/library">Library</a>}
+          <a href="/dashboard/account">Account</a>
+          {admin && <a href="/dashboard/admin">Promotion queue</a>}
+          {admin && <a href="/dashboard/admin/library">Library</a>}
           <form action="/auth/signout" method="post">
             <button style={linkBtn}>Sign out</button>
           </form>

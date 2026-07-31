@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
-import { getCurrentUser, isAdminEmail } from '../../../src/lib/supabase-ssr.js';
+import { getCurrentUser } from '../../../src/lib/supabase-ssr.js';
+import { isAdmin } from '../../../src/lib/admins.js';
 import { listPendingPromotions } from '../../../src/lib/promotions.js';
 import { decidePromotionAction } from './actions.js';
 
@@ -10,13 +11,13 @@ export default async function AdminPage() {
   const user = await getCurrentUser();
   if (!user) redirect('/login');
 
-  if (!isAdminEmail(user.email)) {
+  if (!(await isAdmin(user))) {
     return (
       <main style={{ maxWidth: 640, margin: '4rem auto', padding: '0 1.5rem' }}>
         <h1>Promotion queue</h1>
         <p style={{ color: 'var(--app-danger)' }}>
-          Admin access required. Ask an operator to add <code>{user.email}</code> to
-          the <code>ADMIN_EMAILS</code> setting.
+          Admin access required. Ask an existing admin to grant <code>{user.email}</code>
+          {' '}admin from the account page, or add the email to <code>ADMIN_EMAILS</code>.
         </p>
         <p><a href="/dashboard">← Back to dashboard</a></p>
       </main>

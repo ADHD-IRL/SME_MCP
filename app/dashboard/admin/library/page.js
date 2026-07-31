@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
-import { getCurrentUser, isAdminEmail } from '../../../../src/lib/supabase-ssr.js';
+import { getCurrentUser } from '../../../../src/lib/supabase-ssr.js';
+import { isAdmin } from '../../../../src/lib/admins.js';
 import { listLibrarySmes } from '../../../../src/lib/admin-library.js';
 import { listPendingPromotions } from '../../../../src/lib/promotions.js';
 import LibraryConsole from './LibraryConsole.jsx';
@@ -14,7 +15,7 @@ export const dynamic = 'force-dynamic';
 export default async function LibraryAdmin() {
   const user = await getCurrentUser();
   if (!user) redirect('/login');
-  if (!isAdminEmail(user.email)) {
+  if (!(await isAdmin(user))) {
     return (
       <main style={{ maxWidth: 640, margin: '4rem auto', padding: '0 1.5rem' }}>
         <h1>Library console</h1>
