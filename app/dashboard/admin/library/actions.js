@@ -2,7 +2,8 @@
 
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { getCurrentUser, isAdminEmail } from '../../../../src/lib/supabase-ssr.js';
+import { getCurrentUser } from '../../../../src/lib/supabase-ssr.js';
+import { isAdmin } from '../../../../src/lib/admins.js';
 import {
   formToProfilePatch,
   updateLibrarySme,
@@ -15,7 +16,7 @@ import { ARRAY_ATTRS } from '../../../../src/lib/sme-schema.js';
 async function requireAdmin() {
   const user = await getCurrentUser();
   if (!user) redirect('/login');
-  if (!isAdminEmail(user.email)) throw new Error('Admin access required');
+  if (!(await isAdmin(user))) throw new Error('Admin access required');
   return user;
 }
 

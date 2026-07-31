@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
-import { getCurrentUser, isAdminEmail } from '../../../../../src/lib/supabase-ssr.js';
+import { getCurrentUser } from '../../../../../src/lib/supabase-ssr.js';
+import { isAdmin } from '../../../../../src/lib/admins.js';
 import { getLibrarySme } from '../../../../../src/lib/admin-library.js';
 import { updateLibraryAction } from '../actions.js';
 
@@ -22,7 +23,7 @@ const TEXT_FIELDS = [
 export default async function EditLibrarySme({ params }) {
   const user = await getCurrentUser();
   if (!user) redirect('/login');
-  if (!isAdminEmail(user.email)) {
+  if (!(await isAdmin(user))) {
     return (
       <main style={{ maxWidth: 640, margin: '4rem auto', padding: '0 1.5rem' }}>
         <h1>Edit library SME</h1>

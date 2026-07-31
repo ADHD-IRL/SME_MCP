@@ -3,7 +3,8 @@
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
-import { getCurrentUser, isAdminEmail } from '../../../src/lib/supabase-ssr.js';
+import { getCurrentUser } from '../../../src/lib/supabase-ssr.js';
+import { isAdmin } from '../../../src/lib/admins.js';
 import { ensureWorkspace } from '../../../src/lib/workspace.js';
 import { createSme, importSmes, parseImportPayload, LIBRARY_WORKSPACE_ID } from '../../../src/lib/smes.js';
 import { promoteToLibrary } from '../../../src/lib/promotions.js';
@@ -15,7 +16,7 @@ function toArray(raw) {
 // Admins may target the shared library directly; everyone else writes to
 // their own workspace. Returns { workspaceId, visibility, source }.
 async function resolveTarget(user, toLibrary) {
-  if (toLibrary && isAdminEmail(user.email)) {
+  if (toLibrary && (await isAdmin(user))) {
     return { workspaceId: LIBRARY_WORKSPACE_ID, visibility: 'library' };
   }
   return { workspaceId: await ensureWorkspace(user), visibility: 'workspace' };
@@ -101,7 +102,7 @@ export async function dismissFlashAction() {
 export async function promoteSelectedAction(formData) {
   const user = await getCurrentUser();
   if (!user) redirect('/login');
-  if (!isAdminEmail(user.email)) throw new Error('Admin access required');
+  if (!(await isAdmin(user))) throw new Error('Admin access required');
 
   const ids = formData.getAll('sme_ids').map(String).filter(Boolean);
   const store = await cookies();

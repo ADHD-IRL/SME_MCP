@@ -2,13 +2,14 @@
 
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { getCurrentUser, isAdminEmail } from '../../../src/lib/supabase-ssr.js';
+import { getCurrentUser } from '../../../src/lib/supabase-ssr.js';
+import { isAdmin } from '../../../src/lib/admins.js';
 import { decidePromotion } from '../../../src/lib/promotions.js';
 
 export async function decidePromotionAction(formData) {
   const user = await getCurrentUser();
   if (!user) redirect('/login');
-  if (!isAdminEmail(user.email)) throw new Error('Admin access required');
+  if (!(await isAdmin(user))) throw new Error('Admin access required');
 
   await decidePromotion({
     promotionId: String(formData.get('promotion_id')),

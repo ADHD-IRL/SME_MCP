@@ -1,4 +1,5 @@
-import { getCurrentUser, isAdminEmail } from '../../../../src/lib/supabase-ssr.js';
+import { getCurrentUser } from '../../../../src/lib/supabase-ssr.js';
+import { isAdmin } from '../../../../src/lib/admins.js';
 import { ensureWorkspace } from '../../../../src/lib/workspace.js';
 import { createSme, LIBRARY_WORKSPACE_ID } from '../../../../src/lib/smes.js';
 
@@ -25,7 +26,7 @@ export async function POST(request) {
     return Response.json({ error: 'batch is capped at 25 items' }, { status: 400 });
   }
 
-  const toLibrary = body?.toLibrary === true && isAdminEmail(user.email);
+  const toLibrary = body?.toLibrary === true && (await isAdmin(user));
   const workspaceId = toLibrary ? LIBRARY_WORKSPACE_ID : await ensureWorkspace(user);
   const visibility = toLibrary ? 'library' : 'workspace';
 
