@@ -26,7 +26,7 @@ export default async function EditLibrarySme({ params }) {
     return (
       <main style={{ maxWidth: 640, margin: '4rem auto', padding: '0 1.5rem' }}>
         <h1>Edit library SME</h1>
-        <p style={{ color: '#a12' }}>Admin access required.</p>
+        <p style={{ color: 'var(--app-danger)' }}>Admin access required.</p>
       </main>
     );
   }
@@ -38,7 +38,7 @@ export default async function EditLibrarySme({ params }) {
     <main style={{ maxWidth: 720, margin: '3rem auto', padding: '0 1.5rem', lineHeight: 1.6 }}>
       <p><a href="/dashboard/admin/library">← Library management</a></p>
       <h1 style={{ marginBottom: 0 }}>Edit: {sme.name}</h1>
-      <p style={{ color: '#666', marginTop: 4, fontSize: '0.9rem' }}>
+      <p style={{ color: 'var(--app-muted)', marginTop: 4, fontSize: '0.9rem' }}>
         Library entry · version {sme.current_version} · {sme.status} · saving creates a new version snapshot.
       </p>
 
@@ -46,7 +46,7 @@ export default async function EditLibrarySme({ params }) {
         <input type="hidden" name="id" value={sme.id} />
 
         {TEXT_FIELDS.map(([field, label, multiline]) => (
-          <label key={field} style={{ fontSize: '0.9rem', color: '#333' }}>
+          <label key={field} style={{ fontSize: '0.9rem', color: 'var(--app-ink)' }}>
             {label}
             {multiline ? (
               <textarea name={field} defaultValue={sme[field] ?? ''} rows={3} style={area} />
@@ -56,16 +56,16 @@ export default async function EditLibrarySme({ params }) {
           </label>
         ))}
 
-        <label style={{ fontSize: '0.9rem', color: '#333' }}>
+        <label style={{ fontSize: '0.9rem', color: 'var(--app-ink)' }}>
           Domain knowledge (comma-separated)
           <input name="domain_knowledge" defaultValue={(sme.domain_knowledge ?? []).join(', ')} style={input} />
         </label>
-        <label style={{ fontSize: '0.9rem', color: '#333' }}>
+        <label style={{ fontSize: '0.9rem', color: 'var(--app-ink)' }}>
           Tags (comma-separated)
           <input name="tags" defaultValue={(sme.tags ?? []).join(', ')} style={input} />
         </label>
 
-        <label style={{ fontSize: '0.9rem', color: '#333' }}>
+        <label style={{ fontSize: '0.9rem', color: 'var(--app-ink)' }}>
           Change summary (optional)
           <input name="change_summary" placeholder="What changed and why" style={input} />
         </label>
@@ -79,7 +79,7 @@ export default async function EditLibrarySme({ params }) {
   );
 }
 
-const input = { display: 'block', width: '100%', marginTop: 4, padding: '0.5rem', border: '1px solid #ccc', borderRadius: 6, fontSize: '0.95rem', boxSizing: 'border-box' };
+const input = { display: 'block', width: '100%', marginTop: 4, padding: '0.5rem', border: '1px solid var(--app-line)', borderRadius: 6, fontSize: '0.95rem', boxSizing: 'border-box' };
 const area = { ...input, resize: 'vertical', fontFamily: 'inherit' };
-const primary = { padding: '0.55rem 1.2rem', border: 'none', borderRadius: 6, background: '#111', color: '#fff', cursor: 'pointer' };
-const secondary = { padding: '0.55rem 1.2rem', border: '1px solid #111', borderRadius: 6, background: '#fff', color: '#111' };
+const primary = { padding: '0.55rem 1.2rem', border: 'none', borderRadius: 6, background: 'var(--app-ink)', color: 'var(--app-card)', cursor: 'pointer' };
+const secondary = { padding: '0.55rem 1.2rem', border: '1px solid var(--app-ink)', borderRadius: 6, background: 'var(--app-card)', color: 'var(--app-ink)' };

@@ -105,11 +105,11 @@ const CORE_LABELS = {
 };
 
 // Fields whose comma-separated values we keep as arrays inside attributes.
-const ARRAY_ATTRS = new Set([
+export const ARRAY_ATTRS = new Set([
   'blind_spots', 'strong_domains', 'moderate_domains', 'weak_domains',
   'defer_to', 'trusted_sources', 'distrusted_sources', 'highly_trusted_sources',
   'conditionally_trusted_sources', 'low_trust_sources', 'analytic_methods',
-  'common_indicators', 'common_false_positives',
+  'common_indicators', 'common_false_positives', 'discipline_failure_modes',
 ]);
 
 const SENIORITY = {
