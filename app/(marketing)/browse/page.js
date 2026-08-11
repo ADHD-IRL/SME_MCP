@@ -7,17 +7,28 @@ export const metadata = {
 };
 export const dynamic = 'force-dynamic';
 
+const PAGE_SIZE = 48;
+
 export default async function Browse({ searchParams }) {
   const params = await searchParams;
   const query = (params?.q || '').trim();
+  const page = Math.max(1, Number(params?.page) || 1);
 
   let smes = [];
+  let total = 0;
   let unavailable = false;
   try {
-    smes = await listPublicLibrary({ query, limit: 60 });
+    const res = await listPublicLibrary({ query, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
+    smes = res.rows;
+    total = res.total;
   } catch {
     unavailable = true;
   }
+
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const firstShown = total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;
+  const lastShown = (page - 1) * PAGE_SIZE + smes.length;
+  const pageHref = (p) => `/browse?${new URLSearchParams({ ...(query ? { q: query } : {}), page: String(p) }).toString()}`;
 
   return (
     <>
@@ -51,7 +62,10 @@ export default async function Browse({ searchParams }) {
             </div>
           ) : (
             <>
-              <p className="sub">{smes.length} expert{smes.length === 1 ? '' : 's'} in the shared library{query ? ` matching “${query}”` : ''}.</p>
+              <p className="sub">
+                {total} expert{total === 1 ? '' : 's'} in the shared library{query ? ` matching “${query}”` : ''}
+                {totalPages > 1 ? ` · showing ${firstShown}–${lastShown}` : ''}.
+              </p>
               <div className="mk-grid">
                 {smes.map((s) => (
                   <Link key={s.id} href={`/browse/${s.id}`} className="mk-card" style={{ display: 'block' }}>
@@ -77,6 +91,18 @@ export default async function Browse({ searchParams }) {
                   </Link>
                 ))}
               </div>
+
+              {totalPages > 1 && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, marginTop: 36 }}>
+                  {page > 1
+                    ? <Link href={pageHref(page - 1)} className="mk-btn mk-btn-ghost">← Prev</Link>
+                    : <span className="mk-btn mk-btn-ghost" style={{ opacity: 0.4, pointerEvents: 'none' }}>← Prev</span>}
+                  <span className="sub" style={{ margin: 0 }}>Page {page} of {totalPages}</span>
+                  {page < totalPages
+                    ? <Link href={pageHref(page + 1)} className="mk-btn mk-btn-ghost">Next →</Link>
+                    : <span className="mk-btn mk-btn-ghost" style={{ opacity: 0.4, pointerEvents: 'none' }}>Next →</span>}
+                </div>
+              )}
             </>
           )}
         </div>

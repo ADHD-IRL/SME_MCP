@@ -85,21 +85,25 @@ export async function importSmes({
 }
 
 // Public read of the shared library — powers the marketing /browse page.
-// No auth; only active library entries are visible.
-export async function listPublicLibrary({ query, limit = 60 } = {}) {
+// No auth; only active library entries are visible. Paginated: returns the
+// requested page of rows plus the total match count so the UI can page through
+// the whole library (not just the first screen).
+export async function listPublicLibrary({ query, limit = 60, offset = 0 } = {}) {
+  const perPage = Math.min(Math.max(Number(limit) || 60, 1), 100);
+  const from = Math.max(Number(offset) || 0, 0);
   let q = getSupabase()
     .from('smes')
-    .select(SME_SELECT)
+    .select(SME_SELECT, { count: 'exact' })
     .eq('visibility', 'library')
     .eq('status', 'active');
   if (query) q = q.textSearch('search_vector', query, { type: 'websearch', config: 'english' });
   q = q
     .order('quality_score', { ascending: false, nullsFirst: false })
     .order('usage_count', { ascending: false })
-    .limit(Math.min(limit, 100));
-  const { data, error } = await q;
+    .range(from, from + perPage - 1);
+  const { data, error, count } = await q;
   if (error) throw new Error(error.message);
-  return data;
+  return { rows: data, total: count ?? data.length };
 }
 
 export async function getPublicSme(id) {
