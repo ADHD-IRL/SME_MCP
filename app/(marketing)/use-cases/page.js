@@ -3,13 +3,13 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Use cases — SME Library',
   description:
-    'Where a library of expert personas pays off: multi-agent debate, code review, red-teaming, advisory panels, and domain-specialized assistants.',
+    'Where a library of expert personas pays off: multi-expert debate, code review, red-teaming, advisory panels, and domain-specialized assistants.',
 };
 
 const CASES = [
   ['🔭', 'Strategic warning & futures', 'Stand up a panel of analysts — warning, denial-and-deception, regional, technical — to stress-test what could happen next. Re-run the panel as the scenario shifts; anticipation is a portfolio of lenses, not one forecast.'],
   ['🧩', 'All-source risk assessment', 'Multidisciplinary threats cut across intelligence, cyber, infrastructure, and human factors. Convene the matching specialists on one question so the seams between disciplines — where risk hides — get covered.'],
-  ['⚖️', 'Multi-agent debate', 'Convene experts with genuinely different priorities and biases, let them argue a decision, and surface the disagreement a single model would smooth over.'],
+  ['⚖️', 'Multi-expert debate', 'Convene experts with genuinely different priorities and biases, let them argue a decision, and surface the disagreement a single model would smooth over.'],
   ['🛡️', 'Red-teaming & adversary analysis', 'Point an adversarial expert at a plan. Its attributes encode an adversary model, evidence standards, and severity defaults, so the critique is structured and defensible, not hand-wavy.'],
   ['🔍', 'Code & design review', 'Load a senior reviewer in the relevant discipline. Get review that reflects how a distributed-systems principal or a security lead actually thinks — not generic lint.'],
   ['🩺', 'Domain assistants', 'Ground a vertical assistant (clinical, legal, financial) in an expert persona with the right evidence standards and communication style for the field.'],
