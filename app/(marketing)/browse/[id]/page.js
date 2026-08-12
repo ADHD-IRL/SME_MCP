@@ -9,6 +9,11 @@ function fmt(v) {
   return String(v);
 }
 
+// snake_case / kebab -> Title Case, for extension pack + field labels.
+function pretty(s) {
+  return String(s).replace(/[_-]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
@@ -103,6 +108,32 @@ export default async function ExpertDetail({ params }) {
                 </div>
               </div>
             )}
+          </div>
+        )}
+
+        {/* Domain-specific extension packs (e.g. red_team) — stored per SME and
+            otherwise never surfaced. Rendered generically so any pack shows. */}
+        {sme.extensions && Object.keys(sme.extensions).length > 0 && (
+          <div style={{ marginTop: 12 }}>
+            {Object.entries(sme.extensions).map(([pack, obj]) => {
+              const entries = obj && typeof obj === 'object' && !Array.isArray(obj)
+                ? Object.entries(obj).filter(([, v]) => v != null && String(fmt(v)).trim())
+                : [['value', obj]];
+              if (!entries.length) return null;
+              return (
+                <div key={pack} style={{ marginBottom: 22 }}>
+                  <h2 style={{ fontSize: '1.1rem', letterSpacing: '-0.01em', margin: '0 0 10px' }}>{pretty(pack)}</h2>
+                  <div style={{ display: 'grid', gap: 10 }}>
+                    {entries.map(([k, v]) => (
+                      <div key={k} style={{ display: 'grid', gridTemplateColumns: '190px 1fr', gap: 12 }}>
+                        <div style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>{pretty(k)}</div>
+                        <div style={{ fontSize: '0.92rem' }}>{fmt(v)}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
 
