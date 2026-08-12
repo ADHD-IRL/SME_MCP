@@ -69,3 +69,17 @@ language sql stable security definer as $$
   order by s.embedding <=> p_embedding
   limit least(p_limit, 50);
 $$;
+
+-- 008: remove the legacy `agentdebate` provenance pack (institutional_incentives
+-- promoted to an attribute; domain/is_ai_generated dropped).
+update smes
+set
+  attributes = case
+    when extensions -> 'agentdebate' ? 'institutional_incentives'
+      then jsonb_set(coalesce(attributes, '{}'::jsonb), '{institutional_incentives}',
+                     extensions -> 'agentdebate' -> 'institutional_incentives')
+    else attributes
+  end,
+  extensions = extensions - 'agentdebate',
+  updated_at = now()
+where extensions ? 'agentdebate';
