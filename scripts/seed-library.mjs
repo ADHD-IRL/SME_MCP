@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Seed the shared library from an import file (default: the AgentDebate
-// personas dataset committed under data/).
+// Seed the shared library from an import file (default: the personas dataset
+// committed under data/).
 //
 //   SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... \
 //   node scripts/seed-library.mjs [path/to/import.json] [--dry-run]
@@ -18,7 +18,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const file = args.find((a) => !a.startsWith('--'))
-  || resolve(here, '../data/agentdebate-personas.library.json');
+  || resolve(here, '../data/personas.library.json');
 
 if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
   console.error('Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in the environment.');

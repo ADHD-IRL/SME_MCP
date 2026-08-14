@@ -80,6 +80,17 @@ function Detail({ sme }) {
         );
       })}
       {attrs.vectors && <Row label="Vectors" value={attrs.vectors} />}
+      {sme.extensions && Object.keys(sme.extensions).length > 0 && Object.entries(sme.extensions).map(([pack, obj]) => {
+        const entries = obj && typeof obj === 'object' && !Array.isArray(obj) ? Object.entries(obj) : [['value', obj]];
+        const present = entries.filter(([, v]) => v != null && String(fmt(v)).trim());
+        if (!present.length) return null;
+        return (
+          <div key={pack} style={{ marginTop: 12 }}>
+            <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--app-faint)', marginBottom: 4 }}>{pack.replace(/[_-]+/g, ' ')}</div>
+            {present.map(([k, v]) => <Row key={k} label={k.replace(/[_-]+/g, ' ')} value={v} />)}
+          </div>
+        );
+      })}
     </div>
   );
 }

@@ -8,6 +8,7 @@ export const ATTRIBUTE_GROUPS = [
     fields: [
       ['role_type', 'Role Type'],
       ['institutional_background', 'Institutional Background'],
+      ['institutional_incentives', 'Institutional Incentives'],
     ],
   },
   {

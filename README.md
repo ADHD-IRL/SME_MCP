@@ -9,6 +9,8 @@ the entire stack.
 Licensed under the [MIT License](./LICENSE). Contributions welcome via issues and pull requests.
 
 Runs on **Vercel** (Next.js + Streamable HTTP transport) with a **Supabase** backend.
+New here? Read the **[User Guide](./docs/USER_GUIDE.md)** — how it all works plus a complete
+reference for every SME field and its value ranges (also served in-app at `/guide`).
 See [ARCHITECTURE.md](./ARCHITECTURE.md) for the full design and roadmap, and
 [docs/SME_MCP_Implementation_Checklist.pdf](./docs/SME_MCP_Implementation_Checklist.pdf) for the
 step-by-step deployment runbook (regenerable from `docs/implementation-checklist.html`).

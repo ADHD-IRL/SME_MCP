@@ -21,6 +21,7 @@ export default function Home() {
           </p>
           <div className="row">
             <Link href="/dashboard" className="mk-btn mk-btn-primary">Get started</Link>
+            <Link href="/guide" className="mk-btn mk-btn-ghost">Read the guide</Link>
             <a href="https://github.com/ADHD-IRL/SME_MCP" className="mk-btn mk-btn-ghost">View on GitHub</a>
           </div>
         </div>
@@ -156,6 +157,25 @@ export default function Home() {
             <div className="mk-step"><h3>Find an expert</h3><p><code>search_smes</code> across the library and your workspace with hybrid keyword + semantic ranking.</p></div>
             <div className="mk-step"><h3>Consult</h3><p>Load the profile into your agent's context and reason in that expert's voice.</p></div>
             <div className="mk-step"><h3>Improve</h3><p><code>record_feedback</code> after a session; quality scores update and the best experts surface.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mk-section">
+        <div className="mk-container">
+          <div style={{ border: '1px solid var(--line)', borderRadius: 18, padding: '32px',
+                        background: 'var(--card)', display: 'flex', gap: 24, flexWrap: 'wrap',
+                        justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'grid', gap: 10, flex: '1 1 340px' }}>
+              <span className="mk-eyebrow" style={{ justifySelf: 'start' }}>📖 Documentation</span>
+              <h2 style={{ margin: 0 }}>Learn how it all works.</h2>
+              <p className="sub" style={{ margin: 0, maxWidth: 620 }}>
+                The user guide walks through connecting over MCP and the full toolset, and gives a
+                complete reference for every SME field — what it means and the range of values,
+                including the four 0–100 threat vectors, severity levels, and expertise tiers.
+              </p>
+            </div>
+            <Link href="/guide" className="mk-btn mk-btn-primary" style={{ whiteSpace: 'nowrap' }}>Read the user guide →</Link>
           </div>
         </div>
       </section>

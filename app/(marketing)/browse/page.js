@@ -78,6 +78,17 @@ export default async function Browse({ searchParams }) {
                     <p style={{ color: 'var(--accent-ink)', fontSize: '0.85rem', margin: '0 0 8px' }}>
                       {s.discipline}{s.expertise_level ? ` · ${s.expertise_level}` : ''}
                     </p>
+                    {(s.attributes?.severity || s.attributes?.vectors || (s.role_type && s.role_type !== 'sme')) && (
+                      <div className="mk-pills" style={{ margin: '0 0 8px' }}>
+                        {s.role_type && s.role_type !== 'sme' && <span className="mk-pill">{s.role_type}</span>}
+                        {s.attributes?.severity && <span className="mk-pill">severity: {String(s.attributes.severity).toLowerCase()}</span>}
+                        {s.attributes?.vectors && (
+                          <span className="mk-pill">
+                            H{s.attributes.vectors.human ?? '–'} · T{s.attributes.vectors.technical ?? '–'} · P{s.attributes.vectors.physical ?? '–'} · F{s.attributes.vectors.futures ?? '–'}
+                          </span>
+                        )}
+                      </div>
+                    )}
                     {s.persona_description && (
                       <p style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                         {s.persona_description}

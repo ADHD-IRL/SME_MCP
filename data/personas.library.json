@@ -1,8 +1,7 @@
 {
   "format": "sme-library.import",
   "version": 1,
-  "source": "agentdebate.personas",
-  "exported_at": "2026-08-11T15:14:22.331Z",
+  "exported_at": "2026-08-12T02:59:45.276Z",
   "count": 321,
   "smes": [
     {
@@ -41,10 +40,6 @@
           "focus": "Country-of-origin verification, bill of materials integrity, authorized distributor chain validation, and anti-counterfeiting technology gaps in defense procurement.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -84,10 +79,6 @@
           "focus": "DFARS 252.246-7008 compliance gaps, approved vendor list management, supplier self-attestation fraud, and exception-to-policy exploitation.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -128,10 +119,6 @@
           "focus": "Foundry FOCI risk, advanced node dependency, trusted foundry program gaps, die-level hardware Trojan insertion windows, and semiconductor nationalization scenarios.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -171,10 +158,6 @@
           "focus": "Software bill of materials (SBOM) completeness, transitive dependency vulnerability chains, malicious package injection, compromised build pipeline detection, and npm/PyPI/GitHub supply chain attack surface.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -214,10 +197,6 @@
           "focus": "Beneficial ownership transparency gaps, investment vehicle exploitation, foreign key personnel placement, licensing arrangement leverage, and FOCI mitigation agreement enforcement gaps.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -257,10 +236,6 @@
           "focus": "Single-nation material dependencies, processing concentration risk (particularly in refining), strategic stockpile adequacy, substitution feasibility windows, and adversary export restriction scenarios.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -301,10 +276,6 @@
           "focus": "Testing methodology gaps, test-evading counterfeit techniques, laboratory accreditation integrity, distribution chain sample-testing adequacy, and aftermarket part re-entry vectors.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -344,10 +315,6 @@
           "focus": "Supplier security posture degradation over time, acquisition-driven supply base changes, CMMC documentation fraud, subcontractor visibility below Tier 2, and single-source supplier leverage points.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -387,10 +354,6 @@
           "focus": "Software vendor access management, update mechanism security, vendor-issued credential exposure, privileged access vendor segmentation failures, and SolarWinds-pattern supply chain implant vectors.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -430,10 +393,6 @@
           "focus": "AM feedstock integrity, print parameter tampering, material property verification, digital design file security, and the growing use of AM to produce replacement parts outside the authorized supply chain.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -473,10 +432,6 @@
           "focus": "Multi-tier supply chain opacity, below-Tier-2 foreign entity insertion, shell company subcontractor patterns, procurement data cross-referencing, and supply chain mapping as a national security discipline.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -516,10 +471,6 @@
           "focus": "Transshipment scheme detection, country-of-origin fraud, HS code manipulation, restricted party screening gaps, and the use of free trade zones as laundering points for restricted technology.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -559,10 +510,6 @@
           "focus": "Interface attack surface analysis, protocol selection security implications, single points of failure identification, trust boundary violations, and security-relevant architecture decisions made under schedule pressure.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -602,10 +549,6 @@
           "focus": "Hardware Trojan detection methodology, FPGA IP core provenance, ASIC design verification gaps, hardware security primitive implementation, and side-channel vulnerability in cryptographic hardware.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -645,10 +588,6 @@
           "focus": "Bootloader security, firmware update mechanism integrity, hardcoded credential exposure, firmware reverse engineering for hidden functionality, and JTAG/debug interface security in deployed systems.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -690,10 +629,6 @@
           "focus": "Unintentional emission characterization, RF fingerprinting vulnerability, frequency dependency single points of failure, spoofing susceptibility in navigation and timing systems, and EW operational pattern exploitation.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -733,10 +668,6 @@
           "focus": "Test plan OPSEC, adversary test knowledge exploitation, IV&V independence verification, test environment vs. operational environment gap analysis, and the security of test data and test article disposition.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -776,10 +707,6 @@
           "focus": "MBSE repository access control, digital thread integrity throughout the lifecycle, model exfiltration risk, requirements-to-design traceability as a collection target, and the security implications of model-based contracting.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -819,10 +746,6 @@
           "focus": "Manufacturing process documentation security, production worker personnel security, process deviation and nonconformance exploitation, factory floor physical security gaps, and production data as an intelligence collection target.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -862,10 +785,6 @@
           "focus": "Software update authentication, mission software integrity verification, configuration management security, software-defined radio vulnerability, and the security of ground-based software upload systems.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -905,10 +824,6 @@
           "focus": "Security architecture integration into early system design, RMF tailoring adequacy, security control effectiveness vs. compliance documentation, operational environment vs. lab environment security gaps.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -949,10 +864,6 @@
           "focus": "Post-quantum cryptography migration planning, quantum key distribution feasibility, harvest-now-decrypt-later collection against current systems, PQC implementation vulnerability, and quantum-safe protocol design.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -992,10 +903,6 @@
           "focus": "Adversarial machine learning attacks, training data poisoning, model inversion and extraction, autonomous system sensor spoofing, and the security of AI supply chains (model weights, training infrastructure).",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -1035,10 +942,6 @@
           "focus": "Threat model validation, adversary intent assessment, capability vs. employment gap analysis, requirements derivation from intelligence, and the quality of intelligence inputs to defense program threat documents.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1079,10 +982,6 @@
           "focus": "Foreign intelligence service targeting of defense programs, developmental cultivation indicators, elicitation technique recognition, source recruitment red flags, and the personnel security implications of foreign contact patterns.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1122,10 +1021,6 @@
           "focus": "Test range emission security, SIGINT collection against development programs, unintentional technical emission characterization, COMSEC during program development, and the SIGINT value of test data traffic.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1166,10 +1061,6 @@
           "focus": "Defense program open source exposure, public procurement data exploitation, patent and technical publication collection, LinkedIn and professional network targeting, and the aggregation vulnerability across multiple unclassified data sources.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1210,10 +1101,6 @@
           "focus": "Defense facility physical security as seen from open-source imagery, activity pattern analysis, construction timeline correlation with program milestones, logistics flow characterization, and adversary GEOINT collection against US programs.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1254,10 +1141,6 @@
           "focus": "Dual-use technology diversion, controlled technology export to sanctioned entities, manufacturing equipment replication by adversaries, and the proliferation of defense-relevant technical knowledge through supply chain access.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1298,10 +1181,6 @@
           "focus": "Economic espionage indicators in the defense supply chain, IP theft vectors in defense contractor environments, foreign national employee collection operations, and the commercial exploitation of stolen defense technology.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1341,10 +1220,6 @@
           "focus": "Indicators and warnings for supply chain compromise preparation, pre-positioning activity detection, collection operation development indicators, and the integration of warning into program security practices.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1383,10 +1258,6 @@
           "focus": "Foreign state-owned defense enterprise supply chain insertion, technology transfer through joint ventures and teaming arrangements, foreign defense company investment in US suppliers, and the intelligence collection role of commercial relationships.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1427,10 +1298,6 @@
           "focus": "Foreign talent recruitment program targeting of defense-relevant research, academic collaboration exploitation, conference elicitation targeting, visiting scholar program security gaps, and university research security culture.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1469,10 +1336,6 @@
           "focus": "Foreign intelligence service targeting assessment, program CI vulnerability assessment, personnel security anomaly investigation, and translation of intelligence community threat reporting into program security actions.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1512,10 +1375,6 @@
           "focus": "Insider threat program integration, behavioral indicator development, anomalous access pattern analysis, personnel stress indicator monitoring, and the intersection of insider threat and foreign intelligence service recruitment.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1556,10 +1415,6 @@
           "focus": "Foreign intelligence service operational methodology, agent tasking and communication patterns, tradecraft evolution in the digital environment, counterintelligence vulnerability indicators, and the double agent program as a defensive tool.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1600,10 +1455,6 @@
           "focus": "Corporate CI program development, foreign visitor program security, trade show and conference OPSEC, competitive intelligence vs. espionage boundary management, and CI training for non-security employees.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1643,10 +1494,6 @@
           "focus": "Personnel security adjudication gap analysis, foreign national contact reporting adequacy, financial stress indicator detection, clearance reinvestigation timeliness gaps, and adversary exploitation of adjudication criteria knowledge.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -1686,10 +1533,6 @@
           "focus": "Physical penetration vulnerability assessment, access control bypass methodology, insider facilitation of external access, covert device placement feasibility, and the physical security posture of design and production facilities.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Clandestine",
-          "is_ai_generated": false
         }
       }
     },
@@ -1730,10 +1573,6 @@
           "focus": "Foreign intelligence service methodology and targeting priority analysis, liaison relationship exploitation, cover organization development, and the specific collection tradecraft used against defense industrial targets.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Clandestine",
-          "is_ai_generated": false
         }
       }
     },
@@ -1773,10 +1612,6 @@
           "focus": "Technical surveillance threat modeling for design facilities, TSCM survey adequacy, collection device placement feasibility in contested environments, and the exploitation of commercial building technology for intelligence collection.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Clandestine",
-          "is_ai_generated": false
         }
       }
     },
@@ -1816,10 +1651,6 @@
           "focus": "High-value target position identification within defense programs, source recruitment vulnerability assessment, communications security for potential recruits, and the indicators that distinguish genuine foreign contact from an intelligence approach.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Clandestine",
-          "is_ai_generated": false
         }
       }
     },
@@ -1860,10 +1691,6 @@
           "focus": "Defense program narrative targeting, requirements shaping through technical community influence, acquisition decision maker influence targeting, and the use of think tanks, media, and academic channels as influence vehicles.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Clandestine",
-          "is_ai_generated": false
         }
       }
     },
@@ -1903,10 +1730,6 @@
           "focus": "Alternate collection methodology (covert photography, acoustic collection, dead drop logistics), physical surveillance tradecraft, and the security gaps created by the assumption that adversaries will use electronic rather than physical collection methods.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Clandestine",
-          "is_ai_generated": false
         }
       }
     },
@@ -1946,10 +1769,6 @@
           "focus": "Gray zone supply chain targeting, state-sponsored proxy operations against defense industry, logistics interdiction in pre-conflict scenarios, and the intersection of unconventional warfare and supply chain vulnerability.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Clandestine",
-          "is_ai_generated": false
         }
       }
     },
@@ -1988,10 +1807,6 @@
           "focus": "Front company identification methodology, beneficial ownership investigation, adversary commercial cover development patterns, financial intelligence indicators of foreign control, and front company insertion points in the defense supply chain.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Clandestine",
-          "is_ai_generated": false
         }
       }
     },
@@ -2030,10 +1845,6 @@
           "focus": "Program protection deception planning, false information seeding, adversary collection behavior shaping, detection of adversary deception operations against US programs, and the integration of deception into program protection plans.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -2073,10 +1884,6 @@
           "focus": "Signature management, technical performance parameter manipulation, emission control and false emission generation, test range deception operations, and the detection of technical deception operations conducted against US programs.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -2116,10 +1923,6 @@
           "focus": "Defense program credibility attack campaigns, acquisition decision-maker targeting through narrative, Congressional oversight manipulation, international partner trust erosion, and the identification of adversary disinformation operations.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -2159,10 +1962,6 @@
           "focus": "Critical information identification, indicator analysis, OPSEC vulnerability assessment, countermeasure development and implementation, and the integration of OPSEC into program schedule and milestone activities.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -2203,10 +2002,6 @@
           "focus": "Technical elicitation methodology, pretext development against defense industry targets, LinkedIn approach vectors, conference and trade show elicitation, and engineer-specific cognitive vulnerability exploitation.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -2246,10 +2041,6 @@
           "focus": "Adversary IO targeting of acquisition decision-makers, resource sponsor influence operations, standards body manipulation, technical community consensus shaping, and the detection of IO operations targeting defense programs.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -2289,10 +2080,6 @@
           "focus": "Adversary deception detection, mirror imaging vulnerability identification, structured analytic technique application to deception assessment, and the integration of counterdeception into program threat assessment.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -2332,10 +2119,6 @@
           "focus": "Secure transportation vulnerability for sensitive materiel, storage facility physical security gaps, chain of custody documentation integrity, tamper-evident packaging adequacy, and the security of return/repair logistics channels.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -2375,10 +2158,6 @@
           "focus": "Specialty logistics chain single points of failure, environmental condition tampering vulnerability, alternative routing feasibility, and the security of specialty logistics providers who handle classified or sensitive electronic components.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -2420,10 +2199,6 @@
           "focus": "Container inspection gap exploitation, port of entry vulnerability assessment, document fraud methodology, free trade zone exploitation, and the routing of restricted technology through ports with inadequate screening capacity.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -2463,10 +2238,6 @@
           "focus": "Expeditionary supply chain security gaps, forward operating base materiel security, airfield and logistics hub physical security, and the exploitation of operational urgency to bypass standard security controls.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -2507,10 +2278,6 @@
           "focus": "Third-party logistics provider security vetting, driver and courier personnel security, delivery facility access control, package integrity verification at delivery, and the adversary exploitation of commercial logistics access to defense facilities.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -2551,10 +2318,6 @@
           "focus": "Asset tracking system integrity, inventory database as a collection target, RFID tag spoofing, property accountability gap exploitation, and the detection of small-scale substitution that stays below sampling thresholds.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -2595,10 +2358,6 @@
           "focus": "Repair facility physical security, component handling chain of custody in reverse logistics, data extraction from components under repair, counterfeit insertion in the refurbishment chain, and repair depot security as a collection platform.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -2639,10 +2398,6 @@
           "focus": "Commercial transportation infrastructure dependency risk, critical logistics node vulnerability, transportation chokepoint identification, adversary pre-positioning in commercial logistics infrastructure, and the security implications of contracted transportation.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -2683,10 +2438,6 @@
           "focus": "Acquisition regulation exploitation analysis, waiver and exception-to-policy process abuse, regulatory arbitrage across contracting vehicles, and the gap between acquisition policy intent and acquisition policy implementation.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -2727,10 +2478,6 @@
           "focus": "Legal authority gap analysis for supply chain security measures, FISA application to defense contractor environments, legal constraints on insider threat monitoring, and the intersection of privacy law and program security.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -2771,10 +2518,6 @@
           "focus": "ITAR/EAR gap exploitation, technology transfer through legitimate channels, deemed export vulnerability, foreign national employee access to controlled technology, and the use of license exception pathways by adversary-affiliated entities.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -2815,10 +2558,6 @@
           "focus": "Trade secret protection adequacy in defense contractor environments, employee departure IP risk, IP litigation as a secondary security indicator, civil and criminal remedy adequacy for defense IP theft, and contractual IP protection mechanism gaps.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -2859,10 +2598,6 @@
           "focus": "False Claims Act exposure as a security indicator, bid protest process exploitation for intelligence collection, teaming agreement security gap analysis, subcontract flow-down adequacy, and the use of contract vehicles to gain access to sensitive program information.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -2903,10 +2638,6 @@
           "focus": "CFIUS avoidance structure identification, mandatory vs. voluntary review threshold exploitation, mitigation agreement enforcement gaps, greenfield investment as a CFIUS-avoidance strategy, and debt-based foreign leverage over defense suppliers.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -2948,10 +2679,6 @@
           "focus": "Defense contract financial fraud as a security indicator, cost mischarging patterns that suggest priority conflicts, false certification in security-relevant compliance areas, and the intersection of financial fraud and security compromise in defense programs.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -2992,10 +2719,6 @@
           "focus": "Restricted party screening process gaps, ultimate beneficial owner screening adequacy, transactional structure designed to evade screening, and the use of intermediaries by sanctioned entities to access defense supply chains.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -3038,10 +2761,6 @@
           "focus": "Congressional budget exhibit information value analysis, public hearing collection opportunity assessment, GAO report sensitivity evaluation, and adversary exploitation of the Congressional information environment surrounding defense programs.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -3082,10 +2801,6 @@
           "focus": "FMS case technology transfer risk, end-use monitoring gap analysis, third-country diversion risk, partner nation supply chain security posture assessment, and the adversary exploitation of US-supplied systems in partner hands.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -3126,10 +2841,6 @@
           "focus": "Money flows associated with defense contractor targeting, financial indicators of front company operation, agent payment methods and detection, sanctions evasion through defense supply chains, and foreign investment in defense suppliers as financial intelligence.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -3171,10 +2882,6 @@
           "focus": "Economic coercion against defense supply chain dependencies, adversary strategic stockpile leverage, debt-based influence over defense suppliers, and the use of economic instruments to interdict defense production at strategic moments.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -3216,10 +2923,6 @@
           "focus": "Adversary investment in defense technology startups, LP structure opacity in venture capital, geographic investment routing through friendly third countries, and the targeting of pre-revenue technology companies that are below CFIUS thresholds.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -3260,10 +2963,6 @@
           "focus": "DIB financial concentration risk, subcontractor financial fragility, workforce capability gap economic analysis, predatory pricing in strategic technology markets, and adversary economic strategies targeting DIB resilience.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -3304,10 +3003,6 @@
           "focus": "Predispositional vulnerability factor identification, stress-pathway analysis, cognitive dissonance monitoring in clearance populations, organizational culture as insider risk moderator, and early intervention program design.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -3347,10 +3042,6 @@
           "focus": "Cognitive bias exploitation in acquisition decision-making, anchoring and availability bias in threat assessment, decision fatigue vulnerability in high-tempo program environments, and structural countermeasures to adversarial cognitive manipulation.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -3390,10 +3081,6 @@
           "focus": "Cultural vulnerability exploitation in elicitation and recruitment, cross-cultural communication gap analysis, adversary cultural intelligence about US defense personnel, and the cultural dimensions of insider risk in internationally diverse workforces.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -3433,10 +3120,6 @@
           "focus": "Trust network mapping in defense programs, high-influence node identification, professional reference network exploitation, informal information flow analysis, and the identification of bridge individuals who span multiple information domains.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -3477,10 +3160,6 @@
           "focus": "APT campaign analysis against defense industrial base, long-dwell intrusion methodology, living-off-the-land technique evolution, defense contractor network topology as a collection target, and persistent access maintenance across program lifecycles.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -3522,10 +3201,6 @@
           "focus": "Defense manufacturing OT security gaps, air gap inadequacy in defense facilities, legacy industrial protocol vulnerability, OT intrusion consequence analysis (physical vs. data), and the supply chain for industrial control system components.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -3567,10 +3242,6 @@
           "focus": "Zero-day exploitation against defense contractor systems, vulnerability supply chain (who discovers, brokers, and deploys undisclosed vulnerabilities), defense-relevant software attack surface characterization, and vulnerability disclosure policy implications for defense programs.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -3611,10 +3282,6 @@
           "focus": "Cryptographic implementation vulnerability, side-channel attack exposure, key management security assessment, hardware security module supply chain security, and post-quantum migration planning for defense cryptographic infrastructure.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -3655,10 +3322,6 @@
           "focus": "Defense contractor network architecture from an adversary's perspective, lateral movement methodology in enterprise environments, data staging and exfiltration technique analysis, and the detection of ongoing adversary cyber operations in defense contractor environments.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -3698,10 +3361,6 @@
           "focus": "Defense contractor cloud security assessment, multi-tenancy risk in commercial cloud for sensitive data, cloud provider employee access to defense data, cross-cloud lateral movement in shared enterprise environments, and the security implications of cloud provider geopolitical exposure.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -3742,10 +3401,6 @@
           "focus": "Engineered biological threats to defense materials, DNA-encoded data exfiltration, biosensor collection mechanisms, engineered organism environmental release scenarios affecting logistics, and the security implications of defense-relevant biotechnology supply chains.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -3787,10 +3442,6 @@
           "focus": "Satellite supply chain compromise pre-launch, space component counterfeit and substitution, ground segment security, adversary space domain awareness against US constellation activities, and international supply chain dependencies in commercial space.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -3831,10 +3482,6 @@
           "focus": "High-power microwave vulnerability in defense electronics, directed energy component supply chain integrity, adversary directed energy capability assessment, and the security of directed energy test facilities and test data.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -3874,10 +3521,6 @@
           "focus": "Nanomaterial supply chain integrity, engineered material properties as a collection vector, advanced material substitution with customized failure modes, and the security implications of defense applications of nanotechnology.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -3918,10 +3561,6 @@
           "focus": "Technology trajectory intersection with defense program lifecycles, geopolitical dependency scenarios for current design decisions, adversary capability development timelines, and post-quantum, AI-enabled, and space-based threat emergence forecasting.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -3962,10 +3601,6 @@
           "focus": "EMP vulnerability in defense electronics supply chain, component hardening adequacy, space weather resilience, adversary EMP weapon capability assessment, and the supply chain security of EMP shielding components.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -4006,10 +3641,6 @@
           "focus": "Training data poisoning against defense AI systems, adversarial input design against deployed models, AI supply chain security (model weights, frameworks, cloud training infrastructure), and AI-enabled adversary intelligence operations against defense programs.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -4050,10 +3681,6 @@
           "focus": "Defense production infrastructure dependency mapping, civilian utility vulnerability for defense manufacturing, telecommunications infrastructure security for defense programs, and adversary targeting of critical infrastructure as a defense program disruption strategy.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -4094,10 +3721,6 @@
           "focus": "Liaison channel exploitation by adversary third parties, partner nation security environment assessment, compartmentation adequacy in coalition information sharing, and the protection of US program information shared with foreign partners.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -4138,10 +3761,6 @@
           "focus": "Foreign talent program targeting of defense-relevant STEM graduates, adversary-affiliated recruitment firm activity, professional certification and training program infiltration, workforce concentration risk in niche technical specialties, and defense workforce pipeline foreign collection.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -4182,10 +3801,6 @@
           "focus": "Program management decision security implications, schedule pressure-driven security shortcut identification, acquisition milestone security review adequacy, program manager security awareness, and the security cost of common acquisition trade decisions.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -4226,10 +3841,6 @@
           "focus": "Chemical composition verification methodology for defense materials, polymer and encapsulant substitution detection, alloy composition authentication, isotopic sourcing analysis, and the forensic differentiation between legitimate and adversary-sourced materials.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -4270,10 +3881,6 @@
           "focus": "Adversary PSYOP targeting of defense program public credibility, Congressional and partner nation messaging campaigns, social media amplification of adversary defense narratives, and the intersection of PSYOP and supply chain disinformation.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -4314,10 +3921,6 @@
           "focus": "Legal vs. illegal industrial collection boundary management, competitive intelligence as espionage cover, defense contractor CI competitor profiling vulnerability, and the aggregation of legal information into operationally sensitive intelligence.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -4358,10 +3961,6 @@
           "focus": "Nuclear-relevant supply chain security, dual-use nuclear material and equipment tracking, nuclear design information protection, adversary nuclear knowledge collection operations, and the physical security of nuclear-relevant manufacturing processes.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -4391,6 +3990,7 @@
         "adversary_model": "Assumes terrorist groups adapt quickly when pressured but remain constrained by logistics, trust, and survivability.",
         "dominant_bias": "Overweights reporting streams that align with established threat typologies.",
         "severity": "HIGH",
+        "institutional_incentives": "Avoid strategic surprise while minimizing false alarms that erode policymaker trust.",
         "vectors": {
           "human": 65,
           "technical": 70,
@@ -4404,11 +4004,6 @@
           "adversary_model": "Assumes terrorist groups adapt quickly when pressured but remain constrained by logistics, trust, and survivability.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Avoid strategic surprise while minimizing false alarms that erode policymaker trust.",
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -4438,6 +4033,7 @@
         "adversary_model": "Views terrorist cells as adaptive but vulnerable to isolation, loss of trust, and operational pressure.",
         "dominant_bias": "Overweights disruption options over prevention, rehabilitation, or long-term political effects.",
         "severity": "HIGH",
+        "institutional_incentives": "Prevent attacks, protect operators, and generate visible operational effects.",
         "vectors": {
           "human": 60,
           "technical": 55,
@@ -4451,11 +4047,6 @@
           "adversary_model": "Views terrorist cells as adaptive but vulnerable to isolation, loss of trust, and operational pressure.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Prevent attacks, protect operators, and generate visible operational effects.",
-          "domain": "DoD",
-          "is_ai_generated": false
         }
       }
     },
@@ -4485,6 +4076,7 @@
         "adversary_model": "Assumes terrorist organizations survive through diversified, redundant, and deniable support channels.",
         "dominant_bias": "Overweights financial indicators as predictors of organizational capability.",
         "severity": "HIGH",
+        "institutional_incentives": "Disrupt enabling infrastructure without over-designating ambiguous actors.",
         "vectors": {
           "human": 45,
           "technical": 65,
@@ -4498,11 +4090,6 @@
           "adversary_model": "Assumes terrorist organizations survive through diversified, redundant, and deniable support channels.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Disrupt enabling infrastructure without over-designating ambiguous actors.",
-          "domain": "Treasury",
-          "is_ai_generated": false
         }
       }
     },
@@ -4532,6 +4119,7 @@
         "adversary_model": "Sees extremist movements as exploiting grievance, belonging, status, and perceived moral obligation.",
         "dominant_bias": "Overweights social, identity, and grievance factors relative to organizational command structures.",
         "severity": "HIGH",
+        "institutional_incentives": "Reduce recruitment and mobilization without stigmatizing communities.",
         "vectors": {
           "human": 80,
           "technical": 55,
@@ -4545,11 +4133,6 @@
           "adversary_model": "Sees extremist movements as exploiting grievance, belonging, status, and perceived moral obligation.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Reduce recruitment and mobilization without stigmatizing communities.",
-          "domain": "Academia",
-          "is_ai_generated": false
         }
       }
     },
@@ -4579,6 +4162,7 @@
         "adversary_model": "Assumes extremists exploit ambiguity, humor, memes, outrage cycles, and platform affordances.",
         "dominant_bias": "Overweights online rhetoric as a precursor to offline action.",
         "severity": "HIGH",
+        "institutional_incentives": "Identify credible mobilization risk while avoiding overreaction to performative extremism.",
         "vectors": {
           "human": 55,
           "technical": 85,
@@ -4592,11 +4176,6 @@
           "adversary_model": "Assumes extremists exploit ambiguity, humor, memes, outrage cycles, and platform affordances.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Identify credible mobilization risk while avoiding overreaction to performative extremism.",
-          "domain": "Tech Platforms",
-          "is_ai_generated": false
         }
       }
     },
@@ -4626,6 +4205,7 @@
         "adversary_model": "Assumes hostage-takers balance ideology, fear, status, coercion, and survival.",
         "dominant_bias": "Overweights negotiability and time-buying strategies.",
         "severity": "CRITICAL",
+        "institutional_incentives": "Maximize survival probability and maintain command discipline under public pressure.",
         "vectors": {
           "human": 90,
           "technical": 35,
@@ -4639,11 +4219,6 @@
           "adversary_model": "Assumes hostage-takers balance ideology, fear, status, coercion, and survival.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Maximize survival probability and maintain command discipline under public pressure.",
-          "domain": "FBI",
-          "is_ai_generated": false
         }
       }
     },
@@ -4673,6 +4248,7 @@
         "adversary_model": "Assumes terrorist actors prefer targets that are symbolic, accessible, disruptive, and media-amplifying.",
         "dominant_bias": "Overweights physical vulnerability and cascading effects.",
         "severity": "HIGH",
+        "institutional_incentives": "Reduce catastrophic consequences while preserving public functionality.",
         "vectors": {
           "human": 35,
           "technical": 65,
@@ -4686,11 +4262,6 @@
           "adversary_model": "Assumes terrorist actors prefer targets that are symbolic, accessible, disruptive, and media-amplifying.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Reduce catastrophic consequences while preserving public functionality.",
-          "domain": "DHS",
-          "is_ai_generated": false
         }
       }
     },
@@ -4720,6 +4291,7 @@
         "adversary_model": "Assumes terrorists seek spectacular, symbolic attacks that exploit trust, access, or procedural gaps.",
         "dominant_bias": "Overweights aviation threat scenarios due to institutional memory of catastrophic attacks.",
         "severity": "HIGH",
+        "institutional_incentives": "Prevent catastrophic transport attacks without paralyzing mobility systems.",
         "vectors": {
           "human": 60,
           "technical": 55,
@@ -4733,11 +4305,6 @@
           "adversary_model": "Assumes terrorists seek spectacular, symbolic attacks that exploit trust, access, or procedural gaps.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Prevent catastrophic transport attacks without paralyzing mobility systems.",
-          "domain": "TSA",
-          "is_ai_generated": false
         }
       }
     },
@@ -4767,6 +4334,7 @@
         "adversary_model": "Views lone actors and small cells as highly variable, grievance-driven, and difficult to detect early.",
         "dominant_bias": "Overweights behavioral threat indicators relative to ideological ambiguity.",
         "severity": "HIGH",
+        "institutional_incentives": "Prevent violence while preserving lawful expression and investigative integrity.",
         "vectors": {
           "human": 75,
           "technical": 60,
@@ -4780,11 +4348,6 @@
           "adversary_model": "Views lone actors and small cells as highly variable, grievance-driven, and difficult to detect early.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Prevent violence while preserving lawful expression and investigative integrity.",
-          "domain": "FBI",
-          "is_ai_generated": false
         }
       }
     },
@@ -4814,6 +4377,7 @@
         "adversary_model": "Assumes terrorist interest may exceed capability, but even failed attempts or hoaxes can generate mass disruption.",
         "dominant_bias": "Overweights low-probability, high-consequence scenarios.",
         "severity": "CRITICAL",
+        "institutional_incentives": "Prevent catastrophic misuse while avoiding panic and resource distortion.",
         "vectors": {
           "human": 35,
           "technical": 80,
@@ -4827,11 +4391,6 @@
           "adversary_model": "Assumes terrorist interest may exceed capability, but even failed attempts or hoaxes can generate mass disruption.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Prevent catastrophic misuse while avoiding panic and resource distortion.",
-          "domain": "DoD",
-          "is_ai_generated": false
         }
       }
     },
@@ -4861,6 +4420,7 @@
         "adversary_model": "Sees terrorist recruiters as exploiting isolation, grievance, humiliation, and identity crisis.",
         "dominant_bias": "Overweights protective factors and community-level interventions.",
         "severity": "MEDIUM",
+        "institutional_incentives": "Reduce pathways to violence before criminal thresholds emerge.",
         "vectors": {
           "human": 90,
           "technical": 35,
@@ -4874,11 +4434,6 @@
           "adversary_model": "Sees terrorist recruiters as exploiting isolation, grievance, humiliation, and identity crisis.",
           "severity_default": "MEDIUM",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Reduce pathways to violence before criminal thresholds emerge.",
-          "domain": "Local Government",
-          "is_ai_generated": false
         }
       }
     },
@@ -4908,6 +4463,7 @@
         "adversary_model": "Assumes terrorist movements depend on perceived authenticity, grievance framing, and symbolic victory.",
         "dominant_bias": "Overweights narrative competition and legitimacy effects.",
         "severity": "HIGH",
+        "institutional_incentives": "Reduce recruitment appeal without strengthening adversary narratives.",
         "vectors": {
           "human": 65,
           "technical": 70,
@@ -4921,11 +4477,6 @@
           "adversary_model": "Assumes terrorist movements depend on perceived authenticity, grievance framing, and symbolic victory.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Reduce recruitment appeal without strengthening adversary narratives.",
-          "domain": "State Department",
-          "is_ai_generated": false
         }
       }
     },
@@ -4955,6 +4506,7 @@
         "adversary_model": "Views society as corrupt, hostile, and morally illegitimate.",
         "dominant_bias": "Overweights personal grievance as proof of ideological readiness.",
         "severity": "HIGH",
+        "institutional_incentives": "Increase network size, personal standing, and ideological continuity.",
         "vectors": {
           "human": 95,
           "technical": 55,
@@ -4968,11 +4520,6 @@
           "adversary_model": "Views society as corrupt, hostile, and morally illegitimate.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Increase network size, personal standing, and ideological continuity.",
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5002,6 +4549,7 @@
         "adversary_model": "Sees public attention, fear, and polarization as exploitable terrain.",
         "dominant_bias": "Overweights symbolic impact and online attention as strategic success.",
         "severity": "HIGH",
+        "institutional_incentives": "Expand reach, inspire sympathizers, and preserve movement relevance.",
         "vectors": {
           "human": 60,
           "technical": 90,
@@ -5015,11 +4563,6 @@
           "adversary_model": "Sees public attention, fear, and polarization as exploitable terrain.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Expand reach, inspire sympathizers, and preserve movement relevance.",
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5049,6 +4592,7 @@
         "adversary_model": "Assumes authorities exploit communication mistakes, weak relationships, and impatience.",
         "dominant_bias": "Overweights operational security and distrusts ideological enthusiasm without discipline.",
         "severity": "HIGH",
+        "institutional_incentives": "Keep the network functional, hidden, and resilient.",
         "vectors": {
           "human": 70,
           "technical": 45,
@@ -5062,11 +4606,6 @@
           "adversary_model": "Assumes authorities exploit communication mistakes, weak relationships, and impatience.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Keep the network functional, hidden, and resilient.",
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5096,6 +4635,7 @@
         "adversary_model": "Views state security forces as persistent but politically constrained.",
         "dominant_bias": "Overweights loyalty and obedience as indicators of competence.",
         "severity": "HIGH",
+        "institutional_incentives": "Preserve authority, demonstrate effectiveness, and avoid infiltration.",
         "vectors": {
           "human": 85,
           "technical": 45,
@@ -5109,11 +4649,6 @@
           "adversary_model": "Views state security forces as persistent but politically constrained.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Preserve authority, demonstrate effectiveness, and avoid infiltration.",
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5143,6 +4678,7 @@
         "adversary_model": "Sees enemies as omnipresent, dehumanized, and personally responsible for suffering.",
         "dominant_bias": "Overweights personal humiliation, conspiracy narratives, and perceived moral emergency.",
         "severity": "HIGH",
+        "institutional_incentives": "Achieve significance, revenge, recognition, or martyr-like meaning.",
         "vectors": {
           "human": 35,
           "technical": 60,
@@ -5156,11 +4692,6 @@
           "adversary_model": "Sees enemies as omnipresent, dehumanized, and personally responsible for suffering.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Achieve significance, revenge, recognition, or martyr-like meaning.",
-          "domain": "Domestic Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5190,6 +4721,7 @@
         "adversary_model": "Sees governments as patient, coercive, and capable of exploiting legal vulnerabilities.",
         "dominant_bias": "Overweights battlefield credibility and distrusts civilians as naive or compromised.",
         "severity": "HIGH",
+        "institutional_incentives": "Avoid prosecution, preserve status, protect identity, or reestablish belonging.",
         "vectors": {
           "human": 75,
           "technical": 40,
@@ -5203,11 +4735,6 @@
           "adversary_model": "Sees governments as patient, coercive, and capable of exploiting legal vulnerabilities.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Avoid prosecution, preserve status, protect identity, or reestablish belonging.",
-          "domain": "Counterterrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5237,6 +4764,7 @@
         "adversary_model": "Views financial monitoring as hostile, politicized, and overbroad.",
         "dominant_bias": "Overweights the moral legitimacy of the cause and underweights downstream harm.",
         "severity": "HIGH",
+        "institutional_incentives": "Support the cause while minimizing personal exposure.",
         "vectors": {
           "human": 70,
           "technical": 55,
@@ -5250,11 +4778,6 @@
           "adversary_model": "Views financial monitoring as hostile, politicized, and overbroad.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Support the cause while minimizing personal exposure.",
-          "domain": "Terrorism Finance",
-          "is_ai_generated": false
         }
       }
     },
@@ -5284,6 +4807,7 @@
         "adversary_model": "Assumes intelligence services are constantly attempting penetration.",
         "dominant_bias": "Overweights betrayal risk and interprets ambiguity as hostile intent.",
         "severity": "HIGH",
+        "institutional_incentives": "Preserve organizational secrecy and personal power through fear.",
         "vectors": {
           "human": 90,
           "technical": 40,
@@ -5297,11 +4821,6 @@
           "adversary_model": "Assumes intelligence services are constantly attempting penetration.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Preserve organizational secrecy and personal power through fear.",
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5331,6 +4850,7 @@
         "adversary_model": "Sees democratic societies as vulnerable to fear, polarization, and overreaction.",
         "dominant_bias": "Overweights spectacular impact and underweights strategic backlash.",
         "severity": "CRITICAL",
+        "institutional_incentives": "Create strategic shock, inspire affiliates, and elevate organizational prestige.",
         "vectors": {
           "human": 70,
           "technical": 65,
@@ -5344,11 +4864,6 @@
           "adversary_model": "Sees democratic societies as vulnerable to fear, polarization, and overreaction.",
           "severity_default": "CRITICAL",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Create strategic shock, inspire affiliates, and elevate organizational prestige.",
-          "domain": "Counterterrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5378,6 +4893,7 @@
         "adversary_model": "Sees former comrades as dangerous, vindictive, and socially embedded.",
         "dominant_bias": "Overweights betrayal memories and personal survival threats.",
         "severity": "HIGH",
+        "institutional_incentives": "Survive, reduce guilt, regain autonomy, and avoid being defined solely by past affiliation.",
         "vectors": {
           "human": 85,
           "technical": 35,
@@ -5391,11 +4907,6 @@
           "adversary_model": "Sees former comrades as dangerous, vindictive, and socially embedded.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Survive, reduce guilt, regain autonomy, and avoid being defined solely by past affiliation.",
-          "domain": "Deradicalization",
-          "is_ai_generated": false
         }
       }
     },
@@ -5425,6 +4936,7 @@
         "adversary_model": "Treats adversaries as adaptive stressors used to expose defensive seams, not as heroes or templates.",
         "dominant_bias": "Overweights coordination failures as the root cause of missed warning.",
         "severity": "HIGH",
+        "institutional_incentives": "Produce actionable lessons, improve coordination, and identify gaps before real crises.",
         "vectors": {
           "human": 75,
           "technical": 65,
@@ -5438,11 +4950,6 @@
           "adversary_model": "Treats adversaries as adaptive stressors used to expose defensive seams, not as heroes or templates.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Produce actionable lessons, improve coordination, and identify gaps before real crises.",
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -5472,6 +4979,7 @@
         "adversary_model": "Views mobilizing individuals as influenced by grievance, capability, stressors, leakage, and opportunity.",
         "dominant_bias": "Overweights behavioral escalation pathways and protective-factor gaps.",
         "severity": "HIGH",
+        "institutional_incentives": "Reduce risk through proportionate, lawful, and least-harmful intervention.",
         "vectors": {
           "human": 90,
           "technical": 50,
@@ -5485,11 +4993,6 @@
           "adversary_model": "Views mobilizing individuals as influenced by grievance, capability, stressors, leakage, and opportunity.",
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "institutional_incentives": "Reduce risk through proportionate, lawful, and least-harmful intervention.",
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -5521,10 +5024,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Domestic Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5556,10 +5055,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -5591,10 +5086,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -5626,10 +5117,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterterrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -5661,10 +5148,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -5696,10 +5179,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -5731,10 +5210,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -5766,10 +5241,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -5801,10 +5272,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -5836,10 +5303,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -5871,10 +5334,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -5906,10 +5365,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -5941,10 +5396,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -5976,10 +5427,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -6011,10 +5458,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -6046,10 +5489,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -6081,10 +5520,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -6116,10 +5551,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -6151,10 +5582,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -6186,10 +5613,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -6221,10 +5644,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -6256,10 +5675,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deradicalization",
-          "is_ai_generated": false
         }
       }
     },
@@ -6291,10 +5706,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -6326,10 +5737,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -6361,10 +5768,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -6396,10 +5799,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "DoD",
-          "is_ai_generated": false
         }
       }
     },
@@ -6431,10 +5830,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -6466,10 +5861,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -6501,10 +5892,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -6536,10 +5923,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterterrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -6571,10 +5954,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -6606,10 +5985,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -6641,10 +6016,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -6676,10 +6047,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -6711,10 +6078,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -6746,10 +6109,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -6781,10 +6140,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -6816,10 +6171,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -6851,10 +6202,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -6886,10 +6233,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterterrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -6921,10 +6264,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -6956,10 +6295,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -6991,10 +6326,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterterrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -7026,10 +6357,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7061,10 +6388,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Local Government",
-          "is_ai_generated": false
         }
       }
     },
@@ -7096,10 +6419,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -7131,10 +6450,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Local Government",
-          "is_ai_generated": false
         }
       }
     },
@@ -7166,10 +6481,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -7201,10 +6512,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -7236,10 +6543,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7271,10 +6574,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -7306,10 +6605,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7341,10 +6636,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -7376,10 +6667,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -7411,10 +6698,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7446,10 +6729,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -7481,10 +6760,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7516,10 +6791,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7551,10 +6822,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7586,10 +6853,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7621,10 +6884,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Local Government",
-          "is_ai_generated": false
         }
       }
     },
@@ -7656,10 +6915,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7691,10 +6946,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -7726,10 +6977,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -7761,10 +7008,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -7796,10 +7039,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7831,10 +7070,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -7866,10 +7101,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7901,10 +7132,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -7936,10 +7163,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -7971,10 +7194,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -8006,10 +7225,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8041,10 +7256,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -8076,10 +7287,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism Finance",
-          "is_ai_generated": false
         }
       }
     },
@@ -8111,10 +7318,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8146,10 +7349,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -8181,10 +7380,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8216,10 +7411,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8251,10 +7442,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -8286,10 +7473,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8321,10 +7504,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8356,10 +7535,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8391,10 +7566,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -8426,10 +7597,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -8461,10 +7628,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -8496,10 +7659,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -8531,10 +7690,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8566,10 +7721,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -8601,10 +7752,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8636,10 +7783,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8671,10 +7814,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -8706,10 +7845,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -8741,10 +7876,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -8776,10 +7907,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -8811,10 +7938,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -8846,10 +7969,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -8881,10 +8000,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -8916,10 +8031,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -8951,10 +8062,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -8986,10 +8093,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterterrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -9019,10 +8122,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -9052,10 +8151,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -9085,10 +8180,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -9118,10 +8209,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -9151,10 +8238,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Logistics",
-          "is_ai_generated": false
         }
       }
     },
@@ -9184,10 +8267,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -9217,10 +8296,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -9250,10 +8325,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterterrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -9283,10 +8354,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -9316,10 +8383,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -9351,10 +8414,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -9386,10 +8445,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -9421,10 +8476,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -9456,10 +8507,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -9491,10 +8538,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -9526,10 +8569,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -9561,10 +8600,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -9596,10 +8631,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -9631,10 +8662,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -9666,10 +8693,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -9701,10 +8724,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -9736,10 +8755,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -9771,10 +8786,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -9806,10 +8817,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -9841,10 +8848,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -9876,10 +8879,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -9911,10 +8910,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -9946,10 +8941,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -9981,10 +8972,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Academia",
-          "is_ai_generated": false
         }
       }
     },
@@ -10016,10 +9003,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -10051,10 +9034,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10086,10 +9065,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10121,10 +9096,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -10156,10 +9127,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10191,10 +9158,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10226,10 +9189,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -10261,10 +9220,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10296,10 +9251,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Treasury",
-          "is_ai_generated": false
         }
       }
     },
@@ -10331,10 +9282,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Treasury",
-          "is_ai_generated": false
         }
       }
     },
@@ -10366,10 +9313,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Treasury",
-          "is_ai_generated": false
         }
       }
     },
@@ -10401,10 +9344,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Legal",
-          "is_ai_generated": false
         }
       }
     },
@@ -10436,10 +9375,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10471,10 +9406,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -10506,10 +9437,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10541,10 +9468,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10576,10 +9499,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10611,10 +9530,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10646,10 +9561,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10681,10 +9592,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10716,10 +9623,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "DHS",
-          "is_ai_generated": false
         }
       }
     },
@@ -10751,10 +9654,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -10786,10 +9685,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -10821,10 +9716,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -10856,10 +9747,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterterrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -10891,10 +9778,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -10926,10 +9809,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -10961,10 +9840,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -10996,10 +9871,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -11031,10 +9902,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "DHS",
-          "is_ai_generated": false
         }
       }
     },
@@ -11066,10 +9933,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -11101,10 +9964,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -11136,10 +9995,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -11171,10 +10026,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism",
-          "is_ai_generated": false
         }
       }
     },
@@ -11206,10 +10057,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -11241,10 +10088,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -11276,10 +10119,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Terrorism Finance",
-          "is_ai_generated": false
         }
       }
     },
@@ -11311,10 +10150,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -11346,10 +10181,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -11381,10 +10212,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -11416,10 +10243,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -11451,10 +10274,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -11486,10 +10305,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -11521,10 +10336,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -11556,10 +10367,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -11591,10 +10398,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -11626,10 +10429,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -11661,10 +10460,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -11696,10 +10491,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     },
@@ -11731,10 +10522,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -11766,10 +10553,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -11801,10 +10584,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -11836,10 +10615,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Counterintelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -11871,10 +10646,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -11906,10 +10677,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Cyber",
-          "is_ai_generated": false
         }
       }
     },
@@ -11941,10 +10708,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Engineering",
-          "is_ai_generated": false
         }
       }
     },
@@ -11976,10 +10739,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -12011,10 +10770,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -12046,10 +10801,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "TSA",
-          "is_ai_generated": false
         }
       }
     },
@@ -12081,10 +10832,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Supply Chain",
-          "is_ai_generated": false
         }
       }
     },
@@ -12116,10 +10863,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -12151,10 +10894,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Intelligence",
-          "is_ai_generated": false
         }
       }
     },
@@ -12186,10 +10925,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -12221,10 +10956,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Deception",
-          "is_ai_generated": false
         }
       }
     },
@@ -12256,10 +10987,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "National Security",
-          "is_ai_generated": false
         }
       }
     },
@@ -12291,10 +11018,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Public Safety",
-          "is_ai_generated": false
         }
       }
     },
@@ -12326,10 +11049,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Academia",
-          "is_ai_generated": false
         }
       }
     },
@@ -12361,10 +11080,6 @@
         "red_team": {
           "severity_default": "HIGH",
           "weighting_adjustment": 1
-        },
-        "agentdebate": {
-          "domain": "Policy",
-          "is_ai_generated": false
         }
       }
     }
