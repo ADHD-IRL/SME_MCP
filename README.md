@@ -73,7 +73,17 @@ vercel deploy
 Set env vars in the Vercel project: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`,
 `SUPABASE_ANON_KEY` (powers the dashboard), `ANTHROPIC_API_KEY`, and `CRON_SECRET` (protects
 the daily `/api/cron/maintenance` job that recomputes quality scores, prunes rate-limit
-windows, and backfills embeddings).
+windows, and backfills embeddings). Also set `NEXT_PUBLIC_BASE_URL` to your canonical site URL
+and `ADMIN_EMAILS` (comma-separated) to bootstrap admin access.
+
+### 3b. Email (confirmations & password resets)
+
+Auth emails are sent by **Supabase**, not this app. If new accounts don't receive validation
+emails, it's a Supabase config issue — most often that **custom SMTP isn't configured** (the
+built-in sender is rate-limited to a few per hour, for testing only). In the Supabase dashboard:
+configure **Authentication → Emails → SMTP Settings** (Resend/Postmark/SendGrid/SES), enable
+**Confirm email** under Providers → Email, and add your site + `…/auth/callback` to the
+**URL Configuration** allow-list. Full steps: [User Guide → Email setup](./docs/USER_GUIDE.md#email-setup-confirmations--password-resets).
 
 ### 4. Connect a client
 

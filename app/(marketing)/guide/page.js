@@ -79,7 +79,8 @@ export default function Guide() {
             {[
               ['what', 'What it is'], ['quickstart', 'Quickstart'], ['tools', 'The MCP tools'],
               ['workflow', 'Working with SMEs'], ['fields', 'Field reference'], ['scales', 'Value scales'],
-              ['extensions', 'Extensions'], ['curation', 'Curation & quality'], ['selfhost', 'Self-hosting'],
+              ['extensions', 'Extensions'], ['curation', 'Curation & quality'], ['email', 'Email setup'],
+              ['selfhost', 'Self-hosting'],
             ].map(([id, label]) => <a key={id} href={`#${id}`} style={{ color: 'var(--accent-ink)', fontSize: '0.92rem' }}>{label}</a>)}
           </div>
         </nav>
@@ -237,6 +238,47 @@ export default function Guide() {
             (usage, quality, duplication) and, if they pass, queues it for an <strong>admin</strong>
             to approve in the library console. Admins can also edit, deprecate, archive, or delete
             library entries and manage other admins from the account page.
+          </p>
+        </Section>
+
+        <Section id="email" title="Email setup (confirmations & password resets)">
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            Account confirmation and password-reset emails are sent by <strong>Supabase</strong>,
+            not by this app — the app only asks Supabase to send them. If new accounts aren’t
+            receiving validation emails, it’s a Supabase configuration issue. Work through these in
+            order:
+          </p>
+          <ol className="sub" style={{ maxWidth: 'none', paddingLeft: 20, display: 'grid', gap: 10 }}>
+            <li>
+              <strong>Configure custom SMTP</strong> — the most common cause. Supabase’s built-in
+              email service is rate-limited to a handful of messages per hour and is for testing
+              only, so the rest silently fail. In the Supabase dashboard go to
+              {' '}<em>Authentication → Emails → SMTP Settings</em>, enable custom SMTP, and add a
+              provider (Resend, Postmark, SendGrid, or AWS SES — all have free tiers).
+            </li>
+            <li>
+              <strong>Enable “Confirm email”</strong> under <em>Authentication → Providers → Email</em>.
+              If it’s off, no email is sent and users are signed in immediately.
+            </li>
+            <li>
+              <strong>Allow-list your URLs</strong> under <em>Authentication → URL Configuration</em>:
+              set <em>Site URL</em> to your deployment and add
+              {' '}<code>https://your-deployment/auth/callback</code> (and any Vercel preview URLs) to
+              <em> Redirect URLs</em>. A confirmation link whose target isn’t allow-listed won’t work.
+            </li>
+            <li>
+              <strong>Set <code>NEXT_PUBLIC_BASE_URL</code></strong> in your Vercel project to the
+              canonical site URL (e.g. <code>https://your-deployment</code>). The app uses it to build
+              the confirmation redirect, so a missing request origin can’t produce an invalid link.
+            </li>
+            <li>
+              <strong>Check the logs</strong> under <em>Authentication → Logs</em> and in your SMTP
+              provider’s dashboard to see send attempts and failures.
+            </li>
+          </ol>
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            Users who didn’t receive the first email can re-request it with <strong>“Resend it”</strong>
+            on the sign-in page.
           </p>
         </Section>
 
