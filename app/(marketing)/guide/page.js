@@ -113,6 +113,10 @@ export default function Guide() {
             profile, and reason in that expert’s voice. Prefer <code>clone_sme</code> over authoring
             a duplicate, and <code>record_feedback</code> after a session so the best experts rise.
           </p>
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            Connecting Claude Code specifically — scope, key hygiene, and verifying the connection —
+            is covered in detail in <Link href="/usage" style={{ color: 'var(--accent-ink)' }}>Connecting Claude Code</Link>.
+          </p>
         </Section>
 
         <Section id="tools" title="The MCP tools">
