@@ -55,7 +55,6 @@ SMEs in your own workspace, or self-host the whole stack.
 - [Value scales](#value-scales)
 - [Extensions (domain packs)](#extensions-domain-packs)
 - [Curation & quality](#curation--quality)
-- [Email setup](#email-setup-confirmations--password-resets)
 - [Self-hosting](#self-hosting)
 
 ## Quickstart
@@ -158,28 +157,6 @@ ranking and promotion eligibility. To share a private SME, \`propose_promotion\`
 (usage, quality, duplication) and, if they pass, queues it for an **admin** to approve in the
 library console. Admins can also edit, deprecate, archive, or delete library entries and manage
 other admins from the account page.
-
-## Email setup (confirmations & password resets)
-Account confirmation and password-reset emails are sent by **Supabase**, not by this app — the app
-only asks Supabase to send them. If new accounts aren't receiving validation emails, it's a Supabase
-configuration issue. Work through these in order:
-
-1. **Configure custom SMTP** — the most common cause. Supabase's built-in email service is
-   rate-limited to a handful of messages per hour and is for testing only, so the rest silently
-   fail. In the Supabase dashboard: _Authentication → Emails → SMTP Settings_, enable custom SMTP,
-   and add a provider (Resend, Postmark, SendGrid, or AWS SES — all have free tiers).
-2. **Enable "Confirm email"** under _Authentication → Providers → Email_. If it's off, no email is
-   sent and users are signed in immediately.
-3. **Allow-list your URLs** under _Authentication → URL Configuration_: set _Site URL_ to your
-   deployment and add \`https://your-deployment/auth/callback\` (and any Vercel preview URLs) to
-   _Redirect URLs_. A confirmation link whose target isn't allow-listed won't work.
-4. **Set \`NEXT_PUBLIC_BASE_URL\`** in your Vercel project to the canonical site URL (e.g.
-   \`https://your-deployment\`). The app uses it to build the confirmation redirect, so a missing
-   request origin can't produce an invalid link.
-5. **Check the logs** under _Authentication → Logs_ and in your SMTP provider's dashboard to see
-   send attempts and failures.
-
-Users who didn't receive the first email can re-request it with **"Resend it"** on the sign-in page.
 
 ## Self-hosting
 The stack is Next.js on Vercel + Supabase (Postgres, Auth, pgvector). Clone the repo, apply the SQL

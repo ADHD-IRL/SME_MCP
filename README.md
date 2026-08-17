@@ -83,7 +83,7 @@ emails, it's a Supabase config issue — most often that **custom SMTP isn't con
 built-in sender is rate-limited to a few per hour, for testing only). In the Supabase dashboard:
 configure **Authentication → Emails → SMTP Settings** (Resend/Postmark/SendGrid/SES), enable
 **Confirm email** under Providers → Email, and add your site + `…/auth/callback` to the
-**URL Configuration** allow-list. Full steps: [User Guide → Email setup](./docs/USER_GUIDE.md#email-setup-confirmations--password-resets).
+**URL Configuration** allow-list.
 
 ### 4. Connect a client
 
