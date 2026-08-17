@@ -1,6 +1,7 @@
 import { getSupabase, LIBRARY_WORKSPACE_ID } from './supabase.js';
 import { pickProfile, PROFILE_COLUMNS, SME_SELECT } from './profile.js';
 import { embedSme } from './embeddings.js';
+import { enrichProfile } from './enrich-sme.js';
 
 // Admin-only curation of the shared library. All operations are scoped to the
 // library workspace so an admin can never touch a private workspace SME here.
@@ -104,6 +105,62 @@ export async function setLibraryStatus(id, status) {
     .eq('id', id)
     .eq('workspace_id', LIBRARY_WORKSPACE_ID);
   if (error) throw new Error(error.message);
+}
+
+// ---- bulk field build-out (enrichment) ---------------------------------------
+// Fill out every empty SME field across the library with realistic, correlated
+// variation. Runs in pages so a large library stays under function time limits.
+// Deterministic + fills-only, so it is safe to re-run. Skips per-row embedding
+// (the slow part) — the keyword search_vector is a generated column and updates
+// automatically; semantic embeddings refresh via the maintenance cron.
+
+export async function libraryCount() {
+  const { count, error } = await getSupabase()
+    .from('smes')
+    .select('id', { count: 'exact', head: true })
+    .eq('workspace_id', LIBRARY_WORKSPACE_ID)
+    .eq('visibility', 'library');
+  if (error) throw new Error(error.message);
+  return count ?? 0;
+}
+
+export async function libraryDisciplines() {
+  const { data, error } = await getSupabase()
+    .from('smes')
+    .select('discipline')
+    .eq('workspace_id', LIBRARY_WORKSPACE_ID)
+    .eq('visibility', 'library')
+    .limit(5000);
+  if (error) throw new Error(error.message);
+  return [...new Set((data || []).map((r) => r.discipline).filter(Boolean))];
+}
+
+const ENRICH_COLUMNS = [
+  'attributes', 'strengths', 'limitations', 'communication_style',
+  'professional_background', 'reasoning_style', 'cognitive_biases', 'role_type',
+];
+
+export async function enrichLibraryPage({ offset = 0, limit = 25 }, disciplines) {
+  const supabase = getSupabase();
+  const discs = disciplines || (await libraryDisciplines());
+  const { data, error } = await supabase
+    .from('smes')
+    .select('*')
+    .eq('workspace_id', LIBRARY_WORKSPACE_ID)
+    .eq('visibility', 'library')
+    .order('id')
+    .range(offset, offset + limit - 1);
+  if (error) throw new Error(error.message);
+
+  let updated = 0;
+  for (const row of data) {
+    const e = enrichProfile(row, { disciplines: discs });
+    const patch = { updated_at: new Date().toISOString() };
+    for (const col of ENRICH_COLUMNS) patch[col] = e[col];
+    const { error: uErr } = await supabase.from('smes').update(patch).eq('id', row.id);
+    if (!uErr) updated += 1;
+  }
+  return { processed: data.length, updated };
 }
 
 // Hard removal — versions/feedback cascade. Use archive for anything routine.

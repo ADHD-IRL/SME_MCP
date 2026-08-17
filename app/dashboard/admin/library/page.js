@@ -4,6 +4,7 @@ import { isAdmin } from '../../../../src/lib/admins.js';
 import { listLibrarySmes } from '../../../../src/lib/admin-library.js';
 import { listPendingPromotions } from '../../../../src/lib/promotions.js';
 import LibraryConsole from './LibraryConsole.jsx';
+import EnrichPanel from './EnrichPanel.jsx';
 import {
   setStatusAction, deleteLibraryAction, updateLibraryAction,
   bulkStatusAction, bulkDeleteAction, decidePromotionAction,
@@ -54,11 +55,14 @@ export default async function LibraryAdmin() {
           (<code>supabase db push</code>). Details: <code>{loadError}</code>
         </div>
       ) : (
-        <LibraryConsole
-          smes={smes}
-          pending={pending}
-          actions={{ setStatusAction, deleteLibraryAction, updateLibraryAction, bulkStatusAction, bulkDeleteAction, decidePromotionAction }}
-        />
+        <>
+          <EnrichPanel />
+          <LibraryConsole
+            smes={smes}
+            pending={pending}
+            actions={{ setStatusAction, deleteLibraryAction, updateLibraryAction, bulkStatusAction, bulkDeleteAction, decidePromotionAction }}
+          />
+        </>
       )}
     </main>
   );

@@ -1,4 +1,4 @@
-import { signIn, signUp } from './actions.js';
+import { signIn, signUp, resendConfirmation } from './actions.js';
 
 export const metadata = { title: 'Sign in — SME Library' };
 
@@ -32,6 +32,10 @@ export default async function LoginPage({ searchParams }) {
           <button formAction={signIn} style={primaryBtn}>Sign in</button>
           <button formAction={signUp} style={secondaryBtn}>Create account</button>
         </div>
+        <p style={{ fontSize: '0.82rem', color: 'var(--app-muted)', margin: '0.25rem 0 0' }}>
+          Didn’t get the confirmation email?{' '}
+          <button formAction={resendConfirmation} style={linkBtn}>Resend it</button>
+        </p>
       </form>
     </main>
   );
@@ -46,3 +50,4 @@ const primaryBtn = {
   background: 'var(--app-ink)', color: 'var(--app-card)', fontSize: '1rem', cursor: 'pointer',
 };
 const secondaryBtn = { ...primaryBtn, background: 'var(--app-card)', color: 'var(--app-ink)', border: '1px solid var(--app-ink)' };
+const linkBtn = { background: 'none', border: 'none', color: 'var(--app-accent-ink)', cursor: 'pointer', textDecoration: 'underline', padding: 0, font: 'inherit' };
