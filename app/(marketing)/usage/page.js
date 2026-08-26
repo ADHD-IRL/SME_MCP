@@ -202,6 +202,97 @@ claude mcp get sme-library   # what URL, scope, and headers actually resolved?`}
           </div>
         </section>
 
+        {/* Use it without Claude */}
+        <section className="mk-section">
+          <h2>Using SME Library without Claude</h2>
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            MCP is an open standard and this is a plain Streamable-HTTP MCP endpoint with Bearer
+            auth — Claude Code is just one client. Anything that speaks MCP can use it, and if you
+            don’t want MCP at all, there’s a public REST read endpoint. The pattern is always the
+            same: call a tool (usually <C>search_smes</C> then <C>get_sme</C>), get a structured
+            profile back as JSON, then use it however you like — inject it as a persona/system prompt
+            into <em>any</em> model, convene several for a multi-expert panel, or just read the data.
+            A <C>read</C>-scoped key is all a consumer needs.
+          </p>
+
+          <h3 style={{ fontSize: '1.05rem' }}>Option 1 — another MCP client (no code)</h3>
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            Cursor, Cline, Continue, Windsurf, Zed, VS Code (Copilot MCP), Goose, the OpenAI Agents
+            SDK, LangChain (<C>langchain-mcp-adapters</C>), LlamaIndex — all connect to an HTTP MCP
+            server. The config is always this shape:
+          </p>
+          <Code>{`{
+  "type": "http",
+  "url": "https://<your-deployment>/api/mcp",
+  "headers": { "Authorization": "Bearer sme_live_..." }
+}`}</Code>
+
+          <h3 style={{ fontSize: '1.05rem' }}>Option 2 — a programmatic MCP client (any language)</h3>
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            Use an MCP SDK directly and feed the result into whatever system you’re building. Python:
+          </p>
+          <Code>{`import asyncio
+from mcp import ClientSession
+from mcp.client.streamable_http import streamablehttp_client
+
+URL = "https://<your-deployment>/api/mcp"
+HEADERS = {"Authorization": "Bearer sme_live_..."}
+
+async def main():
+    async with streamablehttp_client(URL, headers=HEADERS) as (r, w, _):
+        async with ClientSession(r, w) as s:
+            await s.initialize()
+            hit = await s.call_tool("search_smes", {"query": "counterterrorism", "limit": 3})
+            print(hit.content[0].text)                 # matches as JSON
+            full = await s.call_tool("get_sme", {"sme_id": "<id-from-search>"})
+            persona = full.content[0].text
+            # -> inject \`persona\` into OpenAI / Gemini / a local model, or use it directly
+
+asyncio.run(main())`}</Code>
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            TypeScript is the same idea with <C>@modelcontextprotocol/sdk</C> and
+            <C>StreamableHTTPClientTransport</C>. <C>tools/list</C> (or <C>session.list_tools()</C>)
+            returns all 13 tools and their input schemas.
+          </p>
+
+          <h3 style={{ fontSize: '1.05rem' }}>Option 3 — raw HTTP JSON-RPC (no MCP library)</h3>
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            SSE is disabled, so it’s plain JSON-RPC 2.0 over POST. Initialize, keep the returned
+            <C>mcp-session-id</C> header, then call tools:
+          </p>
+          <Code>{`KEY="sme_live_..."; URL="https://<your-deployment>/api/mcp"
+H=(-H "Authorization: Bearer $KEY" -H "Content-Type: application/json" \\
+   -H "Accept: application/json, text/event-stream")
+
+# 1) initialize — note the "mcp-session-id" response header
+curl -si -X POST "$URL" "\${H[@]}" -d '{"jsonrpc":"2.0","id":1,"method":"initialize",
+  "params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"curl","version":"0"}}}'
+
+SID="<value from mcp-session-id header>"
+# 2) signal ready
+curl -s -X POST "$URL" "\${H[@]}" -H "mcp-session-id: $SID" \\
+  -d '{"jsonrpc":"2.0","method":"notifications/initialized"}'
+# 3) call a tool
+curl -s -X POST "$URL" "\${H[@]}" -H "mcp-session-id: $SID" \\
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call",
+       "params":{"name":"search_smes","arguments":{"query":"deception","limit":2}}}'`}</Code>
+
+          <h3 style={{ fontSize: '1.05rem' }}>Option 4 — skip MCP entirely (public REST read)</h3>
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            If you just want the expert <em>data</em>, there’s a public, unauthenticated, read-only
+            endpoint over the shared library:
+          </p>
+          <Code>{`curl "https://<your-deployment>/api/library?q=counterterrorism&limit=5"
+# -> { "count": n, "smes": [ { full profile incl. attributes + extensions } ] }`}</Code>
+          <p className="sub" style={{ maxWidth: 'none' }}>
+            No key, no protocol — just JSON to drop into any prompt or pipeline. This reads the public
+            library only; creating, cloning, feedback, and private workspaces need the MCP tools with
+            a key. Read tools (<C>search_smes</C>, <C>list_smes</C>, <C>get_sme</C>) need a
+            <C>read</C> scope; <C>write</C>/<C>promote</C>/<C>admin</C> are only for authoring,
+            promoting, or moderating.
+          </p>
+        </section>
+
         {/* Removing or rotating */}
         <section className="mk-section">
           <h2>Removing or rotating</h2>

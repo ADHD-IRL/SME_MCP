@@ -22,7 +22,6 @@ export default function Home() {
           <div className="row">
             <Link href="/dashboard" className="mk-btn mk-btn-primary">Get started</Link>
             <Link href="/guide" className="mk-btn mk-btn-ghost">Read the guide</Link>
-            <a href="https://github.com/ADHD-IRL/SME_MCP" className="mk-btn mk-btn-ghost">View on GitHub</a>
           </div>
         </div>
       </section>
@@ -213,11 +212,11 @@ export default function Home() {
           <div className="mk-grid">
             <div className="mk-card"><span className="ic">🆓</span><h3>No paywall</h3><p>Every capability — search, create, import/export, generate, promote — is available to everyone. No tiers, no seats.</p></div>
             <div className="mk-card"><span className="ic">🏠</span><h3>Self-hostable</h3><p>Clone the repo, point it at your own Supabase and model keys, and run a fully private instance. Your experts, your data.</p></div>
-            <div className="mk-card"><span className="ic">🤝</span><h3>Community-driven</h3><p>Contribute experts to the shared library, or code and issues on GitHub. The library gets better as the community grows it.</p></div>
+            <div className="mk-card"><span className="ic">🤝</span><h3>Community-driven</h3><p>Contribute experts to the shared library and help curate what rises to the top. The library gets better as the community grows it.</p></div>
           </div>
           <div className="row" style={{ marginTop: 28 }}>
-            <a href="https://github.com/ADHD-IRL/SME_MCP" className="mk-btn mk-btn-primary">Star on GitHub</a>
-            <Link href="/dashboard" className="mk-btn mk-btn-ghost">Get started</Link>
+            <Link href="/dashboard" className="mk-btn mk-btn-primary">Get started</Link>
+            <Link href="/guide" className="mk-btn mk-btn-ghost">Read the guide</Link>
           </div>
         </div>
       </section>
