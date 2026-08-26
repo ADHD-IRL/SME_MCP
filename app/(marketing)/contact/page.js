@@ -18,9 +18,7 @@ export default async function Contact({ searchParams }) {
           <span className="mk-eyebrow">Get in touch</span>
           <h1>Say hello.</h1>
           <p className="lead">
-            Questions, ideas, want to contribute, or need a hand self-hosting? Drop us a line — or
-            open an issue or discussion on{' '}
-            <a href="https://github.com/ADHD-IRL/SME_MCP" style={{ color: 'var(--accent-ink)' }}>GitHub</a>.
+            Questions, ideas, want to contribute, or need a hand self-hosting? Drop us a line.
           </p>
         </div>
       </section>

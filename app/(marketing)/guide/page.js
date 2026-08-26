@@ -255,8 +255,7 @@ export default function Guide() {
             <code> docs/USER_GUIDE.md</code> for this guide in Markdown.
           </p>
           <div className="row" style={{ marginTop: 18 }}>
-            <a href="https://github.com/ADHD-IRL/SME_MCP" className="mk-btn mk-btn-primary">View on GitHub</a>
-            <Link href="/dashboard" className="mk-btn mk-btn-ghost">Open the dashboard</Link>
+            <Link href="/dashboard" className="mk-btn mk-btn-primary">Open the dashboard</Link>
           </div>
         </Section>
       </div>

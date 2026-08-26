@@ -110,7 +110,6 @@ function Nav() {
           <Link href="/use-cases" className="hide-sm">Use cases</Link>
           <Link href="/guide" className="hide-sm">Guide</Link>
           <Link href="/usage" className="hide-sm">Connect</Link>
-          <a href="https://github.com/ADHD-IRL/SME_MCP" className="hide-sm">GitHub</a>
           <Link href="/dashboard" className="mk-btn mk-btn-primary cta">Get started</Link>
         </div>
       </div>
@@ -129,7 +128,6 @@ function Footer() {
           <Link href="/use-cases">Use cases</Link>
           <Link href="/guide">Guide</Link>
           <Link href="/usage">Connect Claude Code</Link>
-          <a href="https://github.com/ADHD-IRL/SME_MCP">GitHub</a>
           <Link href="/contact">Contact</Link>
           <Link href="/dashboard">Dashboard</Link>
           <a href="/api/library">Library API</a>
