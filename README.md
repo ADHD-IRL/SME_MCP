@@ -6,7 +6,7 @@ their agent, pull vetted experts from the shared library, maintain private exper
 workspace, and contribute good ones back through a moderated promotion pipeline — or self-host
 the entire stack.
 
-Licensed under the [MIT License](./LICENSE). Contributions welcome via issues and pull requests.
+Licensed under the [MIT License](./LICENSE). Contributions welcome.
 
 Runs on **Vercel** (Next.js + Streamable HTTP transport) with a **Supabase** backend.
 New here? Read the **[User Guide](./docs/USER_GUIDE.md)** — how it all works plus a complete
