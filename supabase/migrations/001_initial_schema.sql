@@ -8,7 +8,7 @@ create extension if not exists vector;
 -- ---------------------------------------------------------------------------
 -- Workspaces
 -- ---------------------------------------------------------------------------
-create table workspaces (
+create table if not exists workspaces (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   slug text unique,
@@ -19,12 +19,13 @@ create table workspaces (
 
 -- The shared public library lives in a well-known workspace.
 insert into workspaces (id, name, slug, plan)
-values ('00000000-0000-0000-0000-000000000001', 'SME Library', 'library', 'system');
+values ('00000000-0000-0000-0000-000000000001', 'SME Library', 'library', 'system')
+on conflict (id) do nothing;
 
 -- ---------------------------------------------------------------------------
 -- API keys (hashed at rest; the plaintext key is shown once at creation)
 -- ---------------------------------------------------------------------------
-create table api_keys (
+create table if not exists api_keys (
   id uuid primary key default gen_random_uuid(),
   workspace_id uuid not null references workspaces(id) on delete cascade,
   name text,
@@ -37,12 +38,12 @@ create table api_keys (
   last_used_at timestamptz,
   created_at timestamptz not null default now()
 );
-create index api_keys_workspace_idx on api_keys (workspace_id);
+create index if not exists api_keys_workspace_idx on api_keys (workspace_id);
 
 -- ---------------------------------------------------------------------------
 -- SMEs — domain-agnostic core profile + jsonb extensions for domain packs
 -- ---------------------------------------------------------------------------
-create table smes (
+create table if not exists smes (
   id uuid primary key default gen_random_uuid(),
   workspace_id uuid not null references workspaces(id) on delete cascade,
 
@@ -86,16 +87,16 @@ create table smes (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
-create index smes_workspace_idx on smes (workspace_id);
-create index smes_visibility_idx on smes (visibility) where visibility = 'library';
-create index smes_search_idx on smes using gin (search_vector);
-create index smes_tags_idx on smes using gin (tags);
-create index smes_embedding_idx on smes using hnsw (embedding vector_cosine_ops);
+create index if not exists smes_workspace_idx on smes (workspace_id);
+create index if not exists smes_visibility_idx on smes (visibility) where visibility = 'library';
+create index if not exists smes_search_idx on smes using gin (search_vector);
+create index if not exists smes_tags_idx on smes using gin (tags);
+create index if not exists smes_embedding_idx on smes using hnsw (embedding vector_cosine_ops);
 
 -- ---------------------------------------------------------------------------
 -- Version history — full snapshot per edit, enables rollback and diffing
 -- ---------------------------------------------------------------------------
-create table sme_versions (
+create table if not exists sme_versions (
   id uuid primary key default gen_random_uuid(),
   sme_id uuid not null references smes(id) on delete cascade,
   version int not null,
@@ -109,7 +110,7 @@ create table sme_versions (
 -- ---------------------------------------------------------------------------
 -- Feedback — raw per-session quality events (never overwritten)
 -- ---------------------------------------------------------------------------
-create table sme_feedback (
+create table if not exists sme_feedback (
   id uuid primary key default gen_random_uuid(),
   sme_id uuid not null references smes(id) on delete cascade,
   workspace_id uuid references workspaces(id) on delete set null,
@@ -119,7 +120,7 @@ create table sme_feedback (
   notes text,
   created_at timestamptz not null default now()
 );
-create index sme_feedback_sme_idx on sme_feedback (sme_id);
+create index if not exists sme_feedback_sme_idx on sme_feedback (sme_id);
 
 -- Bayesian-smoothed quality: (C*m + sum) / (C + n) with prior C=20 pseudo-
 -- observations at m=70, so one lucky 95 doesn't outrank fifty 85s.
@@ -145,7 +146,7 @@ $$;
 -- ---------------------------------------------------------------------------
 -- Library promotion queue — moderated pipeline, not an instant copy
 -- ---------------------------------------------------------------------------
-create table library_promotions (
+create table if not exists library_promotions (
   id uuid primary key default gen_random_uuid(),
   sme_id uuid not null references smes(id) on delete cascade,
   workspace_id uuid not null references workspaces(id) on delete cascade,
@@ -157,12 +158,12 @@ create table library_promotions (
   created_at timestamptz not null default now(),
   reviewed_at timestamptz
 );
-create index library_promotions_status_idx on library_promotions (status) where status = 'pending';
+create index if not exists library_promotions_status_idx on library_promotions (status) where status = 'pending';
 
 -- ---------------------------------------------------------------------------
 -- Audit log — every write lands here
 -- ---------------------------------------------------------------------------
-create table audit_log (
+create table if not exists audit_log (
   id bigint generated always as identity primary key,
   api_key_id uuid,
   workspace_id uuid,
@@ -172,12 +173,12 @@ create table audit_log (
   detail jsonb,
   created_at timestamptz not null default now()
 );
-create index audit_log_workspace_idx on audit_log (workspace_id, created_at);
+create index if not exists audit_log_workspace_idx on audit_log (workspace_id, created_at);
 
 -- ---------------------------------------------------------------------------
 -- Rate limiting — fixed-window counters in Postgres (no Redis dependency)
 -- ---------------------------------------------------------------------------
-create table rate_limits (
+create table if not exists rate_limits (
   key_id uuid not null,
   bucket text not null,                     -- e.g. 'requests', 'generations'
   window_start timestamptz not null,
